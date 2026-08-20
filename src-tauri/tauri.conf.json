@@ -30,7 +30,6 @@
   "bundle": {
     "active": true,
     "targets": [
-      "nsis",
       "msi"
     ],
     "windows": {
@@ -46,7 +45,8 @@
       "icons/128x128.png",
       "icons/256x256.png"
     ],
-    "publisher": "Pastor's Workbench"
+    "publisher": "Pastor's Workbench",
+    "createUpdaterArtifacts": true
   },
   "plugins": {
     "updater": {
