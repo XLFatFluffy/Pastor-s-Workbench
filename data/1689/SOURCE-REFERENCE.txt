@@ -1,0 +1,6 @@
+1689 SOURCE REFERENCE
+
+Canonical source: user-provided file "baptist confession of faith.pdf".
+The user identified this PDF as a known-correct reference and authorized spelling and punctuation corrections.
+
+The PDF itself states that the original texts are public domain and separately notes copyright for the compilation/annotations. The Workbench uses the confession text and structured proof references only; it does not reproduce the compilation preface, catechism, or annotations.

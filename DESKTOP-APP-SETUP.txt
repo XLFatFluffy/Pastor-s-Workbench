@@ -1,0 +1,27 @@
+PASTOR'S WORKBENCH — DESKTOP BUILD
+Version 0.12.0
+
+This build adds a Tauri 2 Windows desktop shell around the existing Workbench.
+The application remains HTML/CSS/JavaScript internally, but production builds are native Windows applications with no browser address bar, tabs, or localhost server requirement.
+
+BUILD REQUIREMENTS ON WINDOWS
+1. Node.js 20+ (Node 22 recommended)
+2. Rust toolchain (rustup)
+3. Microsoft C++ Build Tools / Windows SDK
+4. Microsoft Edge WebView2 Runtime
+
+After installing prerequisites:
+  npm install
+  npm run desktop:dev
+
+To build Windows installers:
+  npm run desktop:build
+
+Installers appear under:
+  src-tauri/target/release/bundle/
+
+IMPORTANT DATA NOTE
+The desktop WebView has its own storage origin. Existing browser IndexedDB data may not automatically appear in the desktop build. Before making the desktop build your primary copy, the next desktop phase should add an explicit data backup/migration path.
+
+OLLAMA
+The existing Ollama integration remains configured for localhost. The desktop WebView can communicate with local Ollama when Ollama accepts the local request.

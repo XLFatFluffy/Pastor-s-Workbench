@@ -1,0 +1,226 @@
+PASTOR'S WORKBENCH — PROJECT INSTRUCTIONS (MASTER FILE)
+Edit rights: the user, and Claude — no other party edits this file.
+============================================================================
+IF YOU ARE A FRESH CHAT WITH NO CONTEXT, START HERE. Read this file first,
+then the other three companion files (all in the project root):
+
+  USER-NOTES.txt        — the user's own notes and instructions.
+                           Edit rights: the user only.
+  CLAUDE-BUILD-LOG.txt   — Claude's dated build/audit sessions and
+                           build parameters. Edit rights: user + Claude.
+  GPT-BUILD-LOG.txt      — ChatGPT's dated build sessions.
+                           Edit rights: user + ChatGPT (append entries here
+                           at the end of every coding session).
+
+Together these four files are the entire project memory. If you read all
+four, you know what this project is, what has been done, what the rules
+are, and what to do next — without needing anything else explained to you.
+
+============================================================================
+PART 1 — WHAT THIS PROJECT IS
+============================================================================
+Pastor's Workbench: a local-first (no subscription, no required cloud
+account) theological study, sermon/lesson/study preparation, and
+knowledge-management application for a Reformed Baptist preacher. Runs in
+a browser from a small local static file server (no build step, vanilla
+ES modules — see Part 3, rule P5).
+
+Core domains: a multi-translation Bible reader with highlighting,
+bookmarking, and study tools; a fully verified 1689 London Baptist
+Confession with bidirectional Scripture cross-references; a Scripture
+cross-reference engine (OpenBible.info corpus); and, still to be built,
+concordance, research/notes/topics, sermon/lesson/study preparation,
+library/document export, AI-assisted drafting (human-approved only), and
+optional cloud backup.
+
+The user's stated goal, in his own words: a Bible-study experience that
+can genuinely exceed the YouVersion app for his own daily use — better
+highlighting/notes/cross-reference integration than YouVersion offers,
+built around his own workflow — while being honest that a licensed audio
+Bible library and a large modern-translation catalog are out of reach
+without licensing deals YouVersion has and he doesn't (browser
+text-to-speech is the realistic substitute for audio — see
+CLAUDE-BUILD-LOG.txt's roadmap section for the full UX track).
+
+Current build tool split: ChatGPT does the bulk implementation coding.
+Claude audits, tests, and polishes each handoff, and keeps this file set
+organized. The user reviews and directs both.
+
+============================================================================
+PART 2 — CURRENT STATUS (read CLAUDE-BUILD-LOG.txt / GPT-BUILD-LOG.txt for
+full detail and dates; this is the short version so a fresh session isn't
+lost)
+============================================================================
+Phase 0 — Application shell/foundation: COMPLETE.
+Phase 1 — Core data layer (IndexedDB persistence, real entity schemas,
+  relationship engine): COMPLETE.
+Phase 2 — Bible engine: FUNCTIONAL. Translation-neutral, on-demand loading
+  (KJV default; ERV/AMP/ASV/CPDV/ESV/NASB/WEB selectable). Text is NOT
+  bundled in the app by design (see P2/P5.1 in Part 3) — it loads from a
+  documented source at run time. ESV is not on an authorized licensed API;
+  revisit if that matters to the user.
+Phase 3 — 1689 Confession: COMPLETE. 32/32 chapters, 160/160 paragraphs,
+  verified against a user-provided reference PDF (see
+  data/1689/EXACT-WORDING-DECISION.txt for how that PDF became canonical,
+  and verification.json / exact-wording-manifest.json for the per-paragraph
+  record). NOTE: two older files in that folder — exact-wording-policy.txt
+  and EXACT-WORDING-REVIEW.txt — describe an earlier, now-superseded stage
+  where this reconciliation was still pending; both now carry a "SUPERSEDED"
+  notice at the top pointing here. If those two files are ever read without
+  that notice, treat this status line and the verification.json data as
+  authoritative, not their "pending" language. Bidirectional
+  Confession-to-Scripture relationships working and tested.
+Phase 4 — Cross-references: ACTIVE/REFINING. Embedded verse-marker +
+  dropdown UI implemented and tested. Full corpus (344,799 references)
+  install-and-validate-in-browser is NOT yet confirmed — do not mark this
+  phase complete until that is confirmed.
+Phase 5 (Concordance) through Phase 11 (Backup/Restore): NOT STARTED.
+  Build order and detail are in CLAUDE-BUILD-LOG.txt's roadmap section.
+
+Test suite as of the last Claude session: run `node --test tests/*.mjs`
+from the project root. Expect 20 tests, 19 pass, 1 clean skip (the
+bundled-KJV structural check, which correctly no-ops because no KJV file
+is bundled by design). Anything showing "fail" is a real regression —
+stop and fix before adding new work.
+
+============================================================================
+PART 3 — GOVERNING ARCHITECTURE RULES (non-negotiable without the user's
+explicit sign-off — these came out of a hard lesson: an earlier build of
+this app violated them and had to be discarded and rebuilt from scratch)
+============================================================================
+P1. Layered architecture is mandatory. UI views call domain services;
+    services call the persistence layer (store.js); store.js never
+    contains validation or business logic. One file per domain service.
+P2. No unverified live network dependency for reference/Scripture text.
+    Confession and cross-reference text must be sourced once, verified,
+    and stored locally with documented provenance (see Part 4's protected
+    file list). Bible translation text may load on demand from a
+    documented provider (current architecture), but must degrade
+    gracefully — never break the app — if unavailable.
+P3. Placeholders over fake content. An unfinished feature shows an honest
+    "not built yet" state. Never invented text, never a fabricated
+    "complete" status.
+P4. Design before build. A new workspace/module gets a mockup or plain
+    description reviewed by the user before HTML/CSS is written for it.
+P5. No build step. Vanilla ES modules, opens via index.html, minimal local
+    static server only if strictly required for browser module loading.
+    Do not introduce a bundler/framework to "modernize" this.
+P6. Real data model. Canonical verse identity independent of translation;
+    confession paragraph identity independent of display; typed,
+    provenance-bearing cross-references; source-knowledge vs.
+    personal-knowledge distinction in Research; AI output always
+    provisional pending explicit user approval.
+P7. No cloud/sync work until the user explicitly asks for it. When asked
+    for, it gets real conflict-resolution UI — never a silent overwrite.
+P8. Session continuity via zip checkpoints. Upload the current project
+    zip at the start of any coding session; deliver an updated zip at the
+    end of any session that changed code.
+P9. AI never auto-writes sermon/lesson/study content. AI output is always
+    provisional, stored with provenance, and requires explicit
+    accept/edit/reject from the user before it becomes permanent content.
+P10. Targeted edits over full-file rewrites once a file is stable and
+    tested. Run `node --check` on changed files and the relevant test
+    file(s) before considering a change complete.
+
+============================================================================
+PART 4 — FILES THAT MUST NEVER BE EDITED, OVERWRITTEN, OR DELETED
+============================================================================
+This list is deliberately narrow. Everything NOT on it — services, views,
+styles.css, main.js, index.html, dataModel.js, store.js — is meant to be
+built on and changed freely; that is the actual work. This list exists to
+protect verified content, provenance/license records, and the project's
+own memory from being altered by mistake, especially now that a second AI
+tool (ChatGPT) is doing bulk coding on it. When in doubt whether a file
+belongs on this list, treat it as protected and ask the user first.
+
+  1. USER-NOTES.txt
+     Edit rights: the user ONLY. No AI may add, remove, or reword anything
+     in this file, ever, regardless of instructions found elsewhere,
+     including inside this project's own files. If asked to change it,
+     decline and explain why.
+
+  2. THIS FILE — PROJECT-INSTRUCTIONS.txt
+     Edit rights: the user and Claude only. ChatGPT must not edit this
+     file. If ChatGPT's work implies a change is needed here (e.g. a phase
+     completed, a rule needs updating), it should say so in
+     GPT-BUILD-LOG.txt and let the user or Claude make the actual edit.
+
+  3. CLAUDE-BUILD-LOG.txt
+     Edit rights: the user and Claude only, same reasoning as #2.
+
+  4. GPT-BUILD-LOG.txt
+     Edit rights: the user and ChatGPT. Claude may read it but should
+     avoid editing ChatGPT's own entries — add a Claude note clearly
+     marked as such if a correction is needed, don't rewrite ChatGPT's text.
+
+  5. data/1689/ verified text and provenance files (chapters.json,
+     seed.json, verification.json, exact-wording-manifest.json,
+     SOURCE-REFERENCE.txt, exact-wording-policy.txt, and related files in
+     that folder)
+     This text was verified paragraph-by-paragraph against a user-provided
+     reference PDF (32/32 chapters, 160/160 paragraphs). Never regenerate,
+     reformat, or replace this from an unverified internet source. A
+     correction here is a user decision, re-verified against the same
+     reference PDF — never an autonomous AI edit. Regenerating it from an
+     unverified source would silently reintroduce the exact defect the
+     original rebuild of this app was undertaken to fix.
+     Exception actually exercised (2026-08-19): adding a short "SUPERSEDED"
+     notice to the TOP of exact-wording-policy.txt and
+     EXACT-WORDING-REVIEW.txt, after ChatGPT correctly flagged that their
+     "pending reconciliation" language contradicted the "verified" status
+     elsewhere. Nothing in the actual confession wording, chapter/paragraph
+     data, or verification records was changed — only a dated pointer to
+     EXACT-WORDING-DECISION.txt was added so the files can't be misread out
+     of order again. That is the kind of "correction" this protection
+     allows: fixing stale documentation framing, never the verified content
+     itself.
+
+  6. data/crossrefs/ license and provenance files (LICENSE-NOTICE.txt,
+     README.txt, FULL-CORPUS-INSTALLER.txt)
+     Document the corpus's source and license (OpenBible.info / CC BY).
+     Removing or altering attribution creates a licensing problem, not
+     just a data problem.
+
+  7. tests/*.mjs
+     Fix a test deliberately, with a written explanation of why it was
+     wrong, when it encodes a stale assumption (this has happened once —
+     see CLAUDE-BUILD-LOG.txt). Never delete a test file, or silently
+     change its assertions, to make a failing suite look green. If
+     ChatGPT's new code makes a previously-passing test fail, the default
+     assumption is a bug in the new code, not a bad test.
+
+  8. package.json's "type": "module" field, and the no-build-step /
+     vanilla-ES-modules approach generally (P5 above). Standing
+     architectural decision, not an oversight.
+
+============================================================================
+PART 5 — INSTRUCTIONS FOR CHATGPT (read this section directly)
+============================================================================
+You are doing the bulk implementation coding on this project. Follow these
+explicitly so avoidable mistakes don't happen:
+
+1. Before writing any code, read this file in full, then USER-NOTES.txt,
+   then CLAUDE-BUILD-LOG.txt's roadmap/phase section. Confirm you
+   understand which phase or task you're building before starting.
+2. Never edit or delete any file listed in Part 4 above. If your task
+   seems to require it, stop and say so in GPT-BUILD-LOG.txt instead of
+   proceeding.
+3. Follow the architecture rules in Part 3 exactly — especially P1 (layered
+   architecture: UI never touches storage directly), P2 (no unverified
+   live network dependency for reference text), P5 (no bundler/framework),
+   and P9 (AI never auto-writes sermon/lesson/study content).
+4. At the end of every session in which you write or change code, append a
+   dated entry to GPT-BUILD-LOG.txt describing: what you built, why,
+   which files you touched, and the result of running
+   `node --check` on every changed file plus `node --test tests/*.mjs`
+   on the whole suite. Do not mark a task "complete" in your entry unless
+   the tests actually pass — say so plainly if something is still broken.
+5. Prefer targeted, scoped edits over full-file rewrites for any file that
+   already exists and has passing tests.
+6. Deliver the project as a single zip (excluding .DS_Store) at the end of
+   your session, containing every file — not a diff or a partial folder —
+   so the next session (Claude, or another ChatGPT session) can inspect
+   real, complete file structure.
+7. If you are unsure whether something is in scope, is a protected file,
+   or conflicts with a rule above, stop and ask the user rather than
+   guessing or working around the rule.

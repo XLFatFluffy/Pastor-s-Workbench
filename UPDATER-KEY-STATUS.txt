@@ -1,0 +1,5 @@
+Updater public signing key configured.
+
+Public key file: updater-keys/pastors-workbench.key.pub
+Private key must NOT be committed or uploaded.
+Add the private key to GitHub Actions as TAURI_SIGNING_PRIVATE_KEY.

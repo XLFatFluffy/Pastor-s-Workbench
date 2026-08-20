@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const css = fs.readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
+const js = fs.readFileSync(new URL('../globalAI.js', import.meta.url), 'utf8');
+assert.match(css, /\.global-ai__messages\{[^}]*overflow-y:scroll/);
+assert.match(css, /scrollbar-width:auto/);
+assert.match(css, /\.global-ai__conversation-delete/);
+assert.match(js, /deleteAIConversation\(id\)/);
+assert.match(js, /Delete “\$\{title\}”\?/);
+assert.match(js, /data-delete-conversation/);
+console.log('AI chat management contract: PASS');

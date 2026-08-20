@@ -1,0 +1,1287 @@
+{
+  "records": [
+    {
+      "chapter": 1,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "832a57a56fcc62c3e046e18a64f45d3dcf13ad5e015a46234748cd3873fd343d",
+      "proof_count": 10
+    },
+    {
+      "chapter": 1,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "f7dbc206b28a9163c279ac3fd0560ee7da4792876ed70303b1ceb047f3e2b594",
+      "proof_count": 1
+    },
+    {
+      "chapter": 1,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "b14f1caf1b549406ec285624ad6f0c6bc9922eab0c15eed5bcb5d2530d8c591d",
+      "proof_count": 2
+    },
+    {
+      "chapter": 1,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a61c9b32eb492f1298c62c5328db533b5f16e883f31c943b6e016bd9793ac94c",
+      "proof_count": 4
+    },
+    {
+      "chapter": 1,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "b7ace5a433ef50c8745a831db324d0085cff8f80d69eec47f2b0466817b2ac43",
+      "proof_count": 3
+    },
+    {
+      "chapter": 1,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7f08353f70ce66e7691361b2ce28fea5f32564974618bb086194639fe068ef53",
+      "proof_count": 5
+    },
+    {
+      "chapter": 1,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "3dba28c7abbe5c1790af84aa4ae4efc3d2af1438ffb0047d81bf6c0dca27dc10",
+      "proof_count": 2
+    },
+    {
+      "chapter": 1,
+      "paragraph": 8,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "6e933b6ef7e86e07efbd3c4923accea0624c59326e7ceaa4282be78050efcc2b",
+      "proof_count": 6
+    },
+    {
+      "chapter": 1,
+      "paragraph": 9,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5a41daf91ecb551da08268498b050242502886255fa5315cc312d602b83c725f",
+      "proof_count": 2
+    },
+    {
+      "chapter": 1,
+      "paragraph": 10,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a8234f22cf4df128a0c1e107c5c597a5338223efcd08b81c7714ed7c351b410c",
+      "proof_count": 3
+    },
+    {
+      "chapter": 2,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0635602d07c6b2d36df1a3295d3cb0240ad80dc4f60a561527850f7331fa0c58",
+      "proof_count": 24
+    },
+    {
+      "chapter": 2,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0196242040a9e5825d88376f08c9e0e3b33260c588611371c112cd46e2c00978",
+      "proof_count": 11
+    },
+    {
+      "chapter": 2,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "c73963a2cf55ed58869c66ad92273229fb5772292cf51eab4e6f56971f02932a",
+      "proof_count": 9
+    },
+    {
+      "chapter": 3,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4af60daa1f6829dfe5f6ace499ac475c1a8845553fc689d5d9efa2c9640f8b2e",
+      "proof_count": 10
+    },
+    {
+      "chapter": 3,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "9595777db9e45521f9debfb62863fe0b2e767f49ffa3fac5d51a99db84dee247",
+      "proof_count": 2
+    },
+    {
+      "chapter": 3,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4022c7d2bc8a6755e847cb87bf9bc9f26c52eecc7067b737416c01ac40c619c2",
+      "proof_count": 4
+    },
+    {
+      "chapter": 3,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "3515f8b6df99aa728bad2e68b44beb3709fc5c81482bd516cff87cd7b01e26d2",
+      "proof_count": 2
+    },
+    {
+      "chapter": 3,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "8857d28efa00b4001f0fe7af0b99415f1c8e941a613467a477bbd5ca3b289060",
+      "proof_count": 6
+    },
+    {
+      "chapter": 3,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "072bcc86b0c80a7b1f555f3cc3ef465e0c7a52f17b73cc128c2a4e7502788b43",
+      "proof_count": 7
+    },
+    {
+      "chapter": 3,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "efa5eff8430ec5d7aa2c1f9cc29d6ed9471b6130e2ab00004c104814e73629ee",
+      "proof_count": 6
+    },
+    {
+      "chapter": 4,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "2bded8ddfb86cda0622c803fde17096251fc5769acfdfc6333c846e937bf52f7",
+      "proof_count": 6
+    },
+    {
+      "chapter": 4,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0515e015e6d65d471e59f2059669100b3304cf6ea0dfdc35ea519cd314e9b2ac",
+      "proof_count": 6
+    },
+    {
+      "chapter": 4,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "c43cba4fafc56211d3fcd1c820d52fe1b4867cffc5a346ff0a08d1469d90503f",
+      "proof_count": 2
+    },
+    {
+      "chapter": 5,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0e05e4162bfd9fdd7ef6cf1706107924f852c2c3439498a827c835e3a39690fb",
+      "proof_count": 6
+    },
+    {
+      "chapter": 5,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ae0d022c8d8851d8950ea62408ce611cf0a1150ca0fb2f578632004770074c24",
+      "proof_count": 3
+    },
+    {
+      "chapter": 5,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "aa295c918f7ec1aad55b161d0baa07c8e7d8e9ad82c3b43eecfc4814e810880c",
+      "proof_count": 5
+    },
+    {
+      "chapter": 5,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "375971c77e83f0f216c79892680bddfe9e2e6f048edfeed13545b2baa6221425",
+      "proof_count": 9
+    },
+    {
+      "chapter": 5,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4d5c2c894261c16169715f731da7d6dbf1386001f427d577ec10523d6d834557",
+      "proof_count": 3
+    },
+    {
+      "chapter": 5,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0c508411739fd5a35a39e5564b5db097d69a054e061f5308b86e2204a6796c16",
+      "proof_count": 10
+    },
+    {
+      "chapter": 5,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "6bec954691717d081c70fd73836ae7b80ca0b19a826e49442b617983bb12dc62",
+      "proof_count": 3
+    },
+    {
+      "chapter": 6,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "e6b92a80bc505ad991891cfc95f1b904fae5b23cf5de4f1c32408097c5db40c6",
+      "proof_count": 3
+    },
+    {
+      "chapter": 6,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "637f264cb760a32003e403aca2573b41ca3bc92911eb8ecb8e95289fe37e5242",
+      "proof_count": 5
+    },
+    {
+      "chapter": 6,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a1d8b4cc0b33c1f9b315085ad30a9ad31e9556a0fd49e8507702593c648ecd5f",
+      "proof_count": 8
+    },
+    {
+      "chapter": 6,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4e617722d4c2b66acaa9e20a21b66dbd00b49500cc3d3166d55ed81ef0be4028",
+      "proof_count": 4
+    },
+    {
+      "chapter": 6,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ffe9ae48b858f688155729690578b43d8fea71fcf7d607620e931ec081c53dd5",
+      "proof_count": 5
+    },
+    {
+      "chapter": 7,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "3a2b74c3f84987f2e99e9dba60a3f0f3a8b95a6c37dea38b418fd7b7143341cf",
+      "proof_count": 2
+    },
+    {
+      "chapter": 7,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "71f16f5a211706cb8507e6162295c50bee36ffa5e1e89c943460b35317dd20a9",
+      "proof_count": 9
+    },
+    {
+      "chapter": 7,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "262e8b5f7c60f935d82fb30122296f3274cce2efbb509efd5fbb078da042bc10",
+      "proof_count": 7
+    },
+    {
+      "chapter": 8,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1748d8079fd35fd5ff8d654a81f7e5a7197b1852de7ae07f4cea080bb964faef",
+      "proof_count": 12
+    },
+    {
+      "chapter": 8,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7873d2dadef9b3a3645fa69afadd6c14298536a808625bfa5935a7d05f742fad",
+      "proof_count": 8
+    },
+    {
+      "chapter": 8,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7a497b170d5a0439baf9bd26d0465bd331a14868634086ff97d64606dcbc5419",
+      "proof_count": 12
+    },
+    {
+      "chapter": 8,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "f4ebaba12c131304cefa4a128bea8622f90d703bb95d848760ddfedfd3c2da04",
+      "proof_count": 23
+    },
+    {
+      "chapter": 8,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "18fd628b126203cf97aeb61827e14f37d277ca4731ef2325d6f4dc0e52c4eab8",
+      "proof_count": 4
+    },
+    {
+      "chapter": 8,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "f07aa274a0cde2304ce99a413cb75c1fd5cc48a2bc690e73842e9162edd85090",
+      "proof_count": 5
+    },
+    {
+      "chapter": 8,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1418a6f5320c8a52bb9221a3513f005a88ff1f04a9f79f9530bb62f7c3f357a6",
+      "proof_count": 2
+    },
+    {
+      "chapter": 8,
+      "paragraph": 8,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7921edcd834e185b2876c037ca90149b96bfeb6b7f8974f35b9943e94927d665",
+      "proof_count": 10
+    },
+    {
+      "chapter": 8,
+      "paragraph": 9,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0269a9551a58565822b64e4287a83470ead5ca82b6c1fc090ca7ecdda7547ee8",
+      "proof_count": 1
+    },
+    {
+      "chapter": 8,
+      "paragraph": 10,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "9ef0be8d9c4e429ddc4b25606d8ccfc986f76cc88a4ea4cf2457f009b9511609",
+      "proof_count": 6
+    },
+    {
+      "chapter": 9,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5eb0bd8d9b287670c22338408be475a35a37c2e47891b1089f74b22dd75c0725",
+      "proof_count": 3
+    },
+    {
+      "chapter": 9,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1a519e5f9354b3e9178912da3272f45c72bd7616678dab7be600bfbe4fe47d33",
+      "proof_count": 2
+    },
+    {
+      "chapter": 9,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "343d5dbd21bebe909db47b9f202ea8f43c7ae002be1c4d3f10816ecd077fd49a",
+      "proof_count": 3
+    },
+    {
+      "chapter": 9,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "aec384ea65b3e5e16871db15ab73acd1f70510e9f4cab2037116a7bf0d355b60",
+      "proof_count": 4
+    },
+    {
+      "chapter": 9,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1ce0838a937235ff9f54c0999177c8f055c27b14bc9463e7f242cadcc4bb6a7f",
+      "proof_count": 1
+    },
+    {
+      "chapter": 10,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "cd72eebfc960470d5d2251dae28ad7ab3613da7e5583ca933bc036b19b585f79",
+      "proof_count": 12
+    },
+    {
+      "chapter": 10,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "2bddacb04b06c7fdff23ca74a9d6550df879500fbad9de3863d883eb20e44b7d",
+      "proof_count": 6
+    },
+    {
+      "chapter": 10,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "b864cdf8ebfbe768f0dde91c32c5f9920335c22c0330d8e8d6c72f80f2038028",
+      "proof_count": 2
+    },
+    {
+      "chapter": 10,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "61d74d3aa9fcbc6caa67e86643cceb2f841d6328f3e6aedf85a53989e062a315",
+      "proof_count": 6
+    },
+    {
+      "chapter": 11,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0c46048488d5893b398ed8bcd67a37431f7d7e521fe8f9c5c8a7c63fbda237ad",
+      "proof_count": 9
+    },
+    {
+      "chapter": 11,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "e9060114e9992a63c3a9c7d4948d6a464d24bf852881db624bdfe8e30e6699b5",
+      "proof_count": 3
+    },
+    {
+      "chapter": 11,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "817f6574bbce5d5dbf7c2b8c04eca30e2646461c4b87a6378885497b9bfdc35e",
+      "proof_count": 7
+    },
+    {
+      "chapter": 11,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "58f295aac482cc5dcfc09cfa4adea14362970659778f237a48fc2f6cada3c710",
+      "proof_count": 5
+    },
+    {
+      "chapter": 11,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "79bb19d1bd2af52dca784b5bcf2c93e1018fa84a659193da5417218606e979e5",
+      "proof_count": 7
+    },
+    {
+      "chapter": 11,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "6ed91f727624a5b1c9a5d1853fd440cff81d2df95ccf0238159ca46470d34e92",
+      "proof_count": 2
+    },
+    {
+      "chapter": 12,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "3b7ed1684bcc5e993eb663684cfcd3013dcffe8a9d4caac50f2382d4075dcc65",
+      "proof_count": 17
+    },
+    {
+      "chapter": 13,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "c5dac4303867d7aebd4992341670e5b3ca38c06b8e38361efc5812efdbc2efd3",
+      "proof_count": 10
+    },
+    {
+      "chapter": 13,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "af0f9c2dadb1de33fb30797ad2079d312be2b8b7ba5edeb3479dd173af1d0d8c",
+      "proof_count": 4
+    },
+    {
+      "chapter": 13,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "baebfd7d14b8e502ff7e3bba561dd6130b5d11116219f2f762569bd92ebea567",
+      "proof_count": 4
+    },
+    {
+      "chapter": 14,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a036db92d719f6c1afea370cb98eaf6187a1340c79d583b92d6b5d09308c4999",
+      "proof_count": 6
+    },
+    {
+      "chapter": 14,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "47febb40f90c98181d81b04813a1d9e713e688f74ea467c7f87c42aaade80476",
+      "proof_count": 10
+    },
+    {
+      "chapter": 14,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7470688f02befcc237067571cbe181873efbe8a177e560f8cd228d2ba0868a6e",
+      "proof_count": 9
+    },
+    {
+      "chapter": 15,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "b0df088d6c9fca262d4c934b9c24ef9939c7112e770fc8a9d5f711cb6c5561fb",
+      "proof_count": 1
+    },
+    {
+      "chapter": 15,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ecf690a8d6b6ddd4568cadbb19d2f94a46725149db2cb237364a5a627b56e154",
+      "proof_count": 2
+    },
+    {
+      "chapter": 15,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "d5cc47c09430a1679095c9e7a03e3eb5e8307f62f849cba06147bfff6ceb6989",
+      "proof_count": 5
+    },
+    {
+      "chapter": 15,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5bd33e210fe03370064a8505382dbb276959c3f5103a68a3bb35679f71d8722e",
+      "proof_count": 2
+    },
+    {
+      "chapter": 15,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ae96e7ab047dbb9a72292886b8a7b98cc9ac9f6715855b5af296265eba588e0d",
+      "proof_count": 2
+    },
+    {
+      "chapter": 16,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "e345bdf0cb612e3aa72bf0f0f313d4eebea3d36e694c98d2feb167bd7e0b4b0a",
+      "proof_count": 4
+    },
+    {
+      "chapter": 16,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1ad2c2233e2f17bf1275ea2e381899e8bd3008ef843291695c4eac14f5c9f96e",
+      "proof_count": 10
+    },
+    {
+      "chapter": 16,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "8fcb1f17928021f2a95001bcde671730de18090619aa37200f25f34013cd0cf6",
+      "proof_count": 6
+    },
+    {
+      "chapter": 16,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "88617c8eea1176e32c72c96125dad7658a82de63958d1aa243461c1ee5c1cc92",
+      "proof_count": 3
+    },
+    {
+      "chapter": 16,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "e97f82e7cc057867ce5940238afeef5319924b7918089f746bfedd733063a663",
+      "proof_count": 6
+    },
+    {
+      "chapter": 16,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7007db79356f09d3298e2cdc4362df92062f374b2974154507803eca9a70c7d9",
+      "proof_count": 4
+    },
+    {
+      "chapter": 16,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5a4f4b15116c4b4bf5b8c03ab868058ad7497c5e4ef6d0c8edf99aed4e7a9a54",
+      "proof_count": 10
+    },
+    {
+      "chapter": 17,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "de61c9eadea6a52d2933030dffb82672e2f4d97cc2de84efd0d42dffdc38311e",
+      "proof_count": 7
+    },
+    {
+      "chapter": 17,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ab4e9604603b6156bb6a798c53ddd60eae213a38920390fecce9a615afa5d869",
+      "proof_count": 6
+    },
+    {
+      "chapter": 17,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "643c402f476859babb79370fcc56677282434860469f930932aa84d29814f3db",
+      "proof_count": 7
+    },
+    {
+      "chapter": 18,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "e4a97215172fb9f052e7bbd48a1d768e5a544cd90f7476c51f57c654a7d8c24b",
+      "proof_count": 4
+    },
+    {
+      "chapter": 18,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "c2ff0098a846610340095da7a6ab00381dba499b441de53bd9d78c4f9c3b7771",
+      "proof_count": 5
+    },
+    {
+      "chapter": 18,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "dc2bdc58452aea67af7702ee6474850d2503350d8adc7574d57170279eb197ea",
+      "proof_count": 7
+    },
+    {
+      "chapter": 18,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "607f1639dd86af24635d13d49361c1b790dfccda3244da46897b77563c69ce76",
+      "proof_count": 8
+    },
+    {
+      "chapter": 19,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "dd4dbe1a5b13267e8d3a65e14443345c1422792e1675da1fe82001ce3f200596",
+      "proof_count": 4
+    },
+    {
+      "chapter": 19,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "599bee5b6419f9221279e84edc4de16c2c5a602399e035038fb58571de728c8b",
+      "proof_count": 2
+    },
+    {
+      "chapter": 19,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "74e0298ee9498d3fef0f56f1e7af855c0cba0bb4db7d2b632753bdd2e157027c",
+      "proof_count": 5
+    },
+    {
+      "chapter": 19,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "706d772a799fc8d19017acff925efb7e3510cd04406dd578ae053d9a34795291",
+      "proof_count": 1
+    },
+    {
+      "chapter": 19,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1979ee5469e8d5c572e63ad199b539c1462024e03b6964c54c2feee3eb4084c1",
+      "proof_count": 5
+    },
+    {
+      "chapter": 19,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "93e981d562ca89b62968c27bf8840e557b0f7ba995a37dfec9c159cb7c8fe474",
+      "proof_count": 6
+    },
+    {
+      "chapter": 19,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "341bc61f52ae6686d988e87a7de9900d4029cfa5fa2e2616bf71f7cb5630465d",
+      "proof_count": 2
+    },
+    {
+      "chapter": 20,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "980a7d22a9442e56e3b02c98bdedd269dcc147e610732bc442313a52729e3fe2",
+      "proof_count": 2
+    },
+    {
+      "chapter": 20,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "b9b02f14ed481dc2d1c9ff8717e3e917493ea349887be8ef3a8228ce1f87bdf6",
+      "proof_count": 4
+    },
+    {
+      "chapter": 20,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5078b09bb2bdbde7d486fe8b644d59ad544f79d4e3ab92bf7d88c5f7f5fe97b7",
+      "proof_count": 3
+    },
+    {
+      "chapter": 20,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ee7c5973c5da6a4037433d119ea0c277f391e3d5bf49298862fad642fb7a1380",
+      "proof_count": 5
+    },
+    {
+      "chapter": 21,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "d033045dc8b8b56fb71bbfd82af6b38fcd2080b9c545092ce1b1267f06ce4c6b",
+      "proof_count": 13
+    },
+    {
+      "chapter": 21,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a4262c2fa515aedc28ce63475f0bb8a3a5430f55f43f60bd45fa1e2a7f6224f2",
+      "proof_count": 8
+    },
+    {
+      "chapter": 21,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "cdd0477dd059c8579a15c9385325248e21d34c74f579291c5acc5e33d9a0661d",
+      "proof_count": 3
+    },
+    {
+      "chapter": 22,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "2a470c77b0fc2d6cbff7b53b3c15b7398d52bc9163fc393a97754a29eeb62258",
+      "proof_count": 4
+    },
+    {
+      "chapter": 22,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "75c2a67c5ea6bf97c9a38037898c50704d268d36f6e68e93677a5e7bd3e29561",
+      "proof_count": 8
+    },
+    {
+      "chapter": 22,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "25574db20a867bd2053547926c15e0701e34c399536210c2808091f9df2c2720",
+      "proof_count": 5
+    },
+    {
+      "chapter": 22,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4283b27632f3fe70602edef942e9032a9c4ad5e90a62655c69b8877e096e04e9",
+      "proof_count": 4
+    },
+    {
+      "chapter": 22,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ea053ad3fb03bbd1610288afae91268ad6dab6cb83ea2236cbf620d2d5e1d036",
+      "proof_count": 10
+    },
+    {
+      "chapter": 22,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "8931ca0737ad356272908236768c27e6e14a722a970a01b7c0cfcb645f388553",
+      "proof_count": 9
+    },
+    {
+      "chapter": 22,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "20e1194542a33fbff18d9b6ccc50992fe6f6e4c83a2a49d08e6084ea01f9cfcc",
+      "proof_count": 4
+    },
+    {
+      "chapter": 22,
+      "paragraph": 8,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "7bc8d217e6fee274c3496ac9139d5172e5271251c21a762faed1aa204287b4b1",
+      "proof_count": 3
+    },
+    {
+      "chapter": 23,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "f323a98e4338e0d7646944d2395c71f003dda34324fcfb754841af3469c69c70",
+      "proof_count": 4
+    },
+    {
+      "chapter": 23,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "99229af1216b40d57800379635e2a14ab4b476027667b241e648a036810e0285",
+      "proof_count": 5
+    },
+    {
+      "chapter": 23,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4481d4a2237f952801d017b3fad35248246fe37c95164d569afba8f6bad07e43",
+      "proof_count": 2
+    },
+    {
+      "chapter": 23,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "12fcfdacb5614716944c27a6a10dbfe1aa54a0488999e15f8b88fa71f51f5e5a",
+      "proof_count": 1
+    },
+    {
+      "chapter": 23,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "0b20ff50d88f3f77fa070884939d101bd02d028bbaa0f04606b71be8fa3b96c3",
+      "proof_count": 5
+    },
+    {
+      "chapter": 24,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ea773a24467614f68e976a5038bc7b534535be1c8d6d3f57a987b78b86a1b3ac",
+      "proof_count": 1
+    },
+    {
+      "chapter": 24,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "23eb419efd3fbb8fccfa93a7e2d0d33b7f0cdba9ecb185683332a5abef1fc14b",
+      "proof_count": 3
+    },
+    {
+      "chapter": 24,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "2b82653f8f3964fe0b032fe6e1667f6c775b2908572346049b9e5a1cd4c09938",
+      "proof_count": 3
+    },
+    {
+      "chapter": 25,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "822ea17c8dc46cbb89660f1fc8247a18a6249921d8e63a6847a66d965a808b8f",
+      "proof_count": 3
+    },
+    {
+      "chapter": 25,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "bb320f3cba204df242faa4ec52d4d096d87b6e5026ec29481ddb267fe6867b7c",
+      "proof_count": 3
+    },
+    {
+      "chapter": 25,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "01bf16122dd92cda13b47c11c628638653457b1cdc2e93b8c4a64a582e5a4521",
+      "proof_count": 4
+    },
+    {
+      "chapter": 25,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "70a0c62465c801f31f7a42573c72b9ab9d5b30a26befb6b4c88d850c336b71a7",
+      "proof_count": 3
+    },
+    {
+      "chapter": 26,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "d020d474ad1fa0acb66fd00659154ba36fbe60e04c920075fc68a5bd86934531",
+      "proof_count": 3
+    },
+    {
+      "chapter": 26,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "b5e35301461e150bbc3662d5425f5fd2d7623fe33c7cbb259a438a549c23c007",
+      "proof_count": 4
+    },
+    {
+      "chapter": 26,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "fad31256a5c3f08fdae1011f1be727e349f70550335a3a507e19ea51a355de53",
+      "proof_count": 7
+    },
+    {
+      "chapter": 26,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "d8afb2b7e1316179598acfb6691f086872793d352828bc499132e7c1160d7d96",
+      "proof_count": 4
+    },
+    {
+      "chapter": 26,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "dbc1b773dfae076fb19ee3aab95c51851a7bc617c50fffa8a5dd655d4ea02772",
+      "proof_count": 4
+    },
+    {
+      "chapter": 26,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "66a155edd90213a98357a1d5be0e52d1cd573e53233e10f90b77f9d5ea1b111e",
+      "proof_count": 4
+    },
+    {
+      "chapter": 26,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a0dd4ca46ade05834dde5453ac81520c49b34af2e6d46a282cd2cb628fc1d351",
+      "proof_count": 3
+    },
+    {
+      "chapter": 26,
+      "paragraph": 8,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "f8655cd3d70f1281c8360a755f9eb8cf0212a72ba678137fd1cf660b6fbb3341",
+      "proof_count": 2
+    },
+    {
+      "chapter": 26,
+      "paragraph": 9,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5899dc99c3ec6e75b88f5d2ce6851c00f8a69628d23857744498226e7201fa82",
+      "proof_count": 3
+    },
+    {
+      "chapter": 26,
+      "paragraph": 10,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "45688fd79df7800260ed5f1d7219d244e627886e423be4621f06035d5334ecf1",
+      "proof_count": 7
+    },
+    {
+      "chapter": 26,
+      "paragraph": 11,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "e629530ef0c53d5f022c2c037620ed63a1a0a1fe1fb13e93ab19086259653482",
+      "proof_count": 2
+    },
+    {
+      "chapter": 26,
+      "paragraph": 12,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "6f312324ec8c539b2bca7fbe7ea0cd05aa4babb0f60eefa5ed1584716d19926f",
+      "proof_count": 2
+    },
+    {
+      "chapter": 26,
+      "paragraph": 13,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "4090111b4248fba0fb50e87413a96eecaf1ca594ac7bb115a39812d80949ab54",
+      "proof_count": 2
+    },
+    {
+      "chapter": 26,
+      "paragraph": 14,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "81328758f00f554ed267785f7d123b3d4c3b5acdec63c126b8e1f6838e321ec1",
+      "proof_count": 4
+    },
+    {
+      "chapter": 26,
+      "paragraph": 15,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "a0d5d37543c13f611809241f80c1825ef72bb02e7f88abf8da4ef0714eb52b75",
+      "proof_count": 3
+    },
+    {
+      "chapter": 27,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "ae35371dd12ecec2e8ae9789e4019b9517f8535ae126a370f60094ffe9e35609",
+      "proof_count": 10
+    },
+    {
+      "chapter": 27,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "123e7691b485023e566303210442567d6fa5f4d3b709f19c90c0f5022a13daad",
+      "proof_count": 6
+    },
+    {
+      "chapter": 28,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "c3fd39029380cfb58e623365ce233a089ecd679bafd52371438cfdf9388af4eb",
+      "proof_count": 2
+    },
+    {
+      "chapter": 28,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "8993d24179c0608e5cff7199a5741b648450c1d2761e54641db1322181aa5405",
+      "proof_count": 2
+    },
+    {
+      "chapter": 29,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "c1cfc708a13ee6204fcbe7ae20745a0154149a82f68539a43be2e21d441da159",
+      "proof_count": 6
+    },
+    {
+      "chapter": 29,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "00c640a19f9d28941fd7102907d51b2131017d2df289e96019e310ceb3db56b3",
+      "proof_count": 2
+    },
+    {
+      "chapter": 29,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "2cf27b0a51e9cee731a4c136fdd1cf505d363be58628ae02d19c7ff22f870504",
+      "proof_count": 2
+    },
+    {
+      "chapter": 29,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "709c3f623085284fee731767607333a13b75301946a40e151904ccb43e33dac1",
+      "proof_count": 2
+    },
+    {
+      "chapter": 30,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "fbfb3af9b7b85229a55fde9127a5d22c2f2d7d743dbe537054a919cb12142ddf",
+      "proof_count": 2
+    },
+    {
+      "chapter": 30,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "030f466cf4915e9b226f0d71d7d2a4e064b2d844dd8af751a1ff77a5a7f4f292",
+      "proof_count": 3
+    },
+    {
+      "chapter": 30,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "1fdc960cd7ba56a1b1cf28061cd7e1d63765090689f276be52a648a87bdfdcb8",
+      "proof_count": 1
+    },
+    {
+      "chapter": 30,
+      "paragraph": 4,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "52d9017172885387de7bb5de5b917c77a3ef4f4d4f071f2ba5e7aa80041aac3d",
+      "proof_count": 2
+    },
+    {
+      "chapter": 30,
+      "paragraph": 5,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "acf598a7571bf9fa75e45c6f50e63dd0919e39732c06878b0b68b6878a10f98f",
+      "proof_count": 2
+    },
+    {
+      "chapter": 30,
+      "paragraph": 6,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "96087f5eea2580255c6d39c980ec20880592810db99df74769a6b4cb3f0ab479",
+      "proof_count": 3
+    },
+    {
+      "chapter": 30,
+      "paragraph": 7,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "10158b736e9bb668069fa5c844880037fed01a7e26159fc894d1e9b65c951caf",
+      "proof_count": 1
+    },
+    {
+      "chapter": 30,
+      "paragraph": 8,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "38019d80fe287c44fd3189355526d52d6901c1f25cf8713036fdc61869912a73",
+      "proof_count": 3
+    },
+    {
+      "chapter": 31,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "baed8be023cf73dd6299569c344b2a13e1ee6d672ac2b5f08fd1d68985e09fc0",
+      "proof_count": 9
+    },
+    {
+      "chapter": 31,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "5f4a74d928a26673244a89fb8407c7a5f6072ce01edd9a02c09973dafe0b3be0",
+      "proof_count": 4
+    },
+    {
+      "chapter": 31,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "446527dc6cfd44f2767967debd498b54a76f026700df1bf2f7c4f8be89bf9223",
+      "proof_count": 3
+    },
+    {
+      "chapter": 32,
+      "paragraph": 1,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "2cf50763220c2a9093efddc3e41aa7c52627666d8a3e80d0bf5a9ad09c667f79",
+      "proof_count": 8
+    },
+    {
+      "chapter": 32,
+      "paragraph": 2,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "981443e567c94850542e458d597c953131e76ecdaea13827ca93684bac79228d",
+      "proof_count": 6
+    },
+    {
+      "chapter": 32,
+      "paragraph": 3,
+      "status": "reference_pdf_verified",
+      "source": "User-provided baptist confession of faith.pdf",
+      "sha256": "9aad84b634859783dd39b5380b04b6056f1e25aeb53bdf4fe198a57c04824dca",
+      "proof_count": 5
+    }
+  ],
+  "chapter_count": 32,
+  "paragraph_count": 160,
+  "source": "User-provided baptist confession of faith.pdf"
+}

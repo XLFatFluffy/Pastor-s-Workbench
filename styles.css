@@ -1,0 +1,1010 @@
+/* =========================================================================
+   PASTOR'S WORKBENCH — "READING ROOM" DESIGN SYSTEM
+   Real tokens, not placeholders.
+   v0.6.7: re-skinned for a more editorial, course/masterclass feel per the
+   user's reference (macarthurcenter.org/masterclass) — larger serif display
+   headlines, more whitespace, a navy/charcoal rail instead of ledger-brown,
+   soft elevation on cards, a warmer gold as the primary interactive accent.
+   Token NAMES are unchanged from the original system (only oxblood-deep and
+   the new paper-deep/font-display/shadow tokens were added) so every
+   consumer below picked up the new look without a structural rewrite.
+   ========================================================================= */
+
+:root {
+  /* --- Color tokens ------------------------------------------------- */
+  --paper: #f8f4ea;           /* warm paper canvas */
+  --paper-raised: #fffdf9;    /* card / raised surface */
+  --paper-deep: #efe7d5;      /* subtle section-header / emphasis background */
+  --paper-line: #e2d6ba;      /* hairline on paper */
+
+  --rail-bg: #101e2b;         /* left rail — deep navy/charcoal, not ledger-brown */
+  --rail-bg-raised: #182c3f;
+  --rail-text: #ccd7e0;
+  --rail-text-dim: #6d8194;
+
+  --ink: #1c2530;             /* primary reading text */
+  --ink-soft: #4b5665;        /* secondary text */
+  --ink-faint: #7c8794;       /* tertiary / meta text */
+
+  --oxblood: #7c2830;         /* secondary accent — status, rare emphasis */
+  --oxblood-deep: #551b21;    /* pressed / dark accent */
+  --oxblood-tint: #f5e6e4;    /* accent wash for subtle backgrounds */
+
+  --brass: #b6873f;           /* primary interactive accent — CTAs, active state */
+  --brass-soft: #e3c993;
+
+  /* --- Type ------------------------------------------------------------ */
+  --font-display: "Fraunces", "Source Serif 4", Georgia, serif; /* large headlines */
+  --font-read: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-chrome: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* --- Elevation --------------------------------------------------------- */
+  --shadow-sm: 0 2px 10px rgba(16, 24, 34, 0.06);
+  --shadow-md: 0 14px 34px rgba(16, 24, 34, 0.12);
+
+  /* --- Spacing scale (8px base) ----------------------------------------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  --rail-width: 248px;
+  --radius: 10px;    /* soft modern corners on cards/panels */
+  --radius-sm: 6px;  /* inputs, small controls, tags */
+}
+
+* { box-sizing: border-box; }
+
+/* --- Mobile nav toggle -------------------------------------------------
+   Hidden and inert above --rail-breakpoint; the rail is always visible
+   there and desktop layout/behavior is unaffected. Below it, the rail
+   becomes an off-canvas panel controlled by this button + the scrim. */
+:root { --rail-breakpoint: 760px; }
+
+.rail-toggle {
+  display: none;
+  position: fixed;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  z-index: 30;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--brass);
+  border-radius: var(--radius);
+  background: var(--rail-bg);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.rail-toggle__bar {
+  width: 18px;
+  height: 2px;
+  background: var(--rail-text);
+}
+
+.rail-scrim {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 19;
+}
+
+@media (max-width: 760px) {
+  .rail-toggle { display: flex; }
+
+  .rail {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    transform: translateX(-100%);
+    transition: transform 0.18s ease;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+  }
+
+  body.rail-open .rail { transform: translateX(0); }
+  body.rail-open .rail-scrim { display: block; }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-chrome);
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+a { color: inherit; }
+
+/* =========================================================================
+   LEFT RAIL — persistent navigation, styled as a bound ledger spine
+   ========================================================================= */
+
+.rail {
+  width: var(--rail-width);
+  flex-shrink: 0;
+  background: var(--rail-bg);
+  color: var(--rail-text);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--brass);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.rail__brand {
+  padding: var(--sp-5) var(--sp-4) var(--sp-4);
+  border-bottom: 1px solid var(--rail-bg-raised);
+}
+
+.rail__brand-mark {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--paper-raised);
+  letter-spacing: 0.005em;
+  margin: 0;
+}
+
+.rail__brand-sub {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rail-text-dim);
+  margin-top: var(--sp-1);
+}
+
+.rail__section {
+  padding: var(--sp-5) 0 var(--sp-2);
+}
+
+.rail__section-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rail-text-dim);
+  padding: 0 var(--sp-4);
+  margin-bottom: var(--sp-2);
+}
+
+.rail__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: 13.5px;
+  color: var(--rail-text);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-chrome);
+}
+
+.rail__item:hover {
+  background: var(--rail-bg-raised);
+  color: var(--paper-raised);
+}
+
+.rail__item[aria-current="page"] {
+  border-left-color: var(--brass);
+  background: var(--rail-bg-raised);
+  color: var(--paper-raised);
+  font-weight: 600;
+}
+
+.rail__item-tick {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brass-soft);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.rail__item[aria-current="page"] .rail__item-tick {
+  background: var(--brass);
+  opacity: 1;
+}
+
+.rail__item--stub {
+  opacity: 0.55;
+}
+
+.rail__item--stub::after {
+  content: "soon";
+  margin-left: auto;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rail-text-dim);
+}
+
+/* =========================================================================
+   MAIN CANVAS
+   ========================================================================= */
+
+.canvas {
+  flex: 1;
+  min-width: 0;
+  padding: var(--sp-7) var(--sp-7);
+}
+
+.canvas__header {
+  margin-bottom: var(--sp-7);
+  padding-bottom: var(--sp-6);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.canvas__eyebrow {
+  font-family: var(--font-chrome);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 var(--sp-2);
+  font-weight: 700;
+}
+
+.canvas__title {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink);
+}
+
+.canvas__dek {
+  font-family: var(--font-read);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: var(--sp-3);
+  max-width: 62ch;
+  line-height: 1.6;
+}
+
+/* =========================================================================
+   SHELF GRID — dashboard cards, styled as catalog / index cards
+   ========================================================================= */
+
+.shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sp-5);
+}
+
+.shelf-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  padding: var(--sp-5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  box-shadow: var(--shadow-sm);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.shelf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.shelf-card__title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+
+.shelf-card__desc {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.shelf-card__status {
+  margin-top: auto;
+  padding-top: var(--sp-3);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.shelf-card__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.shelf-card--ready .shelf-card__status { color: var(--oxblood); }
+.shelf-card--ready .shelf-card__status-dot { background: var(--oxblood); }
+
+/* corner-fold marker for not-yet-built shelf items */
+.shelf-card--stub::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 18px 18px 0;
+  border-color: transparent var(--paper-line) transparent transparent;
+}
+
+/* =========================================================================
+   PLACEHOLDER VIEW (routes not yet built)
+   ========================================================================= */
+
+.placeholder-view {
+  border: 1px dashed var(--paper-line);
+  border-radius: var(--radius);
+  padding: var(--sp-7);
+  text-align: center;
+  color: var(--ink-soft);
+  font-family: var(--font-read);
+  font-size: 15px;
+  max-width: 60ch;
+}
+
+/* =========================================================================
+   BOOT / EMPTY STATES
+   ========================================================================= */
+
+.boot-note {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: var(--sp-6);
+}
+
+@media (max-width: 760px) {
+  /* The rail is now an off-canvas panel (see the mobile-nav rules near the
+     top of this file) rather than a stacked full-width block, so it keeps
+     position: fixed / transform here instead of being reset to static. */
+  .canvas { padding: var(--sp-5); padding-top: var(--sp-7, 48px); }
+}
+
+/* Phase 0 rebuild corrections: navigation must remain visible and usable. */
+.rail__nav { flex: 1; overflow-y: auto; padding-bottom: var(--sp-5); }
+.rail__item { min-height: 38px; }
+.rail__item--stub { opacity: 0.72; }
+.rail__item--stub::after { content: attr(data-phase); }
+.rail__item:focus-visible { outline: 2px solid var(--brass-soft); outline-offset: -2px; }
+.canvas:focus { outline: none; }
+.error-panel {
+  max-width: 900px;
+  padding: var(--sp-5);
+  border: 1px solid #c9a9a9;
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+.error-panel pre { overflow: auto; white-space: pre-wrap; font: 12px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+@media (max-width: 760px) {
+  .rail__nav { display: flex; overflow-x: auto; gap: 2px; padding: 0 var(--sp-2) var(--sp-2); }
+  .rail__section { min-width: max-content; padding: var(--sp-2) 0; }
+  .rail__section-label { padding: 0 var(--sp-3); }
+  .rail__item { width: auto; border-left: 0; border-bottom: 2px solid transparent; padding: var(--sp-2) var(--sp-3); }
+  .rail__item[aria-current="page"] { border-left: 0; border-bottom-color: var(--oxblood); }
+  .rail__item::after { display: none; }
+}
+
+.foundation-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+  margin-bottom: var(--sp-6);
+  background: var(--paper-raised);
+}
+.foundation-strip > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: var(--sp-4);
+  border-right: 1px solid var(--paper-line);
+}
+.foundation-strip > div:last-child { border-right: 0; }
+.foundation-strip__label { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); }
+.foundation-strip strong { font-family: var(--font-read); font-size: 17px; font-weight: 600; }
+.foundation-strip__ok { font-size: 10px; color: var(--oxblood); text-transform: uppercase; letter-spacing: .08em; }
+.rail__item::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--brass-soft); opacity: .5; flex: 0 0 auto; }
+.rail__item[aria-current="page"]::before { background: var(--oxblood); opacity: 1; }
+@media (max-width: 760px) {
+  .foundation-strip { grid-template-columns: 1fr; }
+  .foundation-strip > div { border-right: 0; border-bottom: 1px solid var(--paper-line); }
+  .foundation-strip > div:last-child { border-bottom: 0; }
+}
+
+/* =========================================================================
+   BIBLE WORKSPACE — Phase 2
+   ========================================================================= */
+.workspace-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, .8fr); gap: var(--sp-5); }
+.panel { background: var(--paper-raised); border: 1px solid var(--paper-line); border-radius: var(--radius); padding: var(--sp-5); box-shadow: var(--shadow-sm); }
+.panel--wide { grid-column: 1 / -1; }
+.panel__header { display:flex; justify-content:space-between; gap:var(--sp-4); align-items:flex-start; margin-bottom:var(--sp-4); }
+.panel h2 { font-family:var(--font-display); font-weight: 600; margin:0; font-size:23px; }
+.panel p { color:var(--ink-soft); margin:.3rem 0 0; line-height:1.5; }
+.status-badge { display:inline-flex; align-items:center; padding:5px 8px; border:1px solid var(--paper-line); font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); white-space:nowrap; }
+.status-badge--ready { border-color:var(--brass); color:var(--oxblood); }
+.form-grid { display:grid; grid-template-columns:1fr 120px 120px auto; gap:var(--sp-3); align-items:end; }
+.form-grid label { display:grid; gap:6px; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); }
+.form-grid input, .search-row input { width:100%; border:1px solid var(--paper-line); background:white; padding:10px 11px; font:inherit; color:var(--ink); }
+.button { border:1px solid var(--paper-line); border-radius: var(--radius-sm); background:var(--paper-raised); color:var(--ink); padding:11px 18px; cursor:pointer; font:600 12px var(--font-chrome); letter-spacing: .01em; transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background-color .12s ease; }
+.button:hover { border-color:var(--brass); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.button--primary { background:var(--brass); color:var(--rail-bg); border-color:var(--brass); font-weight: 700; }
+.button--primary:hover { background:var(--brass-soft); border-color:var(--brass-soft); }
+.reading-panel { margin-top:var(--sp-5); }
+.scripture-card { border-left:3px solid var(--oxblood); padding:var(--sp-4) var(--sp-5); background:var(--oxblood-tint); }
+.scripture-card__ref { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--oxblood); font-weight:700; }
+.scripture-card p { font:22px/1.65 var(--font-read); color:var(--ink); margin:10px 0 14px; }
+.scripture-card code { color:var(--ink-faint); }
+.search-row { display:flex; gap:8px; }
+.result-list { display:grid; gap:6px; margin-top:var(--sp-4); max-height:360px; overflow:auto; }
+.result-item { display:grid; gap:4px; text-align:left; border:1px solid var(--paper-line); background:white; padding:10px; cursor:pointer; font:inherit; }
+.result-item:hover { border-color:var(--brass); }
+.result-item strong { color:var(--oxblood); font-size:12px; }
+.result-item span { color:var(--ink-soft); font:14px/1.4 var(--font-read); }
+.provider-row { display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid var(--paper-line); }
+.provider-row:last-child { border-bottom:0; }
+.provider-row small { display:block; color:var(--ink-faint); margin-top:3px; }
+.empty-state { border:1px dashed var(--paper-line); padding:var(--sp-5); color:var(--ink-soft); }
+.error-panel { background:#fff5f3; border:1px solid #d8b6ae; padding:var(--sp-4); color:var(--ink); }
+.error-panel pre { white-space:pre-wrap; overflow:auto; }
+@media (max-width: 900px) { .workspace-grid { grid-template-columns:1fr; } .panel--wide { grid-column:auto; } .form-grid { grid-template-columns:1fr 1fr; } }
+
+/* Bible Reader refinement — contextual study controls and verse-level actions. */
+.bible-workspace { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(300px,.7fr); gap:var(--sp-5); }
+.bible-reader-panel { grid-column:1 / -1; }
+.bible-controls { display:grid; grid-template-columns:1fr 1.2fr 110px 110px auto 44px; gap:var(--sp-3); align-items:end; padding-bottom:var(--sp-4); border-bottom:1px solid var(--paper-line); }
+.bible-controls label, .settings-dialog label { display:grid; gap:6px; font-size:10px; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-soft); }
+.bible-controls select, .settings-dialog select { width:100%; border:1px solid var(--paper-line); background:white; padding:10px 11px; font:inherit; color:var(--ink); }
+.icon-button { border:1px solid var(--paper-line); background:var(--paper-raised); min-height:39px; cursor:pointer; font:600 13px var(--font-chrome); color:var(--ink); }
+.icon-button:hover { border-color:var(--brass); }
+.reading-panel--full { min-height:300px; }
+.scripture-reader { margin:0 auto; max-width:900px; }
+.scripture-reader--narrow { max-width:690px; }
+.scripture-reader--wide { max-width:1100px; }
+.scripture-reader__header { display:flex; justify-content:space-between; gap:var(--sp-5); align-items:flex-start; padding:var(--sp-6) 0 var(--sp-4); }
+.scripture-reader__eyebrow { font:700 10px var(--font-chrome); text-transform:uppercase; letter-spacing:.14em; color:var(--oxblood); }
+.scripture-reader__header h2 { font:600 36px var(--font-read); margin:2px 0; }
+.scripture-reader__header p { color:var(--ink-faint); font-size:11px; margin:0; }
+.scripture-reader__nav { display:flex; gap:6px; }
+.scripture-text { border-top:1px solid var(--paper-line); padding:var(--sp-4) 0 var(--sp-7); }
+.verse-row { display:grid; grid-template-columns:42px 1fr; width:100%; border:0; border-left:3px solid transparent; background:transparent; padding:7px 14px 7px 4px; text-align:left; cursor:pointer; color:var(--ink); font:var(--reader-font-size)/var(--reader-line-height) var(--font-read); transition:background .12s ease,border-color .12s ease; }
+.verse-row:hover { background:rgba(176,141,87,.10); }
+.verse-row--selected { background:var(--oxblood-tint); border-left-color:var(--oxblood); }
+.verse-number { font:600 12px/2 var(--font-chrome); color:var(--oxblood); text-align:right; padding-right:12px; }
+.verse-text { min-width:0; }
+.verse-row--yellow { background:rgba(244,220,75,.32); }
+.verse-row--green { background:rgba(104,166,92,.26); }
+.verse-row--blue { background:rgba(92,139,190,.24); }
+.verse-row--red { background:rgba(190,91,80,.22); }
+.verse-row--purple { background:rgba(142,104,177,.24); }
+.verse-row--yellow:hover { background:rgba(244,220,75,.42); }
+.verse-row--green:hover { background:rgba(104,166,92,.36); }
+.verse-row--blue:hover { background:rgba(92,139,190,.34); }
+.verse-row--red:hover { background:rgba(190,91,80,.32); }
+.verse-row--purple:hover { background:rgba(142,104,177,.34); }
+.bible-context { display:grid; gap:var(--sp-5); align-content:start; }
+.selection-summary { display:grid; gap:3px; padding:10px; background:var(--oxblood-tint); border-left:3px solid var(--oxblood); font-family:var(--font-read); }
+.selection-summary span { font:10px var(--font-chrome); color:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; }
+.context-actions { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:var(--sp-3); }
+.tool-button { border:1px solid var(--paper-line); background:var(--paper); padding:10px; cursor:pointer; font:600 11px var(--font-chrome); color:var(--ink); }
+.tool-button:hover { border-color:var(--brass); background:white; }
+.highlight-palette { display:flex; flex-wrap:wrap; gap:6px; padding:10px 0 0; }
+.highlight-swatch { width:28px; height:28px; border:1px solid var(--paper-line); cursor:pointer; }
+.highlight-swatch--yellow { background:#f4dc4b; }.highlight-swatch--green { background:#68a65c; }.highlight-swatch--blue { background:#5c8bbe; }.highlight-swatch--red { background:#be5b50; }.highlight-swatch--purple { background:#8e68b1; }
+.highlight-remove { border:1px solid var(--paper-line); background:transparent; padding:4px 7px; font-size:10px; cursor:pointer; }
+.note-editor { margin-top:var(--sp-4); }
+.note-editor textarea { width:100%; min-height:120px; resize:vertical; border:1px solid var(--paper-line); background:white; padding:10px; font:15px/1.5 var(--font-read); }
+.note-editor__actions { display:flex; justify-content:flex-end; gap:6px; margin-top:8px; }
+.bible-note-list { margin-top:var(--sp-4); display:grid; gap:8px; }
+.bible-note { border-top:1px solid var(--paper-line); padding-top:9px; font-family:var(--font-read); }
+.bible-note p { font-size:14px; line-height:1.5; margin:4px 0; }
+.text-button { border:0; background:transparent; padding:0; color:var(--oxblood); cursor:pointer; font:10px var(--font-chrome); }
+.history-list { display:grid; gap:5px; }
+.history-item { display:flex; justify-content:space-between; gap:8px; width:100%; border:1px solid var(--paper-line); background:white; padding:9px; text-align:left; cursor:pointer; font:inherit; }
+.history-item:hover { border-color:var(--brass); }
+.history-item strong { font:600 14px var(--font-read); }.history-item span { color:var(--ink-faint); font-size:10px; text-transform:uppercase; }
+.settings-dialog { border:1px solid var(--paper-line); background:var(--paper-raised); color:var(--ink); padding:var(--sp-5); width:min(520px,92vw); box-shadow:0 20px 60px rgba(42,33,26,.25); }
+.settings-dialog::backdrop { background:rgba(36,26,22,.45); }
+.settings-dialog > form { display:grid; gap:var(--sp-5); }
+.settings-dialog input[type=range] { width:100%; }
+.settings-dialog--wide { width:min(1100px,94vw); }
+.compare-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--sp-4); max-height:65vh; overflow:auto; }
+.compare-card { border:1px solid var(--paper-line); background:white; padding:var(--sp-4); }
+.compare-card h3 { margin:0 0 8px; font:600 18px var(--font-read); color:var(--oxblood); }.compare-card div { font:16px/1.65 var(--font-read); }
+@media (max-width:1000px) { .bible-workspace { grid-template-columns:1fr; }.bible-reader-panel { grid-column:auto; }.bible-controls { grid-template-columns:1fr 1fr; }.compare-grid { grid-template-columns:1fr; } }
+@media (max-width:700px) { .bible-controls { grid-template-columns:1fr; }.scripture-reader__header { flex-direction:column; }.scripture-reader__nav { width:100%; }.scripture-reader__nav .button { flex:1; }.verse-row { grid-template-columns:34px 1fr; padding-right:5px; } }
+
+/* v0.3.3 Bible reader refinements */
+.bible-controls { display:flex; flex-wrap:wrap; gap:var(--sp-3); align-items:flex-end; padding-bottom:var(--sp-4); border-bottom:1px solid var(--paper-line); }
+.bible-controls .status-badge { align-self:center; margin-right:auto; }
+.bible-controls label { flex:1 1 150px; min-width:120px; }
+.bible-controls label:nth-of-type(3), .bible-controls label:nth-of-type(4) { flex:0 1 120px; }
+.bible-controls #bible-load { flex:0 0 auto; min-width:132px; white-space:nowrap; }
+.bible-controls #bible-settings { flex:0 0 44px; }
+.scripture-reader-shell { display:grid; grid-template-columns:72px minmax(0,1fr); align-items:start; gap:var(--sp-4); }
+.highlight-sidebar { position:sticky; top:18px; display:grid; justify-items:center; gap:10px; padding:12px 8px; border:1px solid var(--paper-line); background:var(--paper-raised); box-shadow:0 8px 24px rgba(42,33,26,.07); }
+.highlight-sidebar__title { writing-mode:vertical-rl; transform:rotate(180deg); font:700 9px var(--font-chrome); text-transform:uppercase; letter-spacing:.12em; color:var(--ink-soft); }
+.highlight-sidebar__colors { display:grid; gap:7px; }
+.highlight-sidebar .highlight-swatch { width:32px; height:32px; border-radius:50%; border:2px solid var(--paper-line); box-shadow:0 1px 2px rgba(0,0,0,.08); }
+.highlight-sidebar .highlight-swatch:hover { transform:scale(1.07); }
+.highlight-sidebar__remove { border:1px solid var(--paper-line); background:transparent; padding:5px 4px; cursor:pointer; font:9px var(--font-chrome); color:var(--ink-soft); }
+.verse-wrap { position:relative; }
+.verse-row { position:relative; }
+.note-marker { align-self:start; justify-self:start; margin:2px 0 0 6px; min-width:20px; height:20px; padding:0 5px; border:1px solid var(--brass); border-radius:10px; background:var(--paper-raised); color:var(--oxblood); cursor:pointer; font:700 10px/18px var(--font-chrome); vertical-align:top; }
+.note-marker:hover, .note-marker:focus-visible { background:var(--brass); color:white; outline:none; }
+.note-bubble-layer { position:relative; }
+.note-bubble { position:relative; z-index:5; width:min(420px,calc(100% - 52px)); margin:0 42px 10px 42px; padding:12px 38px 12px 14px; border:1px solid var(--brass); border-left:3px solid var(--brass); background:var(--paper-raised); box-shadow:0 12px 30px rgba(42,33,26,.14); }
+.note-bubble__title { font:700 10px var(--font-chrome); text-transform:uppercase; letter-spacing:.06em; color:var(--oxblood); margin-bottom:5px; }
+.note-bubble__content { white-space:pre-wrap; font:14px/1.5 var(--font-read); color:var(--ink); }
+.note-bubble__close { position:absolute; right:8px; top:7px; border:0; background:transparent; color:var(--ink-soft); cursor:pointer; font-size:18px; }
+@media (max-width:1000px) { .scripture-reader-shell { grid-template-columns:1fr; }.highlight-sidebar { position:sticky; top:0; z-index:6; display:flex; align-items:center; justify-content:center; }.highlight-sidebar__title { writing-mode:initial; transform:none; }.highlight-sidebar__colors { display:flex; }.highlight-sidebar__remove { margin-left:4px; }.bible-controls .status-badge { flex:1 0 100%; margin-right:0; } }
+@media (max-width:700px) { .bible-controls label, .bible-controls label:nth-of-type(3), .bible-controls label:nth-of-type(4) { flex:1 1 100%; }.bible-controls #bible-load { width:100%; }.bible-controls #bible-settings { align-self:stretch; }.note-bubble { margin-left:34px; width:calc(100% - 34px); } }
+
+/* v0.3.4 — completed Bible reader interaction pass */
+.bible-open-button { min-width: 150px !important; min-height: 40px; flex: 0 0 150px !important; }
+.bible-shortcuts { display:flex; flex-wrap:wrap; gap:14px; padding:8px 0 2px; color:var(--ink-faint); font-size:10px; }
+kbd { border:1px solid var(--paper-line); background:var(--paper-raised); padding:2px 5px; font:600 9px var(--font-chrome); color:var(--ink-soft); }
+.highlight-sidebar__hint { max-width:58px; text-align:center; color:var(--ink-faint); font:9px/1.3 var(--font-chrome); }
+.note-bubble__actions { display:flex; gap:12px; margin-top:9px; padding-top:8px; border-top:1px solid var(--paper-line); }
+.text-button--danger { color:var(--oxblood); }
+.bible-note__title { font:600 13px var(--font-read); color:var(--ink); }
+.bible-note__actions { display:flex; gap:12px; }
+.study-summary { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.study-summary > div { background:var(--oxblood-tint); border-left:3px solid var(--brass); padding:9px; display:grid; gap:2px; }
+.study-summary strong { font:600 20px var(--font-read); }
+.study-summary span { font:9px var(--font-chrome); text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); }
+.annotation-list { display:grid; gap:6px; }
+.annotation-item { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px; border-top:1px solid var(--paper-line); }
+.annotation-item strong { display:block; font:600 12px var(--font-read); }
+.annotation-item span { display:block; color:var(--ink-faint); font-size:9px; text-transform:uppercase; }
+.settings-check { display:flex !important; grid-template-columns:none !important; align-items:center; gap:8px !important; }
+.settings-check input { width:auto; }
+@media (max-width:700px) { .bible-open-button { width:100%; flex-basis:100% !important; }.bible-shortcuts { display:none; } }
+
+/* v0.3.6 — user translation import */
+.translation-import { display:grid; gap:14px; margin-bottom:18px; padding:14px; border:1px solid var(--paper-line); background:var(--paper-raised); }
+.translation-import__intro { display:grid; gap:4px; }
+.translation-import__intro strong { font:600 14px var(--font-read); }
+.translation-import__intro span { color:var(--ink-soft); font-size:12px; line-height:1.5; }
+.translation-import__grid { display:grid; grid-template-columns:160px 1.3fr 1.4fr auto; gap:10px; align-items:end; }
+.translation-import__grid label { display:grid; gap:6px; font-size:10px; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-soft); }
+.translation-import__grid input { width:100%; box-sizing:border-box; border:1px solid var(--paper-line); background:white; padding:10px 11px; font:inherit; color:var(--ink); }
+.translation-import__file input { padding:8px; }
+.import-status { min-height:18px; color:var(--ink-soft); font-size:11px; line-height:1.4; }
+.provider-row__actions { display:flex; align-items:center; gap:10px; }
+@media (max-width:1000px) { .translation-import__grid { grid-template-columns:1fr 1fr; }.translation-import__grid label.translation-import__file { grid-column:1 / -1; }.translation-import__grid #import-translation { grid-column:1 / -1; } }
+@media (max-width:700px) { .translation-import__grid { grid-template-columns:1fr; }.translation-import__grid label.translation-import__file, .translation-import__grid #import-translation { grid-column:auto; } .provider-row__actions { flex-wrap:wrap; justify-content:flex-end; } }
+
+.confession-status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}.confession-status-grid .workbench-card{display:flex;flex-direction:column;gap:5px}.confession-status-grid .workbench-card span{font-size:.82rem;opacity:.72}.confession-reader article{max-width:920px}.confession-reader header{padding:18px 0 24px;border-bottom:1px solid var(--paper-line);margin-bottom:4px}.confession-reader header>span:first-child{font-family:Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.75rem;opacity:.65}.confession-reader h2{margin:.25rem 0 .6rem}.conf-paragraph{display:grid;grid-template-columns:70px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--paper-line)}.conf-paragraph__num{font-family:Inter,sans-serif;font-size:.8rem;font-weight:700;opacity:.65;padding-top:5px}.conf-paragraph__body p{font-family:"Source Serif 4",Georgia,serif;font-size:1.08rem;line-height:1.75;margin:0}.conf-proof{margin-top:18px;padding:14px 16px;border-left:3px solid var(--oxblood);background:rgba(124,40,48,.045)}.conf-proof h3{font-family:Inter,sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;margin:0 0 9px}.conf-proof__list{display:flex;flex-wrap:wrap;gap:7px}.conf-proof__list span{font-family:Inter,sans-serif;font-size:.8rem;padding:5px 8px;border:1px solid var(--paper-line);border-radius:999px;background:var(--paper)}.conf-proof small{display:block;margin-top:9px;opacity:.65}.conf-status{display:inline-block;font-family:Inter,sans-serif;font-size:.72rem;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.05)}.conf-status--not_seeded{opacity:.6}.conf-status--source_imported{background:rgba(150,100,0,.1)}.conf-status--structure_crosschecked{background:rgba(30,110,70,.1)}
+@media(max-width:760px){.confession-status-grid{grid-template-columns:1fr}.conf-paragraph{grid-template-columns:42px 1fr;gap:10px}.conf-paragraph__body p{font-size:1rem}}
+.conf-proof__link{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:8px 10px;border:1px solid var(--paper-line);border-radius:8px;background:var(--paper);font:500 .82rem Inter,sans-serif;text-align:left;cursor:pointer;transition:transform .12s ease,background .12s ease,border-color .12s ease}.conf-proof__link:hover{transform:translateY(-1px);border-color:var(--oxblood);background:rgba(124,40,48,.06)}.conf-proof__link span{font-family:"Source Serif 4",Georgia,serif;font-size:.95rem}.conf-proof__link small{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;opacity:.65;white-space:nowrap}.conf-proof__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.conf-proof__list .conf-proof__link:only-child{grid-column:1/-1}@media (max-width:760px){.conf-proof__list{grid-template-columns:1fr}.conf-proof__link{align-items:flex-start;flex-direction:column;gap:3px}}
+
+/* Bible ↔ 1689 reverse relationship panel */
+.bible-confession-links { margin-top: 14px; border-top: 1px solid var(--paper-line); padding-top: 12px; display: grid; gap: 7px; }
+.bible-confession-links__heading { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; font: 600 11px var(--font-chrome); text-transform: uppercase; letter-spacing: .06em; }
+.bible-confession-links__heading span { color: var(--ink-faint); font-weight: 400; text-transform: none; letter-spacing: 0; }
+.bible-confession-links__empty { display: grid; gap: 3px; padding: 9px 10px; background: var(--paper-deep); border-left: 3px solid var(--paper-line); }
+.bible-confession-links__empty strong { font: 600 11px var(--font-chrome); text-transform: uppercase; letter-spacing: .06em; }
+.bible-confession-links__empty span { font: 12px var(--font-read); color: var(--ink-faint); }
+.bible-confession-link { display: grid; gap: 2px; width: 100%; text-align: left; padding: 9px 10px; border: 1px solid var(--paper-line); background: var(--paper); cursor: pointer; font: inherit; }
+.bible-confession-link:hover { border-color: var(--brass); background: var(--paper-deep); }
+.bible-confession-link strong { font: 600 11px var(--font-chrome); color: var(--oxblood); }
+.bible-confession-link span { font: 12px var(--font-read); }
+.bible-confession-link small { font: 10px var(--font-chrome); color: var(--ink-faint); }
+
+/* Phase 3 — 1689 Workbench relationship controls */
+.confession-controls { align-items: end; }
+.conf-search { min-width: 260px; flex: 1 1 320px; }
+.conf-connections { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid var(--paper-line); }
+.conf-connections__header { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.7rem; }
+.conf-connections__header h3 { margin:0; font-size:1rem; }
+.conf-connections__header small { display:block; color:var(--ink-faint); margin-top:.2rem; }
+.conf-connection-group { display:flex; gap:.6rem; align-items:flex-start; margin:.45rem 0; }
+.conf-connection-group > strong { min-width:7rem; font-size:.82rem; }
+.conf-connection-items { display:flex; flex-wrap:wrap; gap:.35rem; }
+.conf-connection-chip { border:1px solid var(--paper-line); border-radius:999px; padding:.25rem .55rem; font-size:.78rem; background:var(--paper); }
+.conf-connection-empty { color:var(--ink-faint); font-size:.8rem; }
+.conf-links-options { max-height:60vh; overflow:auto; display:grid; gap:1rem; }
+.conf-link-fieldset { border:1px solid var(--paper-line); padding:.8rem; border-radius:.5rem; }
+.conf-link-fieldset legend { font-weight:700; padding:0 .3rem; }
+.conf-link-option { display:flex; gap:.55rem; align-items:center; padding:.4rem .2rem; border-radius:.3rem; }
+.conf-link-option:hover { background:rgba(120,100,70,.06); }
+.conf-link-option input { width:1rem; height:1rem; }
+@media (max-width: 800px) {
+  .conf-connections__header { align-items:flex-start; flex-direction:column; }
+  .conf-connection-group { flex-direction:column; gap:.25rem; }
+}
+
+
+/* Phase 4 — cross-references embedded in Bible Study Tools */
+.bible-crossref-links { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--paper-line); }
+.bible-crossref-links__heading { display:flex; align-items:baseline; justify-content:space-between; gap:.75rem; margin-bottom:.35rem; }
+.bible-crossref-links__heading strong { font: 600 11px var(--font-chrome); text-transform:uppercase; letter-spacing:.06em; color:var(--oxblood); }
+.bible-crossref-links__heading span { font: 11px var(--font-chrome); color:var(--ink-faint); }
+.bible-crossref-links__hint { margin:.25rem 0 .65rem; color:var(--ink-faint); font:12px var(--font-read); line-height:1.45; }
+.bible-crossref-list { display:grid; gap:.35rem; max-height:24rem; overflow:auto; padding-right:.15rem; }
+.bible-crossref-link { display:grid; gap:2px; width:100%; text-align:left; padding:8px 9px; border:1px solid var(--paper-line); background:var(--paper); cursor:pointer; font:inherit; }
+.bible-crossref-link:hover { border-color:var(--brass); background:var(--paper-deep); }
+.bible-crossref-link__ref { font:600 12px var(--font-chrome); color:var(--ink); }
+.bible-crossref-link__meta { font:10px var(--font-chrome); color:var(--ink-faint); text-transform:capitalize; }
+.bible-crossref-links__empty { display:grid; gap:4px; padding-top:.25rem; }
+.bible-crossref-links__empty strong { font:600 11px var(--font-chrome); text-transform:uppercase; letter-spacing:.06em; }
+.bible-crossref-links__empty span { font:12px var(--font-read); color:var(--ink-faint); }
+
+.button--small { padding:.4rem .65rem; font-size:11px; margin-top:.35rem; }
+
+/* v0.5.7 — Cross-reference chapter reader popup */
+.crossref-reader-dialog {
+  width: min(760px, 82vw);
+  max-width: 760px;
+  height: min(760px, 82vh);
+  max-height: 82vh;
+  padding: 0;
+  border: 1px solid var(--paper-line);
+  border-radius: .75rem;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 70px rgba(0,0,0,.28);
+  overflow: hidden;
+}
+.crossref-reader-dialog::backdrop { background: rgba(28,23,18,.38); }
+.crossref-reader-dialog__shell { display:grid; grid-template-rows:auto auto minmax(0,1fr); height:100%; }
+.crossref-reader-dialog__header { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; padding:1rem 1.15rem .75rem; border-bottom:1px solid var(--paper-line); background:var(--paper-deep); }
+.crossref-reader-dialog__header h2 { margin:.05rem 0 .15rem; font-family:var(--font-display); font-size:1.45rem; }
+.crossref-reader-dialog__meta { margin:0; color:var(--ink-faint); font:12px var(--font-chrome); }
+.crossref-reader-dialog__toolbar { display:flex; justify-content:flex-end; gap:.5rem; padding:.65rem 1.15rem; border-bottom:1px solid var(--paper-line); background:var(--paper); }
+.crossref-reader-dialog__content { overflow:auto; min-height:0; padding:1rem 1.15rem 2rem; }
+.crossref-reader-text { max-width:680px; margin:0 auto; font-family:var(--font-read); font-size:1.05rem; line-height:1.8; }
+.crossref-reader-verse { display:grid; grid-template-columns:2.2rem minmax(0,1fr); gap:.35rem; padding:.28rem .5rem; border-radius:.35rem; scroll-margin:8rem; }
+.crossref-reader-verse--target { background:rgba(171,132,45,.18); box-shadow:inset 3px 0 0 var(--brass); }
+.crossref-reader-verse__number { color:var(--oxblood); font:700 .72rem var(--font-chrome); padding-top:.35rem; text-align:right; }
+.crossref-reader-verse__text { min-width:0; }
+@media (max-width:700px) {
+  .crossref-reader-dialog { width:94vw; height:88vh; max-height:88vh; }
+  .crossref-reader-dialog__toolbar { justify-content:stretch; }
+  .crossref-reader-dialog__toolbar .button { flex:1; }
+}
+
+/* v0.5.10 — Cross-references use one compact dropdown per verse. */
+.crossref-select {
+  display:inline-block;
+  width:auto;
+  min-width:2.25rem;
+  height:1.35rem;
+  margin-left:6px;
+  padding:0 1.25rem 0 3px;
+  border:1px solid var(--brass);
+  border-radius:3px;
+  background:var(--paper-raised);
+  color:var(--oxblood);
+  font:700 10px/1.2 var(--font-chrome);
+  vertical-align:baseline;
+  cursor:pointer;
+}
+.crossref-select:hover, .crossref-select:focus-visible { border-color:var(--oxblood); outline:none; box-shadow:0 0 0 2px rgba(163,123,41,.12); }
+.crossref-bubble-layer { position:relative; }
+.crossref-bubble { position:relative; z-index:6; width:min(330px,calc(100% - 68px)); margin:0 42px 10px 42px; padding:10px 34px 10px 12px; border:1px solid var(--brass); border-left:3px solid var(--brass); background:var(--paper-raised); box-shadow:0 12px 30px rgba(42,33,26,.14); }
+.crossref-bubble__title { font:700 10px var(--font-chrome); text-transform:uppercase; letter-spacing:.06em; color:var(--oxblood); margin-bottom:6px; }
+.crossref-bubble__list { display:grid; gap:2px; }
+.crossref-bubble__link { display:flex; align-items:center; gap:8px; width:100%; padding:5px 4px; border:0; background:transparent; color:var(--ink); text-align:left; cursor:pointer; font:13px/1.35 var(--font-read); }
+.crossref-bubble__link:hover, .crossref-bubble__link:focus-visible { background:var(--paper-deep); outline:none; }
+.crossref-bubble__letter { min-width:16px; color:var(--oxblood); font:700 10px var(--font-chrome); }
+.crossref-bubble__close { position:absolute; right:7px; top:6px; border:0; background:transparent; color:var(--ink-soft); cursor:pointer; font-size:18px; }
+@media (max-width:700px) { .crossref-bubble { margin-left:34px; width:calc(100% - 34px); } .crossref-select { min-width:2.1rem; } }
+
+/* =========================================================================
+   CONCORDANCE WORKSPACE — Phase 5
+   ========================================================================= */
+.concordance-status {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+  background: var(--paper);
+}
+.concordance-status > div {
+  display: grid;
+  gap: 4px;
+  padding: var(--sp-3) var(--sp-4);
+  border-right: 1px solid var(--paper-line);
+}
+.concordance-status > div:last-child { border-right: 0; }
+.concordance-status span,
+.concordance-result-count {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ink-faint);
+}
+.concordance-status strong {
+  font-family: var(--font-read);
+  font-size: 16px;
+  font-weight: 600;
+}
+.concordance-message {
+  min-height: 22px;
+  margin-top: var(--sp-3);
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+.concordance-search {
+  align-items: stretch;
+}
+.concordance-search input {
+  flex: 1;
+}
+.concordance-search select {
+  border: 1px solid var(--paper-line);
+  background: white;
+  padding: 10px 11px;
+  font: inherit;
+  color: var(--ink);
+}
+.concordance-results {
+  display: grid;
+  gap: 6px;
+  margin-top: var(--sp-4);
+  max-height: 600px;
+  overflow: auto;
+}
+.concordance-result {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  border: 1px solid var(--paper-line);
+  background: white;
+  padding: 10px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+.concordance-result:hover,
+.concordance-result:focus-visible {
+  border-color: var(--brass);
+  outline: none;
+}
+.concordance-result strong {
+  color: var(--oxblood);
+  font-size: 12px;
+}
+.concordance-result span {
+  color: var(--ink-soft);
+  font: 15px/1.45 var(--font-read);
+}
+@media (max-width: 900px) {
+  .concordance-status { grid-template-columns: 1fr 1fr; }
+  .concordance-status > div:nth-child(2) { border-right: 0; }
+  .concordance-status > div:nth-child(-n+2) { border-bottom: 1px solid var(--paper-line); }
+}
+@media (max-width: 600px) {
+  .concordance-search { flex-direction: column; }
+}
+
+/* v0.6.3 — compact Settings with nested Bible settings */
+.settings-workspace { padding: 0; overflow: hidden; }
+.settings-tabs { display:flex; gap:4px; padding:10px 12px 0; border-bottom:1px solid var(--paper-line); background:var(--paper-raised); }
+.settings-tab { border:0; background:transparent; color:var(--ink-soft); padding:10px 14px; font:600 12px var(--font-chrome); cursor:pointer; border-bottom:2px solid transparent; }
+.settings-tab:hover { color:var(--ink); }
+.settings-tab--active { color:var(--ink); border-bottom-color:var(--oxblood); }
+.settings-panel { padding:20px; }
+.settings-section-heading { margin-bottom:10px; }
+.settings-section-heading h2 { margin:0 0 4px; }
+.settings-section-heading p { margin:0; color:var(--ink-soft); font-size:12px; }
+.settings-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center; padding:14px 0; border-top:1px solid var(--paper-line); }
+.settings-row > div:first-child { display:grid; gap:4px; }
+.settings-row strong { font-size:13px; }
+.settings-row span { color:var(--ink-soft); font-size:11px; line-height:1.45; }
+.settings-row--muted { max-width:620px; }
+.settings-row--stacked { grid-template-columns:1fr; align-items:stretch; }
+.settings-select { min-width:210px; border:1px solid var(--paper-line); background:white; padding:9px 10px; font:inherit; color:var(--ink); }
+.settings-range { width:180px; }
+.settings-row output { min-width:42px; text-align:right; font-size:12px; color:var(--ink-soft); }
+.settings-import-grid { display:grid; grid-template-columns:150px 1fr 1.2fr auto; gap:8px; align-items:center; }
+.settings-import-grid input { min-width:0; border:1px solid var(--paper-line); background:white; padding:9px 10px; font:inherit; }
+.settings-progress { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:center; padding:0 0 14px; }
+.settings-progress__bar { height:7px; background:var(--paper-line); overflow:hidden; border-radius:999px; }
+.settings-progress__bar span { display:block; width:0; height:100%; background:var(--oxblood); transition:width .15s ease; }
+.settings-progress > span { font-size:11px; color:var(--ink-soft); }
+.settings-translation { display:flex; justify-content:space-between; gap:12px; align-items:center; padding:9px 0; border-top:1px solid var(--paper-line); }
+.settings-translation > div { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+@media (max-width:800px) { .settings-import-grid { grid-template-columns:1fr 1fr; }.settings-import-grid input[type=file] { grid-column:1 / -1; }.settings-row { grid-template-columns:1fr; }.settings-select,.settings-range { width:100%; box-sizing:border-box; }.settings-row output { text-align:left; }.settings-progress { grid-template-columns:1fr; } }
+
+/* Phase 6 — Knowledge Workspace integration for the v0.6.7 reading-room reskin */
+.knowledge-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 var(--sp-5); }
+.knowledge-tab { border:1px solid var(--paper-line); background:var(--paper-raised); color:var(--ink); border-radius:999px; padding:9px 14px; cursor:pointer; font:500 12px var(--font-chrome); transition:background .15s ease, border-color .15s ease, transform .15s ease; }
+.knowledge-tab:hover { border-color:var(--brass); transform:translateY(-1px); }
+.knowledge-tab--active { border-color:var(--brass); background:var(--paper-deep); }
+.study-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr); gap:var(--sp-5); }
+.reader-panel { background:var(--paper-raised); border:1px solid var(--paper-line); border-radius:var(--radius); padding:var(--sp-5); box-shadow:var(--shadow-sm); }
+.reader-panel__head { display:flex; justify-content:space-between; gap:var(--sp-4); align-items:flex-start; margin-bottom:var(--sp-4); }
+.reader-panel__head h2 { margin:0; font-family:var(--font-display); font-weight:600; font-size:23px; }
+.tool-form { display:grid; gap:12px; }
+.tool-form label { display:grid; gap:6px; font:600 11px var(--font-chrome); color:var(--ink-soft); letter-spacing:.02em; }
+.tool-form input, .tool-form textarea, .tool-form select { width:100%; border:1px solid var(--paper-line); border-radius:var(--radius-sm); background:#fff; color:var(--ink); padding:10px 11px; font:400 14px var(--font-read); }
+.tool-form textarea { resize:vertical; line-height:1.5; }
+.tool-form input:focus, .tool-form textarea:focus, .tool-form select:focus { outline:2px solid var(--brass-soft); border-color:var(--brass); }
+.provenance-fieldset { border:1px solid var(--paper-line); border-radius:var(--radius-sm); padding:12px; margin:0; display:grid; gap:10px; }
+.provenance-fieldset legend { padding:0 5px; font:600 11px var(--font-chrome); color:var(--ink-soft); }
+.provenance-fieldset label { display:grid; gap:6px; font:600 11px var(--font-chrome); color:var(--ink-soft); }
+.provenance-fieldset input { width:100%; border:1px solid var(--paper-line); border-radius:var(--radius-sm); background:#fff; color:var(--ink); padding:9px 10px; font:400 13px var(--font-read); }
+.knowledge-card { border:1px solid var(--paper-line); background:var(--paper-raised); border-radius:var(--radius); padding:var(--sp-4); margin-bottom:12px; box-shadow:var(--shadow-sm); }
+.knowledge-card__head { display:flex; justify-content:space-between; gap:var(--sp-4); align-items:flex-start; }
+.knowledge-card__head h3 { margin:0 0 6px; font-family:var(--font-display); font-size:19px; font-weight:600; }
+.knowledge-card p { color:var(--ink-soft); line-height:1.55; white-space:pre-wrap; }
+.knowledge-card small { color:var(--ink-faint); font:400 11px var(--font-chrome); }
+.knowledge-card__actions { display:flex; gap:14px; margin-top:12px; padding-top:10px; border-top:1px solid var(--paper-line); }
+.knowledge-card__details { margin-top:10px; padding:10px; background:var(--paper); border-left:3px solid var(--brass); font:400 11px var(--font-chrome); line-height:1.6; }
+.pill-list { display:flex; flex-wrap:wrap; gap:6px; }
+.pill { display:inline-flex; align-items:center; border:1px solid var(--paper-line); border-radius:999px; padding:4px 8px; background:var(--paper); color:var(--ink-soft); font:500 10px var(--font-chrome); text-transform:uppercase; letter-spacing:.04em; }
+@media (max-width: 900px) { .study-grid { grid-template-columns:1fr; } }
+
+/* Phase 7 workspaces */
+.stage-row { display:block; margin:0 0 14px; }
+.stage-row > span { display:block; margin-bottom:6px; font:600 11px var(--font-chrome); text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); }
+.stage-row textarea { width:100%; min-height:88px; resize:vertical; }
+
+
+
+/* Phase 7 expository sermon workflow */
+.progress-track { height: 8px; border-radius: 999px; background: var(--border, #ddd); overflow: hidden; }
+.progress-track__bar { height: 100%; border-radius: inherit; background: currentColor; transition: width .2s ease; }
+.knowledge-tab small { display:block; font-size:.72rem; opacity:.7; margin-top:.15rem; }
+#stage-editor > textarea, #manuscript, #review { width:100%; box-sizing:border-box; font:inherit; line-height:1.55; padding:.8rem; border:1px solid var(--border, #ccc); border-radius:.5rem; background:inherit; color:inherit; }
+#stage-editor > textarea:focus, #manuscript:focus, #review:focus { outline:2px solid currentColor; outline-offset:1px; }
+
+/* Phase 7.2 — expository workflow usability */
+.workflow-section { margin-top: 1.25rem; padding: 1rem; border: 1px solid var(--border, #d9dee7); border-radius: 14px; background: var(--surface, #fff); }
+.workflow-section__header { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+.workflow-step-select { min-width: 290px; }
+.workflow-step-select select { width:100%; min-height:48px; font-size:1rem; font-weight:600; }
+.workflow-actions { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin-top:1rem; }
+.button--large { min-height:52px; padding:.8rem 1.25rem; font-size:1rem; font-weight:700; }
+.button--secondary { border:1px solid var(--border, #cbd2dc); background:var(--surface, #fff); }
+.rich-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:.35rem; padding:.5rem; border:1px solid var(--border, #cbd2dc); border-bottom:0; border-radius:10px 10px 0 0; background:var(--surface-muted, #f5f7fa); }
+.rich-toolbar button, .rich-toolbar select { min-height:36px; padding:.35rem .6rem; border:1px solid var(--border, #cbd2dc); border-radius:7px; background:var(--surface, #fff); cursor:pointer; }
+.rich-toolbar button:hover { background:var(--surface-hover, #eef2f6); }
+.rich-editor { min-height:240px; padding:1rem; border:1px solid var(--border, #cbd2dc); border-radius:0 0 10px 10px; background:#fff; line-height:1.65; outline:none; overflow:auto; }
+.rich-editor:focus { border-color:var(--accent, #6b7280); box-shadow:0 0 0 2px color-mix(in srgb, var(--accent, #6b7280) 16%, transparent); }
+.rich-editor--manuscript { min-height:520px; font-size:1.04rem; }
+.rich-editor:empty::before { content:attr(data-placeholder); color:#8a94a3; pointer-events:none; }
+.rich-editor ul, .rich-editor ol { padding-left:1.6rem; }
+.rich-editor blockquote { margin:1rem 0; padding:.75rem 1rem; border-left:4px solid #9aa4b2; background:#f7f8fa; }
+.rich-preview { line-height:1.6; margin-top:.5rem; }
+.rich-preview p { margin:.4rem 0; }
+.rich-preview ul, .rich-preview ol { padding-left:1.5rem; }
+.manuscript-section { scroll-margin-top:1rem; }
+@media (max-width: 800px) {
+  .workflow-section__header { align-items:stretch; flex-direction:column; }
+  .workflow-step-select { min-width:0; }
+  .workflow-actions .button { flex:1 1 180px; }
+}
+
+
+/* Phase 7.3 — project knowledge connections. */
+.project-knowledge-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr); gap:var(--sp-5); }
+.project-knowledge-section .reader-panel { min-width:0; }
+.project-knowledge-section .knowledge-card { margin-bottom:var(--sp-3); }
+.project-knowledge-section .knowledge-card:last-child { margin-bottom:0; }
+.project-knowledge-section .knowledge-card p { margin:.5rem 0 0; line-height:1.55; }
+@media (max-width: 900px) { .project-knowledge-grid { grid-template-columns:1fr; } }
+
+/* v0.9.0 — Local AI / Ollama */
+.ai-workspace { align-items:start; }
+.ai-messages { min-height:280px; max-height:620px; overflow:auto; margin-bottom:14px; padding-right:4px; }
+.ai-message { border:1px solid var(--paper-line); background:var(--paper); border-radius:var(--radius); padding:14px; margin-bottom:12px; }
+.ai-message--user { background:var(--paper-deep); border-left:3px solid var(--brass); }
+.ai-message strong { font:700 11px var(--font-chrome); text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); }
+.ai-message p { white-space:pre-wrap; line-height:1.65; color:var(--ink); }
+.ai-toolbar { display:grid; grid-template-columns:auto minmax(160px,240px) auto; gap:12px; align-items:end; }
+.ai-toolbar label:not(.ai-check) { display:grid; gap:6px; font:600 10px var(--font-chrome); color:var(--ink-soft); text-transform:uppercase; }
+.ai-toolbar select { border:1px solid var(--paper-line); background:#fff; padding:10px; font:inherit; }
+.ai-check { display:flex; align-items:center; gap:7px; font:600 11px var(--font-chrome); color:var(--ink-soft); padding-bottom:11px; }
+.ai-check input { width:auto; }
+@media(max-width:700px){.ai-toolbar{grid-template-columns:1fr}.ai-check{padding-bottom:0}}
+.tool-form-input { width:100%; box-sizing:border-box; border:1px solid var(--paper-line); border-radius:var(--radius-sm); background:#fff; color:var(--ink); padding:10px 11px; font:400 14px var(--font-read); resize:vertical; }
+
+/* v0.10.0 — global AI overlay and persistent conversations */
+.global-ai-launcher{position:fixed;right:24px;bottom:24px;z-index:1200;width:58px;height:58px;border:1px solid var(--brass);border-radius:50%;background:var(--ink);color:var(--paper);box-shadow:0 10px 30px rgba(0,0,0,.18);font:700 13px var(--font-chrome);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}.global-ai-launcher:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.global-ai-scrim{position:fixed;inset:0;background:rgba(28,24,20,.24);z-index:1250}.global-ai{position:fixed;right:0;top:0;bottom:0;width:min(760px,96vw);background:var(--paper-raised);border-left:1px solid var(--paper-line);box-shadow:-18px 0 45px rgba(0,0,0,.16);z-index:1300;transform:translateX(102%);transition:transform .22s ease;display:flex;flex-direction:column}.global-ai--open{transform:translateX(0)}
+.global-ai__head{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--paper-line);background:var(--paper-raised)}.global-ai__head h2{margin:0 0 6px;font-family:var(--font-display);font-size:24px}.global-ai__head .canvas__eyebrow{margin:0 0 3px}.global-ai__head-actions{display:flex;gap:8px;align-items:center}.icon-button{border:1px solid var(--paper-line);background:transparent;width:34px;height:34px;border-radius:50%;font-size:22px;cursor:pointer;color:var(--ink)}
+.global-ai__body{min-height:0;flex:1;display:grid;grid-template-columns:190px minmax(0,1fr)}.global-ai__conversations{border-right:1px solid var(--paper-line);background:var(--paper-deep);overflow:auto;padding:12px}.global-ai__conv-head{display:flex;justify-content:space-between;align-items:center;padding:4px 4px 10px;font:700 11px var(--font-chrome);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft)}.global-ai__conversation-row{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:3px;align-items:stretch;margin-bottom:4px}.global-ai__conversation{display:grid;gap:4px;width:100%;min-width:0;text-align:left;border:1px solid transparent;background:transparent;padding:10px 9px;border-radius:8px;cursor:pointer;color:var(--ink)}.global-ai__conversation-delete{border:1px solid transparent;background:transparent;color:var(--ink-soft);border-radius:7px;cursor:pointer;font-size:18px;line-height:1}.global-ai__conversation-delete:hover{border-color:var(--paper-line);background:var(--paper-raised);color:var(--ink)}.global-ai__conversation:hover,.global-ai__conversation.is-active{background:var(--paper-raised);border-color:var(--paper-line)}.global-ai__conversation strong{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.global-ai__conversation small{font-size:10px;color:var(--ink-soft)}
+.global-ai__chat{min-width:0;min-height:0;overflow:hidden;display:flex;flex-direction:column}.global-ai__chat-title{padding:12px 18px;border-bottom:1px solid var(--paper-line);font:600 12px var(--font-chrome);color:var(--ink-soft)}.global-ai__messages{flex:1;min-height:0;overflow:auto;padding:18px}.global-ai__message{border:1px solid var(--paper-line);background:var(--paper);border-radius:10px;padding:12px 14px;margin-bottom:12px}.global-ai__message--user{background:var(--paper-deep);border-left:3px solid var(--brass)}.global-ai__message strong{font:700 10px var(--font-chrome);text-transform:uppercase;color:var(--ink-soft)}.global-ai__message p{white-space:pre-wrap;line-height:1.65;margin:7px 0 0}.global-ai__source-note{display:block;margin-top:8px;color:var(--ink-soft);font:500 10px var(--font-chrome)}.global-ai__composer{border-top:1px solid var(--paper-line);padding:14px 14px calc(14px + var(--pwb-taskbar-safe-bottom, 56px));background:var(--paper-raised)}.global-ai__composer textarea{width:100%;box-sizing:border-box;border:1px solid var(--paper-line);background:#fff;padding:11px;font:400 14px var(--font-read);resize:vertical;border-radius:8px}.global-ai__composer-bar{display:flex;gap:10px;align-items:center;margin-top:9px}.global-ai__composer-bar label{font:600 10px var(--font-chrome);color:var(--ink-soft);margin-right:auto}.global-ai__composer-bar select{border:1px solid var(--paper-line);background:#fff;padding:9px;max-width:180px}.global-ai__composer-bar input{width:auto}.global-ai__composer .error-panel{margin-top:10px}
+@media(max-width:650px){.global-ai__body{grid-template-columns:1fr}.global-ai__conversations{display:none}.global-ai__composer-bar{flex-wrap:wrap}.global-ai__composer-bar label{width:100%;margin-right:0}.global-ai-launcher{right:16px;bottom:16px}.global-ai__head{padding:14px}.global-ai__head .button{padding:8px 10px}.global-ai__head h2{font-size:21px}}
+
+/* v0.11.0 — AI sees the Workbench context */
+.global-ai__context-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 18px;border-bottom:1px solid var(--paper-line);background:var(--paper-deep);font:500 10px var(--font-chrome);color:var(--ink-soft)}
+.global-ai__context-bar.is-expanded{line-height:1.55;align-items:flex-start}
+.global-ai__context-bar.is-expanded span{max-width:620px}
+.global-ai__composer-bar{flex-wrap:wrap}
+.global-ai__composer-bar label{display:inline-flex;align-items:center;gap:5px;margin-right:0!important}
+.global-ai__composer-bar label input{width:auto}
+@media(max-width:650px){.global-ai__context-bar{padding:8px 12px}.global-ai__context-bar.is-expanded{display:block}.global-ai__context-bar .text-button{margin-top:5px}}
+
+/* v0.11.3 — functional dashboard + persistent AI reading controls */
+.dashboard-header{display:flex;justify-content:space-between;gap:24px;align-items:flex-end}
+.dashboard-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:24px}
+.dashboard-stat{display:grid;gap:5px;text-decoration:none;background:var(--paper-raised);border:1px solid var(--paper-line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+.dashboard-stat:hover{border-color:var(--brass);transform:translateY(-1px)}
+.dashboard-stat span{font:700 10px var(--font-chrome);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.dashboard-stat strong{font:600 28px var(--font-display);color:var(--ink)}
+.dashboard-stat small{font:600 10px var(--font-chrome);color:var(--brass)}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:16px}
+.dashboard-card{min-width:0}
+.dashboard-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.dashboard-action{display:grid;gap:5px;text-align:left;padding:14px;border:1px solid var(--paper-line);background:var(--paper);border-radius:var(--radius-sm);cursor:pointer;color:var(--ink)}
+.dashboard-action:hover{border-color:var(--brass);background:var(--paper-raised)}
+.dashboard-action strong{font:700 13px var(--font-chrome)}
+.dashboard-action span{font:400 12px/1.45 var(--font-read);color:var(--ink-soft)}
+.dashboard-recent{display:grid;gap:0}
+.dashboard-recent__item{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:13px 0;border-bottom:1px solid var(--paper-line)}
+.dashboard-recent__item:last-child{border-bottom:0}
+.dashboard-recent__item h3{margin:5px 0 2px;font:600 18px var(--font-display)}
+.dashboard-recent__item small{color:var(--ink-soft);font-size:10px}
+.dashboard-recent__actions{display:flex;gap:10px;align-items:center;flex-shrink:0}
+.dashboard-foundation{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px}
+.dashboard-foundation>div{flex:1;min-width:180px}
+.global-ai__messages{overflow-y:scroll;overflow-x:hidden;scrollbar-gutter:stable both-edges;scrollbar-width:auto;scrollbar-color:var(--brass) var(--paper-deep);padding-right:14px;border-right:1px solid var(--paper-line)}
+.global-ai__conversations{overflow-y:scroll;scrollbar-gutter:stable;scrollbar-width:auto;scrollbar-color:var(--brass) var(--paper-deep)}
+.global-ai__messages::-webkit-scrollbar,.global-ai__conversations::-webkit-scrollbar{width:12px;display:block}
+.global-ai__messages::-webkit-scrollbar-track,.global-ai__conversations::-webkit-scrollbar-track{background:var(--paper-deep);border-left:1px solid var(--paper-line)}
+.global-ai__messages::-webkit-scrollbar-thumb,.global-ai__conversations::-webkit-scrollbar-thumb{background:var(--brass-soft);border-radius:8px;border:2px solid var(--paper-deep)}
+.global-ai__messages::-webkit-scrollbar-thumb:hover,.global-ai__conversations::-webkit-scrollbar-thumb:hover{background:var(--brass)}
+@media(max-width:900px){.dashboard-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.dashboard-header{display:block}.dashboard-header .button{margin-top:16px}.dashboard-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-actions{grid-template-columns:1fr}.dashboard-recent__item{align-items:flex-start}.dashboard-recent__actions{flex-direction:column;align-items:flex-end}}
+
+
+/* v0.11.5 — always-visible custom conversation scrollbar. Native browser scrollbars may be hidden by Windows/browser settings, so the Workbench provides its own visible control. */
+.global-ai__messages-wrap{min-height:0;flex:1;display:flex;height:0;overflow:hidden}
+.global-ai__messages-wrap .global-ai__messages{min-width:0;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:18px;scrollbar-width:none;-ms-overflow-style:none}
+.global-ai__messages-wrap .global-ai__messages::-webkit-scrollbar{width:0;height:0}
+.global-ai__scrollbar{width:22px;flex:0 0 22px;display:flex;flex-direction:column;align-items:center;padding:8px 3px;background:var(--paper-deep);border-left:1px solid var(--paper-line);box-sizing:border-box}
+.global-ai__scroll-track{position:relative;flex:1;width:12px;min-height:40px;background:rgba(176,141,87,.16);border:1px solid var(--paper-line);border-radius:8px;cursor:pointer;overflow:hidden}
+.global-ai__scroll-thumb{position:absolute;left:1px;top:0;width:8px;min-height:28px;background:var(--brass);border-radius:7px;cursor:grab;touch-action:none}
+.global-ai__scroll-thumb:active{cursor:grabbing}
+.global-ai__scroll-arrow{width:16px;height:20px;border:0;background:transparent;color:var(--oxblood);font:700 9px var(--font-chrome);cursor:pointer;padding:0}
+.global-ai__scroll-arrow:hover{background:var(--paper-raised);border-radius:4px}
+.global-ai__scrollbar.is-disabled{opacity:.35}
+@media(max-width:650px){.global-ai__messages-wrap .global-ai__messages{padding-right:10px}.global-ai__scrollbar{width:20px;flex-basis:20px}}
+
+/* v0.11.6 — reliable custom scrollbar interaction + Windows taskbar breathing room. */
+:root{--pwb-taskbar-safe-bottom:56px}
+.global-ai__scroll-track{touch-action:none;user-select:none}
+.global-ai__scroll-thumb{z-index:2;transform:none!important}
+.global-ai__composer{padding-bottom:calc(14px + var(--pwb-taskbar-safe-bottom))}
+@media(max-width:650px){:root{--pwb-taskbar-safe-bottom:48px}.global-ai__composer{padding-bottom:calc(14px + var(--pwb-taskbar-safe-bottom))}}

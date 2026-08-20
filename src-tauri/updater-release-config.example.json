@@ -1,0 +1,11 @@
+{
+  "version": "0.12.3",
+  "notes": "Pastor's Workbench update",
+  "pub_date": "",
+  "platforms": {
+    "windows-x86_64": {
+      "url": "https://github.com/REPLACE_WITH_YOUR_RELEASE_REPOSITORY/releases/latest/download/Pastors-Workbench-setup.exe",
+      "signature": "REPLACE_WITH_TAURI_SIGNATURE"
+    }
+  }
+}

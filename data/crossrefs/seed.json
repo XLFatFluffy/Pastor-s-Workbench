@@ -1,0 +1,506 @@
+{
+  "resource_id": "crossrefs-starter-sample",
+  "status": "starter_sample",
+  "source": {
+    "provider": "josephilipraja/bible-cross-reference-json",
+    "credit": "SoulLiberty",
+    "license": "GPL-2.0",
+    "url": "https://github.com/josephilipraja/bible-cross-reference-json",
+    "scope": "README sample for Genesis 1:1 only"
+  },
+  "records": [
+    {
+      "id": "cr_seed_gen11_01",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "EXO.20.11",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_02",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "EXO.31.18",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_03",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "2KI.19.15",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_04",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "1CH.16.26",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_05",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "2CH.2.11",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_06",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "NEH.9.6",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_07",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "JOB.26.13",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_08",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "MAR.13.19",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_09",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "JOH.1.1",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_10",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "ACT.4.24",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_11",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "ACT.14.15",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_12",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "ACT.17.24",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_13",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "ROM.1.19",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_14",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "ROM.11.36",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_15",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "1CO.8.6",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_16",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "EPH.3.9",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_17",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "COL.1.16",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_18",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "HEB.1.2",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_19",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "HEB.1.10",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_20",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "HEB.3.4",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_21",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "HEB.11.3",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_22",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "2PE.3.5",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_23",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "1JO.1.1",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_24",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "REV.3.14",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_25",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "REV.4.11",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_26",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "REV.10.6",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_27",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "REV.14.7",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_28",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "REV.21.6",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    },
+    {
+      "id": "cr_seed_gen11_29",
+      "source_verse_id": "GEN.1.1",
+      "target_verse_id": "REV.22.13",
+      "relationship_type": "other",
+      "source": "josephilipraja/bible-cross-reference-json (sample published in README)",
+      "notes": "Imported as a provenance-only starter sample. The source does not classify semantic relationship type; Workbench therefore preserves it as \"other\" until reviewed.",
+      "provenance": {
+        "provider": "josephilipraja/bible-cross-reference-json",
+        "credit": "SoulLiberty",
+        "source_url": "https://github.com/josephilipraja/bible-cross-reference-json",
+        "license": "GPL-2.0",
+        "source_record": "README sample for Genesis 1:1",
+        "classification": "source-provided reference; semantic type not supplied"
+      },
+      "confidence": 0.5
+    }
+  ]
+}

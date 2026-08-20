@@ -1,0 +1,32 @@
+PASTOR'S WORKBENCH 0.12.3
+==========================
+
+FIRST INSTALL
+1. Run CHECK DESKTOP REQUIREMENTS.bat.
+2. Run BUILD PASTORS WORKBENCH DESKTOP.bat.
+3. Open src-tauri\target\release\bundle\nsis.
+4. Run the generated *-setup.exe.
+5. Launch Pastor's Workbench from the Start Menu.
+
+FUTURE UPDATES
+The project is prepared for Tauri's signed updater. Before automatic updates can be
+enabled, a public release endpoint and a Tauri signing key must be configured.
+The updater requires signed artifacts; do not share the private signing key.
+
+For development builds, run the build batch again. For production updates, publish
+the signed NSIS updater artifact and update the configured release endpoint.
+
+DATA
+Application updates are separate from user data. Do not put user data inside the
+application install directory. The desktop data location should be used for
+persistent Workbench data.
+
+IMPORTANT
+Do not delete the existing application data folder when updating.
+
+
+UPDATER PREPARATION
+The project now includes the Tauri updater dependency and signing-key helper, but automatic updates are deliberately not activated until you create your own signing key and choose a release endpoint.
+
+Run GENERATE UPDATER SIGNING KEY.bat once. Keep updater-keys\pastors-workbench.key PRIVATE. The public key may be used in tauri.conf.json.
+Do not commit or upload the private key. After a release host (for example GitHub Releases) is chosen, configure the updater public key/endpoints and initialize the updater plugin in src-tauri/src/lib.rs.

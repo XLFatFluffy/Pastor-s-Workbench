@@ -1,0 +1,277 @@
+PASTOR'S WORKBENCH — GPT BUILD LOG
+Edit rights: the user, and ChatGPT.
+============================================================================
+Read PROJECT-INSTRUCTIONS.txt first (especially Part 5, written directly
+to you) before adding anything here or writing any code.
+
+Append one dated entry per coding session below, in this format:
+
+----------------------------------------------------------------------------
+DATE:
+TASK / PHASE WORKED ON:
+FILES CHANGED:
+WHAT WAS BUILT (brief, factual):
+WHY:
+VERIFICATION:
+  - node --check results for each changed file:
+  - node --test tests/*.mjs result (pass/fail count):
+  - anything still broken or incomplete, stated plainly:
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+----------------------------------------------------------------------------
+
+Do not edit or delete earlier entries — this is a running record. If a
+Claude session adds a note here correcting something, it will be clearly
+marked "[Claude note]" — leave those as-is too.
+
+No entries yet. The next coding session on this project should start with
+Phase 5 (Concordance Engine) per CLAUDE-BUILD-LOG.txt Part B.3, unless the
+user directs otherwise — confirm scope with the user in a few questions
+before starting, per the working agreement in CLAUDE-BUILD-LOG.txt Part B.4.
+
+----------------------------------------------------------------------------
+2026-08-19:
+TASK / PHASE WORKED ON: Phase 5 — Concordance Engine foundation and workspace.
+FILES CHANGED:
+  - concordanceService.js
+  - views/concordanceWorkspaceView.js
+  - main.js
+  - styles.css
+  - tests/concordanceService.test.mjs
+WHAT WAS BUILT (brief, factual):
+  - Replaced the Phase 5 concordance stub with a local KJV word-occurrence
+    indexing service backed by IndexedDB concordance_entries.
+  - Added exact-word and prefix concordance search with verse reference,
+    verse-text context, and click-through to the Bible workspace.
+  - Added index status reporting and Build / Rebuild Index controls.
+  - Added the Phase 5 Concordance workspace to the router.
+  - Added targeted unit tests for normalization, indexing, and search.
+WHY:
+  - This is the next scoped phase in the approved roadmap. The engine is
+    deliberately local-only and refuses to build until all 66 KJV books are
+    present in the local bible_text store, so it cannot silently present a
+    partial Bible concordance as complete.
+VERIFICATION:
+  - node --check concordanceService.js: PASS
+  - node --check views/concordanceWorkspaceView.js: PASS
+  - node --check main.js: PASS
+  - node --test tests/*.mjs: 22 pass, 0 fail, 1 clean skip.
+  - The existing KJV structural test remains a clean skip because this build
+    does not bundle data/bible/kjv.json under the current on-demand model.
+  - Phase 5 is NOT declared fully complete yet: the current build does not
+    contain all 66 KJV books locally, so the UI correctly blocks index
+    construction until the complete local KJV prerequisite exists.
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+  - Audit the concordance workspace in-browser and verify the complete local
+    KJV prerequisite / Phase 4 close-out before claiming the concordance is
+    populated.
+  - Do not weaken the completeness guard or introduce a live Scripture
+    network dependency merely to make the concordance appear populated.
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+2026-08-19:
+TASK / PHASE WORKED ON: Settings / Bible local-data management (requested alongside Phase 5).
+FILES CHANGED:
+  - bibleService.js
+  - views/settingsView.js
+  - views/bibleWorkspaceView.js
+  - main.js
+  - styles.css
+  - package.json
+WHAT WAS BUILT (brief, factual):
+  - Added a real Settings route instead of the Settings stub.
+  - Added compact Settings tabs with a dedicated Bible settings tab rather than a large single-button panel.
+  - Added Download KJV to store all 66 KJV books locally in IndexedDB, with progress and verse counts.
+  - Added local KJV readiness reporting so the user can see whether all 66 books are available offline.
+  - Moved Bible translation import/management out of the Bible workspace into Settings > Bible.
+  - Added default translation and Bible reading font-size controls to Settings > Bible.
+  - Kept the Bible workspace focused on reading/study instead of configuration.
+WHY:
+  - The Phase 5 concordance requires a complete local KJV. The user requested that KJV download be accessible from Settings and that Bible settings not consume a large standalone panel.
+VERIFICATION:
+  - node --check bibleService.js: PASS
+  - node --check views/settingsView.js: PASS
+  - node --check views/bibleWorkspaceView.js: PASS
+  - node --check main.js: PASS
+  - node --test tests/*.mjs: 22 pass, 0 fail, 1 clean skip.
+  - Browser/manual verification of the 66-book download was not possible in this coding environment; the download uses the existing HolyBooks source and stores each fetched normalized book in IndexedDB.
+  - KJV download is intentionally an in-app offline download, not a separate .json file download.
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+  - Test Settings > Bible in the browser, especially the KJV progress UI and completion state.
+  - After the complete KJV is downloaded, return to Concordance and build the index; verify the completeness guard and search behavior.
+----------------------------------------------------------------------------
+
+## v0.6.4 — KJV Download Repair (2026-08-19)
+- Investigated the reported `Download stopped: No KJV data returned for Genesis.` failure.
+- Confirmed the configured HolyBooks Genesis endpoint is valid and returns the expected `text`/chapter structure.
+- Root cause: an older/broken KJV record in IndexedDB could be returned by `getLocalBook()` even when its `data` object had no usable `chapters` array. The downloader then treated that stale record as the remote result and stopped with the misleading error.
+- Changed local Bible loading to validate that a cached book contains a non-empty `chapters` array. Invalid/stale records are removed automatically so the normal remote recovery path can run.
+- Preserved the existing HolyBooks source and canonical normalization logic.
+- Full test suite: 22 passed, 0 failed, 0 skipped.
+
+
+## v0.6.5 — KJV download retry/recovery repair
+- Investigated repeated `No KJV data returned for Genesis` report against the actual HolyBooks Genesis payload.
+- Confirmed the primary Genesis JSON has a `text` array of chapter objects with verse records.
+- Reworked KJV acquisition so an explicit Settings download does not reuse a stale in-memory fetch promise.
+- Added response/network/JSON validation with actionable errors.
+- Added chapter/verse validation before local persistence.
+- Added KJV-only fallback source for recovery when the primary HolyBooks request fails or parses to unusable data.
+- Added regression coverage for the actual HolyBooks payload shape.
+- Test suite: 22 passed, 0 failed, 1 clean skip.
+
+----------------------------------------------------------------------------
+2026-08-19:
+TASK / PHASE WORKED ON: Phase 5 — Concordance hardening / KJV readiness close-out.
+FILES CHANGED:
+  - concordanceService.js
+  - tests/concordanceService.test.mjs
+WHAT WAS BUILT (brief, factual):
+  - Strengthened local KJV detection to use canonical 66-book codes and ignore
+    duplicate, unknown, or structurally invalid local Bible records.
+  - Added a missingBooks status field so the concordance can report exactly
+    which canonical books are absent instead of relying only on a raw count.
+  - Changed concordance occurrence sorting from alphabetical book names to
+    canonical biblical order (Genesis through Revelation).
+  - Bumped the concordance index schema version from 1.0 to 1.1.
+  - Added regression coverage for canonical Bible ordering and invalid/duplicate
+    input tolerance.
+WHY:
+  - The user confirmed the repaired KJV downloader now works. The concordance
+    must consume the resulting local Bible reliably and never misrepresent a
+    duplicate or malformed local record as one of the required 66 books.
+VERIFICATION:
+  - node --check concordanceService.js: PASS
+  - node --test tests/*.mjs: 25 pass, 0 fail, 1 clean skip.
+  - Browser verification of the full index build is still not possible in this
+    coding environment; the service continues to require the complete local
+    KJV before indexing.
+  - Phase 5 browser completion should be confirmed by building the index in the
+    user's working browser after the KJV download has reached 66/66.
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+  - If the user confirms the Concordance index builds successfully from the
+    downloaded 66-book KJV, proceed to Phase 6 — Research & Knowledge Engine.
+  - Do not begin Sermon/Lesson/Study UI before the Research & Knowledge
+    foundation is functionally complete.
+----------------------------------------------------------------------------
+
+PHASE 6 APPLIED TO v0.6.7 CONCORDANCE/NAV/RESKIN BASE — 2026-08-19
+- Preserved the uploaded v0.6.7 concordance navigation fix and editorial reading-room reskin.
+- Activated the Phase 6 Research & Knowledge Engine in the navigation.
+- Added structured ResearchItem, Note, Topic, Collection, and Source workflows.
+- Enforced explicit knowledge origin and provenance for source/AI knowledge.
+- Added local search/listing, relationship creation/removal, relationship cleanup on deletion, and knowledge statistics.
+- Added the Research/Notes/Topics/Collections/Sources workspace view.
+- Added Phase 6 service tests.
+- Added reskin-compatible Knowledge Workspace CSS rather than replacing the uploaded stylesheet.
+- Added npm test script.
+----------------------------------------------------------------------------
+2026-08-19:
+TASK / PHASE WORKED ON: Phase 7 — Sermon, Lesson, Study, and Project foundation.
+FILES CHANGED:
+  - sermonService.js
+  - views/workWorkspaceView.js
+  - main.js
+  - styles.css
+  - tests/sermonService.test.mjs
+WHAT WAS BUILT (brief, factual):
+  - Replaced the Phase 7 sermon service placeholder with a layered domain service for Project, Sermon, SermonStage, SermonPoint, Lesson, LessonTeachingSection, and Study records.
+  - Added local CRUD/listing/workspace functions and cascading deletion of specialized project content.
+  - Added structured sermon preparation stages based on the existing SERMON_STAGE_KEYS model.
+  - Added ordered sermon points with separate explanation, illustration, and application fields.
+  - Added the first usable Sermon/Lesson/Study/Projects workspace and routed the four Phase 7 navigation items to it.
+  - Added lesson metadata and ordered teaching sections.
+  - Added study question/conclusion workspace without duplicating Phase 6 research records.
+  - Preserved the rule that AI does not automatically write or finalize sermon/lesson/study content.
+  - Added Phase 7 normalization and validation regression tests.
+WHY:
+  - Phase 6 established the reusable knowledge foundation. Phase 7 now provides the project containers that can consume that knowledge without collapsing research, preparation, outline, and manuscript content into one unstructured text field.
+VERIFICATION:
+  - node --check sermonService.js: PASS
+  - node --check views/workWorkspaceView.js: PASS
+  - node --check main.js: PASS
+  - node --test tests/*.mjs: 35 pass, 0 fail, 1 clean skip.
+  - The clean skip is the existing bundled-KJV structural test under the intentional on-demand Bible architecture.
+  - Browser interaction has not been verified in this coding environment; the Phase 7 workspace should be manually exercised in the user's browser before Phase 7 is declared complete.
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+  - Browser-audit project creation and reopening for Sermons, Lessons, and Studies.
+  - Add richer Phase 7 connections to Phase 6 research/topics/Scripture and eventually pulpit-ready document/export workflows.
+  - Do not declare Phase 7 complete merely because the unit suite is green; browser persistence and the full preparation workflow still need verification.
+----------------------------------------------------------------------------
+
+
+PHASE 7 WORKFLOW OVERHAUL — 2026-08-19
+- Sermon workflow redesigned around the eight-step expository preparation sequence.
+- Added stage metadata, guided questions, step navigation, completion tracking, and separate manuscript/review layers.
+- Sermon creation now initializes the complete workflow.
+- Automated suite: 35 passed, 0 failed.
+
+
+----------------------------------------------------------------------------
+2026-08-19:
+TASK / PHASE WORKED ON: Phase 7.3 — Project Knowledge Connections.
+FILES CHANGED:
+  - views/workWorkspaceView.js
+  - researchService.js
+  - sermonService.js
+  - styles.css
+  - tests/sermonService.test.mjs
+  - package.json
+WHAT WAS BUILT (brief, factual):
+  - Added a Connected Knowledge section to the sermon workspace.
+  - Added local search for existing Phase 6 ResearchItem and Note records.
+  - Added an explicit Attach action that links existing personal research/notes to the current sermon through the existing project_id field.
+  - Added in-context creation of personal research items and sermon notes without duplicating the sermon workflow content fields.
+  - Added an attached-knowledge view so the preacher can see reusable research currently connected to the sermon.
+  - Added project-deletion cleanup that detaches project-linked research/notes rather than deleting reusable knowledge.
+  - Bumped the application package version to 0.7.3-project-knowledge.
+  - Added regression coverage confirming project-linked ResearchItem and Note records preserve project identity.
+WHY:
+  - Phase 7 already had the eight-step expository workflow. The next useful layer was making the Phase 6 knowledge engine actually usable from inside a sermon instead of leaving "reusable research" as a disconnected concept.
+VERIFICATION:
+  - node --check views/workWorkspaceView.js: PASS
+  - node --check researchService.js: PASS
+  - node --check sermonService.js: PASS
+  - node --test tests/*.mjs: 37 pass, 0 fail, 0 skipped.
+  - Browser interaction has not been verified in this coding environment; the new project-knowledge controls should be exercised in the user's browser.
+  - No protected project-memory or verified confession/cross-reference files were changed.
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+  - Continue the same workflow direction by connecting Scripture/passage context, topics, and confession/cross-reference material to the project workspace.
+  - Then build the pulpit-ready document/export layer, while keeping AI output provisional and human-approved.
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+2026-08-19:
+TASK / PHASE WORKED ON: Phase 7 — Integrated Expository Study Desk.
+FILES CHANGED:
+  - views/workWorkspaceView.js
+  - GPT-BUILD-LOG.txt
+WHAT WAS BUILT (brief, factual):
+  - Added an Integrated Study Desk inside the expository sermon workspace.
+  - Added Scripture passage lookup using the existing Bible service and selected translation.
+  - Added 1689 Confession search using the verified local confession service.
+  - Added cross-reference lookup using canonical verse IDs and the existing cross-reference engine.
+  - Added explicit Insert actions so research is placed into the current preparation step only when the user chooses it.
+  - Added graceful messaging when Scripture is not locally available.
+WHY:
+  - The sermon workflow should function as a connected study environment rather than forcing the pastor to leave the sermon workspace for Scripture, confession, and cross-reference research.
+VERIFICATION:
+  - node --check views/workWorkspaceView.js: PASS
+  - node --test tests/*.mjs: run below; no change is considered complete until the full suite passes.
+  - Browser verification remains required for live Bible translation availability and IndexedDB-backed cross-reference data.
+  - The 1689 verified source files remain untouched.
+NOTES FOR NEXT SESSION (Claude or ChatGPT):
+  - Audit the Integrated Study Desk in-browser.
+  - Next logical work is Phase 8 document/export: produce real Markdown/TXT first, then DOCX/PDF when the local runtime/output strategy is settled.
+----------------------------------------------------------------------------
+
+
+[v0.11.6] Fixed AI custom scrollbar interaction (track, drag, wheel, arrows) and added taskbar-safe bottom spacing to the AI composer. Full test suite: 50 passed, 0 failed, 0 skipped.
+
+[v0.11.7] Fixed the underlying flex/grid sizing issue preventing the AI message container from becoming scrollable. Added wheel handling directly to the message viewport and retained the custom scrollbar controls.
+
+v0.12.2 — Desktop build configuration fix
+- Isolated Tauri frontend assets into /frontend.
+- Changed tauri.conf.json frontendDist from .. to ../frontend.
+- Changed Windows-safe bundle identifier to com.pastorsworkbench.desktop.
+- Added prepare-desktop.mjs to rebuild the isolated frontend before Tauri dev/build.
+- Updated desktop build scripts to prepare frontend automatically.
+- Fixed the exact Tauri error caused by frontendDist including src-tauri/node_modules/target.

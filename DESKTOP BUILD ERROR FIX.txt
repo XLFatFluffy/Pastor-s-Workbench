@@ -1,0 +1,16 @@
+The previous build reached the NSIS bundling stage and failed with:
+!insertmacro: macro "NSISCOMCALL" requires 4 parameter(s), passed 7!
+Error in macro IsShortcutTarget
+
+This is an NSIS packaging/toolchain compatibility problem, not a C++ or Rust compile
+failure. v0.12.4 avoids that broken NSIS bundling path and builds the Windows MSI target.
+
+The Tauri updater dependency remains included in the project. Automatic updating is
+intentionally not activated until a real Tauri signing key and release endpoint are
+configured. Tauri's updater can use Windows MSI artifacts.
+
+After the MSI build succeeds, install the generated .msi. Do not delete application
+data when updating.
+
+If the MSI build reports a VBScript/WiX error, enable Windows Optional Feature
+"Windows Script Host / VBScript" as required by current Tauri Windows installer docs.

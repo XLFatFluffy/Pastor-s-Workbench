@@ -1,0 +1,10 @@
+OPENBIBLE.INFO CROSS-REFERENCE ATTRIBUTION
+
+The recommended full cross-reference corpus is the OpenBible.info cross-reference
+dataset, licensed under Creative Commons Attribution (CC BY).
+
+Attribution: Cross-reference data courtesy of OpenBible.info.
+Source: https://www.openbible.info/labs/cross-references/
+
+This notice applies to imported OpenBible.info corpus data. The small starter
+sample bundled with this build retains its separate provenance in seed.json.

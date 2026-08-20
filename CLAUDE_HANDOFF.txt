@@ -1,0 +1,293 @@
+PASTOR'S WORKBENCH — CLAUDE HANDOFF
+====================================
+
+PURPOSE
+-------
+This file is a handoff for Claude Code/Claude Desktop or another developer continuing
+Pastor's Workbench. Read this before modifying the project. The project has been
+iteratively built and tested; preserve working functionality and do not restart the
+architecture from scratch.
+
+CURRENT VERSION
+---------------
+0.12.4 — Windows MSI Build Fix + Updater foundation
+
+IMPORTANT CURRENT STATE
+-----------------------
+Pastor's Workbench started as a local browser application and has evolved into a
+pastoral study/workbench application with Bible tools, 1689 Confession, cross references,
+research, projects/sermons, a Book Library, and a global Ollama AI overlay.
+
+The project is now being converted into a real Windows desktop application using Tauri 2.
+The goal is a standalone Windows application, not something the user must open in
+Firefox/Chrome or start with a local web server.
+
+WHAT HAS BEEN BUILT
+-------------------
+1. Dashboard
+   - Functional dashboard with live counts/recent work/quick actions.
+   - New sermon/project creation from dashboard.
+   - AI quick actions.
+
+2. Bible / 1689 / Cross References
+   - Existing Bible/KJV architecture preserved.
+   - 1689 Confession integration preserved.
+   - Cross-reference integration preserved.
+   - Do not replace these with duplicate data stores.
+
+3. Research / Knowledge
+   - Research is first-class and reusable across projects.
+   - Research can connect to Scripture, 1689 paragraphs, concordance/cross references,
+     projects, sermons, lessons, studies, notes, etc.
+   - Provenance and distinction between source knowledge and personal conclusions matter.
+   - AI-generated research must remain explicitly AI-generated.
+   - AI-generated relationships require user approval before becoming accepted knowledge.
+
+4. Expository workflow
+   - Expository sermon workflow is already implemented.
+   - Study Desk connects Scripture, 1689, cross references, research/notes, and projects.
+
+5. Book Library
+   - Users can upload books/source material.
+   - Supported source formats include PDF/TXT/Markdown/HTML/JSON text.
+   - Books are searchable and passages can be copied.
+   - Relevant book context can be supplied to AI.
+   - Uploaded books are retrieval/context sources; uploading does NOT train the local model.
+
+6. Global AI
+   - AI is a persistent overlay available throughout the application.
+   - Separate conversations, like ChatGPT.
+   - Conversations can be created and deleted.
+   - Conversation history persists locally.
+   - AI can receive Workbench context, current-screen context, and book context.
+   - AI is intended to become a true assistant integrated into every workspace, not merely
+     a standalone chat tab.
+
+7. Local AI
+   - Ollama is the primary local AI service.
+   - User has Ollama installed.
+   - Qwen3 8B is the preferred/recommended model, but the user's machine is resource
+     constrained and Qwen3 4B/Gemma 3 can max RAM. User understands they must be mindful
+     of RAM usage.
+   - Keep model/provider configurable. Do not hard-code a single model permanently.
+   - Ollama endpoint is normally http://127.0.0.1:11434.
+
+8. AI settings
+   - Model selection.
+   - Ollama endpoint.
+   - Temperature.
+   - System instructions.
+   - User/personal AI context.
+   - Local/private status.
+   - Model detection/connection checking.
+   - Qwen3 8B is currently the recommended model.
+
+9. AI chat UI
+   - Conversation list with delete functionality.
+   - Delete confirmation.
+   - Global overlay.
+   - Chat area has been through several scrollbar fixes. The latest source contains
+     the intended custom scrollbar/flex layout fix, but this area should be tested carefully
+     in Firefox/Windows because earlier builds showed a visible-but-nonfunctional scrollbar.
+   - Chat composer has bottom spacing intended to avoid the Windows taskbar.
+
+10. Desktop conversion
+    - Tauri 2 desktop project has been added.
+    - Existing frontend is isolated into a dedicated frontend directory for Tauri.
+    - This was required because Tauri rejected frontendDist when it included src-tauri,
+      node_modules, and target.
+    - Desktop app should run as a standalone Windows app with no normal browser chrome.
+    - Native desktop bridge exists for desktop status/app-data/Ollama health concepts.
+    - Build helper scripts exist.
+
+11. Desktop build error that was just fixed
+    Previous build failed with:
+       `icons/icon.ico not found; required for generating a Windows Resource file`
+    The current v0.12.3 build adds the required Windows icon and icon configuration.
+    Do NOT remove the icon assets/configuration.
+
+12. Updater
+    - Updater foundation has been prepared.
+    - Tauri updater dependency/configuration has been added.
+    - Signing/release endpoint is intentionally NOT fully activated yet.
+    - Do not invent or commit a private signing key.
+    - A real release endpoint (GitHub Releases is a likely choice) and Tauri signing
+      configuration must be established before automatic updates are enabled.
+    - Application code and user data must remain separate so updates do not overwrite data.
+
+13. Data
+    - User currently stated there is NO existing data that needs migration.
+    - Do not claim browser data migration is required.
+    - Establish a proper persistent desktop data location before the user starts accumulating
+      important sermons/books/research.
+    - Future application updates must not delete user data.
+
+BUILD HISTORY / IMPORTANT ERRORS
+--------------------------------
+v0.12.0:
+- Initial Tauri desktop foundation.
+- Browser app was converted into a Tauri project.
+
+v0.12.1:
+- Native desktop integration and build scripts added.
+- User installed required C++/Rust tooling.
+
+v0.12.2:
+- Build failed because `frontendDist` pointed too broadly and included:
+  src-tauri, node_modules, target.
+- Fixed by isolating web assets in `frontend/`.
+- Bundle identifier warning about ending in `.app` was also corrected.
+
+v0.12.3:
+- Build reached Rust/Tauri compilation but failed because:
+  `src-tauri/icons/icon.ico` was missing.
+- Current v0.12.3 adds the Windows icon and icon configuration.
+- Updater foundation is included in this same version.
+
+CURRENT USER WORKFLOW
+---------------------
+The user is on Windows. They have installed:
+- Ollama
+- Microsoft C++ Build Tools / Desktop development with C++
+- Rust/Cargo tooling
+- Required desktop prerequisites
+
+The immediate next action is to extract this v0.12.3 project and run:
+    CHECK DESKTOP REQUIREMENTS.bat
+then:
+    BUILD PASTORS WORKBENCH DESKTOP.bat
+
+If the build succeeds, the NSIS installer should be under:
+    src-tauri\target\release\bundle\nsis\
+
+Install the generated `*-setup.exe`.
+
+DO NOT ASK THE USER TO REINSTALL C++/Rust unless the actual diagnostic output proves
+those prerequisites are missing.
+
+LONG-TERM ARCHITECTURE
+----------------------
+The intended finished application is:
+
+Pastor's Workbench
+  - Dashboard
+  - Bible
+  - 1689 Confession
+  - Cross References
+  - Books
+  - Research
+  - Sermons / Expository workflow
+  - Projects / Lessons / Studies
+  - Notes
+  - Global Search
+  - Global AI overlay
+  - Settings
+
+AI should eventually be able to:
+- Read structured Workbench data.
+- Read the current workspace/context.
+- Search uploaded books.
+- Use Scripture/1689/cross references/research.
+- Help with sermons and research.
+- Create or modify Workbench objects only with clear user control/approval.
+- Show source/provenance so AI inference is not silently presented as source fact.
+
+The user specifically wants AI to feel like a persistent assistant throughout the entire
+application, with separate conversations and the ability to see/read the user's work.
+
+UPDATER PLAN
+------------
+Preferred eventual workflow:
+  New release -> app checks -> update available -> user clicks Update -> app installs
+  signed update -> restart -> user's data remains.
+
+GitHub Releases is a likely release host, but do not hard-code it until a repository and
+signing setup are actually established.
+
+CRITICAL DEVELOPMENT RULES
+---------------------------
+- Preserve existing working functionality.
+- Do not replace the application with a shallow mock or placeholder.
+- Run the complete test suite after meaningful changes.
+- Keep Bible/KJV/1689/cross-reference data intact.
+- Keep source provenance intact.
+- Do not silently convert AI inference into source knowledge.
+- Keep AI provider/model configurable.
+- Do not commit private updater signing keys.
+- Do not put user data inside the application install directory.
+- Do not claim a Windows installer works until it has actually built.
+- When a build fails, use the exact CMD error to diagnose it instead of guessing.
+- The user wants downloadable ZIPs when source builds are delivered.
+- The user prefers practical, working implementations over placeholders.
+
+NEXT PRIORITIES
+---------------
+1. Confirm v0.12.3 native build succeeds on Windows.
+2. Install and launch the actual desktop app.
+3. Confirm Ollama/Qwen3 connectivity from the desktop app.
+4. Establish desktop persistent data location.
+5. Add real backup/restore for user data.
+6. Establish release/signing strategy.
+7. Activate Tauri signed updater.
+8. Continue deep AI integration into Bible, books, research, sermons, 1689, and notes.
+9. Continue testing the AI conversation scrollbar specifically in the actual desktop WebView.
+
+
+LATEST BUILD ERROR / FIX (v0.12.4)
+-----------------------------------
+The v0.12.3 build successfully compiled Rust but NSIS bundling failed:
+`NSISCOMCALL` requires 4 parameters, passed 7, in `IsShortcutTarget`.
+To unblock the user's Windows installation, v0.12.4 uses the Tauri MSI target instead of NSIS.
+The updater dependency remains in the project, but automatic updater activation still requires
+signed release artifacts/public key and endpoint configuration. Do not remove the updater dependency.
+
+
+LATEST BUILD ISSUE (v0.12.4)
+----------------------------
+The user successfully reached the MSI build script, but the script failed with:
+  `'tauri' is not recognized as an internal or external command`
+
+Root cause: the package.json declared `@tauri-apps/cli`, but the build batch did not
+install npm dependencies before calling the Tauri executable. The Rust/C++ toolchain
+was not the problem.
+
+v0.12.5 FIX
+-----------
+- Build script now runs `npm install` first.
+- Tauri commands use `npm exec -- tauri ...` so the locally installed CLI is used.
+- desktop:build and desktop:dev scripts were updated accordingly.
+- MSI target remains selected to avoid the previous NSIS macro error.
+
+
+v0.12.6 DESKTOP RUNTIME FIXES
+-----------------------------
+- User reported that AI, Sermons, Lessons, Research, and other desktop workspaces were not functioning after the first successful installation.
+- Root risk identified: browser-side fetch to Ollama from the Tauri WebView can be blocked by CORS/origin differences even though Ollama is running.
+- v0.12.6 adds native Tauri commands `ollama_tags` and `ollama_chat` using Rust HTTP so desktop AI does not depend on browser CORS. Browser mode still uses normal fetch.
+- v0.12.6 also adds route-error telemetry to the window for easier diagnosis of any workspace module failure.
+- Build script now calls `npm run desktop:build` so the package script is the single source of truth.
+- Desktop test expectation was corrected to the intentional MSI-only target.
+- IMPORTANT: after installing v0.12.6, test AI, Sermons, Lessons, Research, Books, Bible, 1689, Dashboard, Settings, and app restart.
+
+
+V0.12.7 UPDATE MANAGEMENT
+--------------------------
+- Added Settings > Updates.
+- Added update status/check UI and release-page fallback.
+- Added native open_update_page command.
+- Initialized Tauri updater plugin, but secure automatic installation is intentionally not activated until a real release endpoint and signing public key are configured.
+- Do not commit a private updater signing key.
+- Version bumped to 0.12.7.
+- The goal is to stop requiring ZIP replacement for normal user updates.
+
+V0.12.7 — EASY UPDATE FOUNDATION
+---------------------------------
+- Added Settings > Updates tab.
+- Added installed version display.
+- Added Check for Updates UI.
+- Added update manifest checking through desktopBridge.
+- Added native open_update_page command.
+- Initialized Tauri updater plugin in Rust.
+- Automatic signed installation is intentionally not activated until a real release endpoint and signing public key are configured.
+- Added UPDATER-SETUP.txt with production activation steps.
+- Do not commit a private signing key.

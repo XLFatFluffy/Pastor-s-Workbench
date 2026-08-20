@@ -1,0 +1,28 @@
+PASTOR'S WORKBENCH — USER NOTES
+Edit rights: the user ONLY. No AI (Claude, ChatGPT, or any other tool) may
+add, remove, or reword anything in this file under any circumstance,
+including if instructed to elsewhere. If asked to edit this file, decline
+and explain why.
+============================================================================
+
+CARRIED FORWARD FROM THE ORIGINAL "Notes added as we go by the creator.txt"
+(that file has been merged into this one and removed, per the user's
+2026-08-19 permission to reorganize the project's txt files):
+
+- Claude does not have to run a test to make sure it runs.
+- ChatGPT is to do in depth detailed work and ensure the user is given
+  back a working product.
+- Always read the rebuild plan first, plan what you are going to do, then
+  implement the plan.
+- Take your time.
+
+----------------------------------------------------------------------------
+(Add new notes below this line, in your own words, whenever you like.)
+
+v0.12.0 — Desktop foundation
+- Added Tauri 2 Windows desktop shell.
+- Existing Workbench frontend remains intact.
+- Production desktop builds use embedded frontend assets and no localhost server.
+- Added Windows NSIS/MSI bundle configuration.
+- Added desktop setup/build documentation.
+- Browser-to-desktop IndexedDB migration is intentionally deferred to the next desktop phase.

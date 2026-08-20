@@ -1,0 +1,13 @@
+1689 EXACT-WORDING DECISION
+
+The user-provided "baptist confession of faith.pdf" is now the canonical wording source for the Pastor's Workbench 1689 resource.
+
+Reason: the user explicitly identified this file as a known-correct reference and authorized spelling and punctuation corrections. The Workbench therefore replaces the earlier Creeds.json wording where the PDF is better, rather than preserving known transcription errors merely for source consistency.
+
+PDF layout artifacts removed during extraction:
+- page headers/footers
+- footnote marker letters/symbols attached to words
+- line-break hyphenation
+- proof-reference footnote labels
+
+No theological wording was rewritten by the application. The text follows the uploaded reference.

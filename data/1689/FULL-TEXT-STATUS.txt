@@ -1,0 +1,14 @@
+1689 FULL TEXT STATUS
+
+32/32 chapters seeded locally.
+160/160 paragraphs seeded locally.
+160/160 paragraphs verified against the user-provided reference PDF.
+Proof references imported from the same reference and prepared for canonical Scripture resolution.
+
+Verification basis: EXACT-WORDING-DECISION.txt records the reference PDF
+becoming the canonical wording source; data/1689/verification.json and
+exact-wording-manifest.json show the per-chapter/per-paragraph
+"reference_pdf_verified" status backing the 160/160 claim above.
+exact-wording-policy.txt and EXACT-WORDING-REVIEW.txt describe an earlier,
+now-superseded pending state — see the notice at the top of each of those
+files.

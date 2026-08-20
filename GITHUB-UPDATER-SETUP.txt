@@ -1,0 +1,47 @@
+PASTOR'S WORKBENCH — GITHUB + SIGNED UPDATER SETUP
+===================================================
+
+Repository:
+  https://github.com/XLFatFluffy/Pastor-s-Workbench
+
+IMPORTANT SECURITY RULE
+-----------------------
+NEVER commit or upload updater-keys\pastors-workbench.key.
+That file is the private Tauri signing key.
+The .pub file is the public key and is safe to place in the application configuration.
+
+ONE-TIME LOCAL SETUP
+--------------------
+1. Open updater-keys\pastors-workbench.key.pub in Notepad.
+2. Copy the entire public key line.
+3. In src-tauri\tauri.conf.json, replace:
+   PASTE_PUBLIC_KEY_HERE
+   with that public key.
+4. Save the file.
+
+GITHUB SECRET
+-------------
+The GitHub Actions release workflow expects these repository secrets:
+
+TAURI_SIGNING_PRIVATE_KEY
+  = the complete contents of updater-keys\pastors-workbench.key
+
+TAURI_SIGNING_PRIVATE_KEY_PASSWORD
+  = the password used when the signing key was generated, if one was set.
+    If no password was used, leave this secret empty/not configured.
+
+DO NOT PUT THE PRIVATE KEY IN NORMAL REPOSITORY FILES.
+
+RELEASE PROCESS
+---------------
+1. Update the version in package.json and src-tauri\tauri.conf.json/Cargo.toml as appropriate.
+2. Commit the changes.
+3. Create and push a tag such as v0.12.9.
+4. GitHub Actions builds the signed Windows updater artifacts and publishes the GitHub Release.
+5. Installed Workbench builds use the GitHub latest.json endpoint configured in tauri.conf.json.
+
+FIRST RELEASE
+-------------
+The updater endpoint will not be useful until at least one signed release has been published.
+The existing 0.12.8 installer is still a normal install; after a signed release is published,
+install that signed release as the baseline for automatic update testing.

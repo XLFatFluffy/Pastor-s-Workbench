@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pastor's Workbench — local-first theological study and sermon preparation with a global local AI assistant." />
+  <title>Pastor's Workbench</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <button type="button" id="rail-toggle" class="rail-toggle" aria-expanded="false" aria-controls="rail-sections" aria-label="Open navigation">
+    <span class="rail-toggle__bar"></span>
+    <span class="rail-toggle__bar"></span>
+    <span class="rail-toggle__bar"></span>
+  </button>
+  <div id="rail-scrim" class="rail-scrim" hidden></div>
+  <aside class="rail" aria-label="Primary navigation">
+    <div class="rail__brand">
+      <p class="rail__brand-mark">Pastor's Workbench</p>
+      <p class="rail__brand-sub">Reading Room</p>
+    </div>
+
+    <!-- Static fallback navigation is intentionally present in the HTML.
+         main.js enhances it with active state and routing. This prevents a
+         failed module from leaving the user with no navigation at all. -->
+    <nav class="rail__nav" id="rail-sections">
+      <section class="rail__section">
+        <div class="rail__section-label">Workspace</div>
+        <a class="rail__item" href="#/dashboard" data-route-id="dashboard">Dashboard</a>
+      </section>
+      <section class="rail__section">
+        <div class="rail__section-label">Study</div>
+        <a class="rail__item" href="#/bible" data-route-id="bible">Bible</a>
+        <a class="rail__item" href="#/confession" data-route-id="confession">1689 Confession</a>
+        <a class="rail__item" href="#/concordance" data-route-id="concordance">Concordance</a>
+        <a class="rail__item" href="#/research" data-route-id="research">Research</a>
+      </section>
+      <section class="rail__section">
+        <div class="rail__section-label">Work</div>
+        <a class="rail__item" href="#/sermons" data-route-id="sermons">Sermons</a>
+        <a class="rail__item" href="#/lessons" data-route-id="lessons">Lessons</a>
+        <a class="rail__item" href="#/studies" data-route-id="studies">Studies</a>
+        <a class="rail__item" href="#/projects" data-route-id="projects">Projects</a>
+      </section>
+      <section class="rail__section">
+        <div class="rail__section-label">Library</div>
+        <a class="rail__item" href="#/books" data-route-id="books">Books</a>
+        <a class="rail__item" href="#/commentaries" data-route-id="commentaries">Commentaries</a>
+      </section>
+      <section class="rail__section">
+        <div class="rail__section-label">Knowledge</div>
+        <a class="rail__item" href="#/notes" data-route-id="notes">Notes</a>
+        <a class="rail__item" href="#/topics" data-route-id="topics">Topics</a>
+        <a class="rail__item" href="#/collections" data-route-id="collections">Collections</a>
+      </section>
+      <section class="rail__section">
+        <div class="rail__section-label">System</div>
+        <a class="rail__item" href="#/ai" data-route-id="ai">AI</a>
+        <a class="rail__item" href="#/settings" data-route-id="settings">Settings</a>
+      </section>
+    </nav>
+  </aside>
+
+  <button type="button" id="global-ai-launcher" class="global-ai-launcher" aria-label="Open AI assistant" title="Open AI assistant"><span>AI</span></button>
+  <div id="global-ai-scrim" class="global-ai-scrim" hidden></div>
+  <aside id="global-ai" class="global-ai" aria-label="AI Assistant" aria-hidden="true"></aside>
+
+  <main class="canvas" id="app-view" tabindex="-1">
+    <div class="canvas__header">
+      <p class="canvas__eyebrow">Workspace</p>
+      <h1 class="canvas__title">Dashboard</h1>
+      <p class="canvas__dek">Loading Pastor's Workbench…</p>
+    </div>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+  <script type="module">import { initGlobalAI } from "./globalAI.js"; window.addEventListener("DOMContentLoaded", () => initGlobalAI().catch(console.error));</script>
+</body>
+</html>

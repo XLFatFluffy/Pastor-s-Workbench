@@ -1,0 +1,30 @@
+STATUS: SUPERSEDED — see EXACT-WORDING-DECISION.txt
+This checkpoint (v0.4.4) predates the user supplying
+"baptist confession of faith.pdf" as the canonical wording source. The
+line below stating "the local paragraph text remains the structured
+Creeds.json transcription until exact wording reconciliation is
+completed" is NO LONGER ACCURATE — EXACT-WORDING-DECISION.txt records that
+the PDF became canonical and replaced Creeds.json wording where it
+differed, and all 160 paragraphs are now marked "reference_pdf_verified"
+in data/1689/verification.json and exact-wording-manifest.json. The
+metadata corrections listed below (chapter titles, capitalization) remain
+accurate and still apply. Kept here for historical context only. (Note
+added 2026-08-19 after ChatGPT correctly flagged this as a potential
+contradiction — see CLAUDE-BUILD-LOG.txt session log.)
+----------------------------------------------------------------------------
+
+1689 EXACT-WORDING REVIEW — v0.4.4
+
+This checkpoint keeps the exact-wording pass separate from structural/source verification.
+
+KNOWN SOURCE METADATA ANOMALIES CORRECTED IN WORKBENCH METADATA
+1. Chapter 20 is titled “Of the Gospel, and of the Extent of the Grace Thereof” in the independent Reformed Reader transcription.
+2. Chapter 21 is titled “Of Christian Liberty and Liberty of Conscience” in the independent Reformed Reader transcription.
+3. Chapter 25 is titled “Of Marriage” in the independent Reformed Reader transcription; the structured source incorrectly labels it “Of the Civil Magistrate.”
+4. Chapter 17 capitalization was normalized in the chapter index only; paragraph text remains unchanged.
+5. Chapter 31 capitalization/punctuation in the chapter title was normalized in the chapter index only.
+
+IMPORTANT: These corrections do not constitute paragraph-text verification. The local paragraph text remains the structured Creeds.json transcription until exact wording reconciliation is completed.
+
+SOURCE REVIEW
+The structured source identifies itself as public domain. The Reformed Reader provides an independent chapter-by-chapter transcription. The two sources show differences in capitalization, punctuation, spelling, and in some places wording/transcription. Therefore the application will not silently substitute one source for the other.

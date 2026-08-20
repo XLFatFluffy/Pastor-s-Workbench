@@ -1,0 +1,22 @@
+PASTOR'S WORKBENCH DESKTOP BUILD
+================================
+
+If you see:
+  'tauri' is not recognized as an internal or external command
+
+This means the Node/Tauri CLI dependency was not installed or was not being invoked
+from the local npm project. The current build script fixes this by running:
+
+  npm install
+  npm run desktop:prepare
+  npm exec -- tauri build
+
+Do not reinstall Rust or C++ for this particular error.
+
+The Windows build is intentionally configured for MSI because an earlier NSIS build
+failed in makensis with:
+  NSISCOMCALL macro requires 4 parameter(s), passed 7
+  Error in macro IsShortcutTarget
+
+The MSI installer should be produced under:
+  src-tauri\target\release\bundle\msi\

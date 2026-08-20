@@ -1,0 +1,15 @@
+FULL OPENBIBLE.INFO CROSS-REFERENCE CORPUS
+
+The Workbench can now install the complete OpenBible.info cross-reference corpus from
+its documented JSON delivery through the Free Use Bible API.
+
+Expected: 344,799 relationships
+Books: 66
+Chapters: 1,189
+License: Creative Commons Attribution (CC BY)
+
+Source: https://www.openbible.info/labs/cross-references/
+Delivery: https://bible.helloao.org/api/d/open-cross-ref/
+
+The installer validates all source/target verse identities and requires the complete
+344,799-row count before replacing the current local cross-reference store.

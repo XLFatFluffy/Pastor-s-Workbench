@@ -1,0 +1,29 @@
+PASTOR'S WORKBENCH — UPDATE SYSTEM
+===================================
+
+v0.12.7 adds Settings > Updates and the native updater plugin foundation.
+
+CURRENT BEHAVIOR
+----------------
+- Settings > Updates is available in the desktop application.
+- The app can check a configured update manifest.
+- If a newer version is reported, the user can open the release page.
+- Until a real signed release endpoint is configured, the UI explicitly reports that
+  the automatic updater is not activated.
+
+PRODUCTION ACTIVATION
+---------------------
+1. Create a private/public GitHub repository for Pastor's Workbench releases.
+2. Generate the Tauri signing key once with:
+   GENERATE UPDATER SIGNING KEY.bat
+3. Keep the generated private .key file OFF GitHub and out of the project ZIP.
+4. Put only the public key into the production Tauri updater configuration.
+5. Configure the signed update endpoint/release manifest.
+6. Build signed Windows artifacts and publish them with the release.
+7. Enable the production endpoint in the desktop build.
+
+Do not invent a signing key or commit a private signing key. Secure automatic updates
+cannot be safely activated until the release endpoint and signing configuration exist.
+
+The goal is that future users never need to replace project folders manually:
+Settings > Updates > Check for Updates > Update.

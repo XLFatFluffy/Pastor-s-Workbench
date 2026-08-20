@@ -1,0 +1,25 @@
+STATUS: SUPERSEDED — see EXACT-WORDING-DECISION.txt
+This policy described the state BEFORE the user supplied
+"baptist confession of faith.pdf" as the canonical wording source. That
+decision (recorded in EXACT-WORDING-DECISION.txt) resolved the "pending"
+status described below. Current verified state: all 160 paragraphs carry
+status "reference_pdf_verified" against that PDF — see
+data/1689/verification.json and exact-wording-manifest.json for the
+per-chapter/per-paragraph record. Kept here for historical context only;
+do not read this file's "pending" language as describing the current
+state. (Note added 2026-08-19 after ChatGPT correctly flagged this as a
+potential contradiction — see CLAUDE-BUILD-LOG.txt session log.)
+----------------------------------------------------------------------------
+
+1689 EXACT WORDING POLICY — v0.4.3
+
+Canonical local text for this implementation remains the structured Creeds.json transcription already selected for the resource. We preserve its historical spelling/capitalization rather than silently modernizing it.
+
+Important distinction:
+1. Local wording stability means the text shipped by the Workbench does not change unexpectedly.
+2. Historical wording verification means comparing that transcription against an independent historical/public-domain edition.
+3. These are separate claims. A hash can prove (1), not (2).
+
+The Workbench will not mark a paragraph text_verified merely because its local hash matches itself. Exact historical verification remains pending until the paragraph has been reconciled against an independent edition.
+
+Reformed Reader is being used as the independent comparison source for chapter structure, paragraph counts, proof presentation, and wording reconciliation. Its English chapter pages are explicitly separate source pages for each chapter.
