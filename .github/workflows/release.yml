@@ -3,55 +3,10 @@ name: Build and Publish Pastor's Workbench Release
 on:
   workflow_dispatch:
     inputs:
-      release_tag:
-        description: "Release tag (for example v0.12.8)"
+      version:
+        description: 'Release version, for example 0.12.8'
         required: true
-        default: "v0.12.8"
-  push:
-    tags:
-      - 'v*'
-
-permissions:
-  contents: write
-
-jobs:
-  release:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: x86_64-pc-windows-msvc
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Prepare desktop frontend
-        run: npm run desktop:prepare
-
-      - name: Build signed MSI release and publish GitHub Release
-        uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-        with:
-          tagName: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
-          releaseName: "Pastor's Workbench ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}"
-          releaseBody: "Signed Windows MSI release of Pastor's Workbench."
-          releaseDraft: false
-          prerelease: false
-name: Build and Publish Pastor's Workbench Release
-
-on:
-  workflow_dispatch:
+        default: '0.12.8'
   push:
     tags:
       - 'v*'
@@ -83,15 +38,15 @@ jobs:
       - name: Prepare desktop frontend
         run: npm run desktop:prepare
 
-      - name: Build signed Tauri release and publish GitHub Release
-        uses: tauri-apps/tauri-action@v0
+      - name: Build and publish signed Tauri release
+        uses: tauri-apps/tauri-action@v0.6.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: "Pastor's Workbench ${{ github.ref_name }}"
+          tagName: v${{ github.event.inputs.version || github.ref_name }}
+          releaseName: "Pastor's Workbench v${{ github.event.inputs.version || github.ref_name }}"
           releaseBody: "Signed Windows release of Pastor's Workbench."
           releaseDraft: false
           prerelease: false
-          updaterJsonPreferNsis: true
+          updaterJsonPreferNsis: false
