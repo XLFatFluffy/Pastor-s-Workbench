@@ -6,6 +6,10 @@ try {
 } catch { /* browser */ }
 
 export const isDesktop = () => Boolean(tauriCore);
+export const invokeDesktop = async (command, args = {}) => {
+  if (!tauriCore) throw new Error('Native desktop bridge is unavailable.');
+  return tauriCore.invoke(command, args);
+};
 
 export async function desktopInfo() {
   if (!tauriCore) return { desktop: false, platform: 'browser', arch: '', appDataDir: '' };
@@ -36,9 +40,21 @@ export async function ollamaChat({ model, messages, temperature = 0.2 } = {}) {
   return await tauriCore.invoke('ollama_chat', { request: { model, messages, temperature } });
 }
 
+export async function ollamaEmbed({ model, input } = {}) {
+  if (!tauriCore) return null;
+  return await tauriCore.invoke('ollama_embed', { request: { model, input: Array.isArray(input) ? input : [input] } });
+}
+
 const UPDATE_MANIFEST_URL = globalThis.__PWB_UPDATE_MANIFEST_URL || "";
 
-export async function checkForAppUpdate(currentVersion = "0.12.7") {
+export async function checkForAppUpdate(currentVersion = "0.30.0") {
+  if (tauriCore) {
+    try {
+      return await tauriCore.invoke("check_for_app_update");
+    } catch (error) {
+      return { configured: true, updateAvailable: false, error: String(error?.message || error) };
+    }
+  }
   if (!UPDATE_MANIFEST_URL) return { configured: false, updateAvailable: false };
   const response = await fetch(UPDATE_MANIFEST_URL, { cache: "no-store" });
   if (!response.ok) throw new Error(`Update service returned HTTP ${response.status}.`);
@@ -48,6 +64,11 @@ export async function checkForAppUpdate(currentVersion = "0.12.7") {
     updateAvailable: String(manifest.version || "") !== currentVersion && compareVersions(String(manifest.version || "0.0.0"), currentVersion) > 0,
     version: manifest.version, notes: manifest.notes || "", url: manifest.url || manifest.releaseUrl || ""
   };
+}
+
+export async function installAppUpdate() {
+  if (!tauriCore) throw new Error("Automatic installation is only available in the Windows desktop app.");
+  return await tauriCore.invoke("install_app_update");
 }
 
 export async function openUpdatePage(url) {

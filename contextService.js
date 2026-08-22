@@ -5,12 +5,15 @@ import { search as searchBible } from './bibleService.js';
 import { search as searchConfession } from './confessionService.js';
 import { findRelatedVerseIds } from './crossReferenceService.js';
 import { buildBookContext } from './libraryService.js';
+import { searchDocuments, getDocumentChunks } from './documentService.js';
+import { getConnectedDocuments } from './connectedKnowledgeService.js';
 
 const WORK_STORES = [
   ['projects','Project'], ['sermons','Sermon'], ['sermon_stages','Sermon Stage'], ['sermon_points','Sermon Point'],
   ['lessons','Lesson'], ['lesson_teaching_sections','Lesson Section'], ['studies','Study'],
   ['notes','Note'], ['research_items','Research'], ['topics','Topic'], ['collections','Collection'],
   ['sources','Source'], ['resources','Resource'], ['documents','Document'], ['templates','Template'],
+  ['calendar_events','Calendar Event'], ['daily_tasks','Daily Task'],
   ['tags','Tag'], ['bible_annotations','Bible Annotation']
 ];
 
@@ -32,12 +35,13 @@ function labelRecord(type, r) {
 }
 
 export function getCurrentAppContext() {
-  if (typeof document === 'undefined') return { route: '', screen: '' };
+  if (typeof document === 'undefined') return { route: '', screen: '', workspaceAI: null };
   const route = globalThis.__pwbCurrentRoute || location.hash || '#/dashboard';
   const main = document.getElementById('app-view');
   let screen = main?.innerText || '';
   screen = screen.replace(/\n{3,}/g, '\n\n').trim().slice(0, 18000);
-  return { route, screen };
+  const workspaceAI = globalThis.__pwbWorkspaceAI || null;
+  return { route, screen, workspaceAI };
 }
 
 export async function searchWorkbenchRecords(query, { limit = 14 } = {}) {
@@ -60,17 +64,39 @@ function formatRecord(r) {
 }
 
 export async function buildWorkbenchContext(query, { includeBooks = true, includeBible = true, includeConfession = true, includeCrossReferences = true, includeCurrentScreen = true, limit = 18 } = {}) {
-  const [work, books] = await Promise.all([
+  const [work, books, documents] = await Promise.all([
     searchWorkbenchRecords(query, { limit: Math.max(limit, 14) }),
-    includeBooks ? buildBookContext(query, { limit: 6 }) : []
+    includeBooks ? buildBookContext(query, { limit: 6 }) : [],
+    searchDocuments(query, { limit: 6 })
   ]);
   const sections = [];
+  let connectedDocuments = [];
+  const currentEntity = globalThis.__pwbCurrentEntity || null;
+  if (currentEntity?.type && currentEntity?.id) {
+    try {
+      connectedDocuments = await getConnectedDocuments(currentEntity.type, currentEntity.id);
+      if (connectedDocuments.length) {
+        const connectedChunks = [];
+        for (const doc of connectedDocuments.slice(0, 8)) {
+          const hits = await searchDocuments(query, { limit: 4, documentId: doc.id });
+          if (hits.length) connectedChunks.push(...hits);
+        }
+        if (connectedChunks.length) documents.push(...connectedChunks);
+      }
+    } catch { /* connected documents are optional context */ }
+  }
   if (includeCurrentScreen) {
     const current = getCurrentAppContext();
     if (current.screen) sections.push(`CURRENT WORKBENCH SCREEN\nRoute: ${current.route}\n${current.screen}`);
+    if (current.workspaceAI) sections.push(`CURRENT WORKSPACE AI CONTRACT\nWorkspace: ${current.workspaceAI.label || current.workspaceAI.route}\nCapabilities: ${(current.workspaceAI.capabilities || []).join(' | ')}\nInstruction: ${current.workspaceAI.instruction || ''}`);
   }
   if (work.length) sections.push(`MATCHING USER WORK\n${work.map((r,i)=>`[Work ${i+1}]\n${formatRecord(r)}`).join('\n\n')}`);
-  if (books.length) sections.push(`UPLOADED BOOK LIBRARY\n${books.map((r,i)=>`[Book ${i+1}] ${r.citation}\n${r.content}`).join('\n\n')}`);
+  if (books.length) sections.push(`UPLOADED BOOK LIBRARY
+${books.map((r,i)=>`[Book ${i+1}] ${r.citation}
+${r.content}`).join('\n\n')}`);
+  if (documents.length) sections.push(`CONNECTED FILES & DOCUMENTS
+${documents.map((r,i)=>`[Document ${i+1}] ${r.document?.title || 'Document'} — ${r.index + 1}
+${r.content}`).join('\n\n')}`);
 
   if (includeBible) {
     try {
@@ -93,9 +119,9 @@ export async function buildWorkbenchContext(query, { includeBooks = true, includ
       }
     } catch { /* optional corpus */ }
   }
-  return { sections, work, books, current: getCurrentAppContext() };
+  return { sections, work, books, documents, current: getCurrentAppContext() };
 }
 
 export function contextSummary(ctx) {
-  return { work: ctx.work?.length || 0, books: ctx.books?.length || 0, sections: ctx.sections?.length || 0, route: ctx.current?.route || '' };
+  return { work: ctx.work?.length || 0, books: ctx.books?.length || 0, documents: ctx.documents?.length || 0, sections: ctx.sections?.length || 0, route: ctx.current?.route || '' };
 }

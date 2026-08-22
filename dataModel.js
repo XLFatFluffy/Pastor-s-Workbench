@@ -8,7 +8,7 @@ export const ENTITY_TYPES = Object.freeze([
   "Collection", "Source", "Resource", "LibraryItem", "Document", "Template", "Tag",
   "AISession", "AIResponse", "Version", "Change",
   "BibleTranslation", "BibleBook", "BibleChapter", "BibleVerse", "ConcordanceEntry",
-  "CrossReference", "Confession", "ConfessionChapter", "ConfessionParagraph"
+  "CrossReference", "Confession", "ConfessionChapter", "ConfessionParagraph", "CalendarEvent", "DailyTask"
 ]);
 
 export const PROJECT_TYPES = Object.freeze(["sermon", "lesson", "study", "research", "writing", "general"]);
@@ -24,7 +24,7 @@ export const NOTE_TYPES = Object.freeze([
 export const KNOWLEDGE_ORIGINS = Object.freeze(["personal", "source", "ai"]);
 export const RELATIONSHIP_TYPES = Object.freeze([
   "related", "topic", "scripture", "source", "project", "note", "research", "sermon",
-  "lesson", "study", "confession", "document", "collection", "tag", "other"
+  "lesson", "study", "confession", "document", "collection", "tag", "book", "other"
 ]);
 export const CROSS_REFERENCE_TYPES = Object.freeze([
   "parallel", "quotation", "allusion", "thematic", "prophetic", "fulfillment", "conceptual", "other"
@@ -83,7 +83,9 @@ const REQUIRED_FIELDS = Object.freeze({
   CrossReference: ["id", "source_verse_id", "target_verse_id", "relationship_type", "source", "notes", "provenance", "confidence"],
   Confession: ["id", "name", "edition", "metadata"],
   ConfessionChapter: ["id", "confession_id", "chapter_number", "title"],
-  ConfessionParagraph: ["id", "chapter_id", "paragraph_number", "text", "is_seeded"]
+  ConfessionParagraph: ["id", "chapter_id", "paragraph_number", "text", "is_seeded"],
+  CalendarEvent: ["id", "workspace_id", "project_id", "title", "description", "start_at", "end_at", "all_day", "status", "created_at", "updated_at"],
+  DailyTask: ["id", "workspace_id", "project_id", "title", "description", "due_date", "priority", "status", "created_at", "updated_at"]
 });
 
 const SCHEMAS = Object.freeze({
@@ -118,7 +120,9 @@ const SCHEMAS = Object.freeze({
   CrossReference: ["id", "source_verse_id", "target_verse_id", "relationship_type", "source", "notes", "provenance", "confidence"],
   Confession: ["id", "name", "edition", "metadata"],
   ConfessionChapter: ["id", "confession_id", "chapter_number", "title", "is_seeded", "verification_status"],
-  ConfessionParagraph: ["id", "chapter_id", "paragraph_number", "text", "is_seeded", "verification_status", "source", "source_url"]
+  ConfessionParagraph: ["id", "chapter_id", "paragraph_number", "text", "is_seeded", "verification_status", "source", "source_url"],
+  CalendarEvent: ["id", "workspace_id", "project_id", "title", "description", "start_at", "end_at", "all_day", "status", "created_at", "updated_at"],
+  DailyTask: ["id", "workspace_id", "project_id", "title", "description", "due_date", "priority", "status", "completed_at", "created_at", "updated_at"]
 });
 
 function fail(message) { throw new TypeError(message); }
@@ -188,6 +192,7 @@ export function validateRecord(entity, record) {
     if (typeof record.confidence !== "number" || record.confidence < 0 || record.confidence > 1) fail("CrossReference.confidence must be a number from 0 to 1.");
   }
   if (entity === "ConfessionParagraph") requireBoolean(record, "is_seeded", entity);
+  if (entity === "CalendarEvent") requireBoolean(record, "all_day", entity);
   if (entity === "AIResponse") requireObject(record, "provenance", entity);
 
   return Object.freeze({ ...record });

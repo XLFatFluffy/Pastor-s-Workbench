@@ -1,10 +1,49 @@
-// views/calendarView.js
-import { renderPlaceholder } from "./placeholderView.js";
+import { listProjects } from '../sermonService.js';
+import { completeTask, deleteEvent, deleteTask, listEvents, listTasks, localDateKey, monthBounds, reopenTask, saveEvent, saveTask } from '../calendarService.js';
 
-export function render(mount) {
-  renderPlaceholder(mount, {
-    eyebrow: "Planning",
-    title: "Calendar",
-    phaseNote: "Not yet scheduled in the current phase sequence.",
-  });
+const esc = v => String(v ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+const label = v => String(v || '').replaceAll('_',' ').replace(/\b\w/g, m => m.toUpperCase());
+const pad = n => String(n).padStart(2,'0');
+const isoLocal = (date, hour='09:00') => `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}T${hour}`;
+const dateKey = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const addDays = (d,n) => { const x=new Date(d); x.setDate(x.getDate()+n); return x; };
+
+export async function render(mount) {
+  let cursor = new Date(); cursor.setDate(1);
+  let selected = new Date();
+  let projects = await listProjects({});
+  mount.innerHTML = `<div class="canvas__header"><p class="canvas__eyebrow">Planning</p><h1 class="canvas__title">Calendar &amp; Daily Plan</h1><p class="canvas__dek">Plan sermons, studies, lessons, research, and personal work in one place. Calendar events and daily tasks remain linked to your Workbench projects.</p></div>
+    <div class="calendar-toolbar"><button class="button" id="cal-prev">‹</button><button class="button" id="cal-today">Today</button><button class="button" id="cal-next">›</button><h2 id="cal-month" class="calendar-toolbar__title"></h2><button class="button button--primary" id="cal-add-task">＋ Task</button><button class="button" id="cal-add-event">＋ Event</button></div>
+    <section class="calendar-layout"><article class="reader-panel"><div id="calendar-grid"></div></article><aside class="reader-panel" id="day-panel"></aside></section>`;
+
+  mount.querySelector('#cal-prev').onclick = () => { cursor.setMonth(cursor.getMonth()-1); renderMonth(); };
+  mount.querySelector('#cal-next').onclick = () => { cursor.setMonth(cursor.getMonth()+1); renderMonth(); };
+  mount.querySelector('#cal-today').onclick = () => { cursor=new Date(); cursor.setDate(1); selected=new Date(); renderMonth(); renderDay(); };
+  mount.querySelector('#cal-add-task').onclick = () => showTaskForm(selected);
+  mount.querySelector('#cal-add-event').onclick = () => showEventForm(selected);
+
+  async function renderMonth() {
+    const bounds = monthBounds(cursor); const events=await listEvents({from:`${bounds.start}T00:00:00`,to:`${bounds.end}T23:59:59`}); const tasks=await listTasks({from:bounds.start,to:bounds.end});
+    mount.querySelector('#cal-month').textContent=cursor.toLocaleDateString(undefined,{month:'long',year:'numeric'});
+    const first=new Date(cursor.getFullYear(),cursor.getMonth(),1); const start=addDays(first,-first.getDay());
+    let cells='';
+    for(let i=0;i<42;i++) { const d=addDays(start,i), key=dateKey(d), inMonth=d.getMonth()===cursor.getMonth(); const ev=events.filter(e=>dateKey(new Date(e.start_at))===key); const ts=tasks.filter(t=>t.due_date===key); cells+=`<button type="button" class="calendar-day ${inMonth?'':'is-outside'} ${key===dateKey(selected)?'is-selected':''} ${key===localDateKey()?'is-today':''}" data-day="${key}"><span class="calendar-day__number">${d.getDate()}</span><span class="calendar-day__items">${ev.slice(0,2).map(e=>`<span class="calendar-chip calendar-chip--event">${esc(e.title)}</span>`).join('')}${ts.slice(0,2).map(t=>`<span class="calendar-chip calendar-chip--task ${t.status==='done'?'is-done':''}">${esc(t.title)}</span>`).join('')}${ev.length+ts.length>4?`<span class="calendar-more">+${ev.length+ts.length-4} more</span>`:''}</span></button>`; }
+    mount.querySelector('#calendar-grid').innerHTML=`<div class="calendar-weekdays">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=>`<span>${x}</span>`).join('')}</div><div class="calendar-month-grid">${cells}</div>`;
+    mount.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{ const [y,m,d]=b.dataset.day.split('-').map(Number); selected=new Date(y,m-1,d); renderMonth(); renderDay(); });
+  }
+
+  async function renderDay() {
+    const key=dateKey(selected); const events=await listEvents({from:`${key}T00:00:00`,to:`${key}T23:59:59`}); const tasks=await listTasks({dueDate:key});
+    mount.querySelector('#day-panel').innerHTML=`<div class="reader-panel__head"><div><p class="canvas__eyebrow">Daily plan</p><h2>${selected.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</h2></div></div><div class="calendar-day-actions"><button class="button button--primary" id="day-task">＋ Add task</button><button class="button" id="day-event">＋ Add event</button></div><section><h3>Tasks <span class="pill">${tasks.filter(t=>t.status!=='done').length} open</span></h3><div class="calendar-list">${tasks.length?tasks.map(t=>`<article class="calendar-list-item ${t.status==='done'?'is-done':''}"><button class="task-check" data-task-toggle="${esc(t.id)}" aria-label="${t.status==='done'?'Reopen':'Complete'} task">${t.status==='done'?'✓':'○'}</button><div><strong>${esc(t.title)}</strong><p>${esc(t.description||'')} <span class="pill">${esc(label(t.priority))}</span>${t.project_id?` <span class="pill">Project</span>`:''}</p></div><button class="text-button text-button--danger" data-task-delete="${esc(t.id)}">Delete</button></article>`).join(''):`<div class="empty-state">No tasks scheduled for this day.</div>`}</div></section><section><h3>Events</h3><div class="calendar-list">${events.length?events.map(e=>`<article class="calendar-list-item"><div><strong>${esc(e.title)}</strong><p>${e.all_day?'All day':`${new Date(e.start_at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})} – ${new Date(e.end_at).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}`} ${e.description?` · ${esc(e.description)}`:''}</p></div><button class="text-button text-button--danger" data-event-delete="${esc(e.id)}">Delete</button></article>`).join(''):`<div class="empty-state">No events scheduled for this day.</div>`}</div></section>`;
+    mount.querySelector('#day-task').onclick=()=>showTaskForm(selected); mount.querySelector('#day-event').onclick=()=>showEventForm(selected);
+    mount.querySelectorAll('[data-task-toggle]').forEach(b=>b.onclick=async()=>{ const task=tasks.find(t=>t.id===b.dataset.taskToggle); if(task){ if(task.status==='done') await reopenTask(task.id); else await completeTask(task.id); renderDay(); renderMonth(); }});
+    mount.querySelectorAll('[data-task-delete]').forEach(b=>b.onclick=async()=>{ await deleteTask(b.dataset.taskDelete); renderDay(); renderMonth(); });
+    mount.querySelectorAll('[data-event-delete]').forEach(b=>b.onclick=async()=>{ await deleteEvent(b.dataset.eventDelete); renderDay(); renderMonth(); });
+  }
+
+  function projectOptions() { return `<option value="">No project</option>${projects.map(p=>`<option value="${esc(p.id)}">${esc(p.title)}</option>`).join('')}`; }
+  function showTaskForm(day) { const panel=mount.querySelector('#day-panel'); const key=dateKey(day); panel.innerHTML=`<div class="reader-panel__head"><div><p class="canvas__eyebrow">Daily plan</p><h2>New task</h2></div><button class="text-button" id="form-back">Back</button></div><form class="tool-form" id="task-form"><label>Task<input name="title" required placeholder="Study 1 John 1:1–4"></label><label>Date<input type="date" name="due_date" value="${key}" required></label><label>Priority<select name="priority"><option value="normal">Normal</option><option value="low">Low</option><option value="high">High</option><option value="urgent">Urgent</option></select></label><label>Project<select name="project_id">${projectOptions()}</select></label><label>Notes<textarea name="description" rows="4"></textarea></label><button class="button button--primary">Save task</button></form>`; panel.querySelector('#form-back').onclick=renderDay; panel.querySelector('#task-form').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.currentTarget);await saveTask({title:d.get('title'),due_date:d.get('due_date'),priority:d.get('priority'),project_id:d.get('project_id'),description:d.get('description')});selected=new Date(`${d.get('due_date')}T12:00:00`);cursor=new Date(selected.getFullYear(),selected.getMonth(),1);await renderMonth();await renderDay();}; }
+  function showEventForm(day) { const panel=mount.querySelector('#day-panel'); const key=dateKey(day); panel.innerHTML=`<div class="reader-panel__head"><div><p class="canvas__eyebrow">Calendar</p><h2>New event</h2></div><button class="text-button" id="form-back">Back</button></div><form class="tool-form" id="event-form"><label>Title<input name="title" required placeholder="Prepare Sunday sermon"></label><label>Date<input type="date" name="date" value="${key}" required></label><div class="form-row"><label>Start<input type="time" name="start" value="09:00" required></label><label>End<input type="time" name="end" value="10:00" required></label></div><label><input type="checkbox" name="all_day"> All day</label><label>Project<select name="project_id">${projectOptions()}</select></label><label>Description<textarea name="description" rows="4"></textarea></label><button class="button button--primary">Save event</button></form>`; panel.querySelector('#form-back').onclick=renderDay; panel.querySelector('#event-form').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.currentTarget);const allDay=d.get('all_day')==='on';const start=allDay?`${d.get('date')}T00:00:00`:isoLocal(new Date(`${d.get('date')}T12:00:00`),d.get('start'));const end=allDay?`${d.get('date')}T23:59:59`:isoLocal(new Date(`${d.get('date')}T12:00:00`),d.get('end'));await saveEvent({title:d.get('title'),start_at:start,end_at:end,all_day:allDay,project_id:d.get('project_id'),description:d.get('description')});selected=new Date(`${d.get('date')}T12:00:00`);cursor=new Date(selected.getFullYear(),selected.getMonth(),1);await renderMonth();await renderDay();}; }
+
+  await renderMonth(); await renderDay();
 }

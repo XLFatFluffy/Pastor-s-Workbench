@@ -3,7 +3,7 @@ The previous build reached the NSIS bundling stage and failed with:
 Error in macro IsShortcutTarget
 
 This is an NSIS packaging/toolchain compatibility problem, not a C++ or Rust compile
-failure. v0.12.4 avoids that broken NSIS bundling path and builds the Windows MSI target.
+failure. The production release workflow avoids that broken NSIS bundling path and builds the Windows MSI target.
 
 The Tauri updater dependency remains included in the project. Automatic updating is
 intentionally not activated until a real Tauri signing key and release endpoint are

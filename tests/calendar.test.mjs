@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { normalizeEvent, normalizeTask, TASK_PRIORITIES, TASK_STATUSES, monthBounds } from '../calendarService.js';
+
+assert.ok(fs.existsSync('views/calendarView.js'));
+assert.ok(fs.readFileSync('views/calendarView.js','utf8').includes('Calendar &amp; Daily Plan'));
+assert.match(fs.readFileSync('contextService.js','utf8'), /calendar_events/);
+assert.match(fs.readFileSync('contextService.js','utf8'), /daily_tasks/);
+assert.deepEqual(TASK_PRIORITIES, ['low','normal','high','urgent']);
+assert.deepEqual(TASK_STATUSES, ['open','in_progress','done','cancelled']);
+const event = normalizeEvent({ title:'Sermon prep', start_at:'2026-08-20T09:00:00', end_at:'2026-08-20T10:00:00' });
+assert.equal(event.title, 'Sermon prep');
+assert.equal(event.all_day, false);
+const task = normalizeTask({ title:'Study 1 John', due_date:'2026-08-20', priority:'urgent' });
+assert.equal(task.due_date, '2026-08-20');
+assert.equal(task.status, 'open');
+assert.throws(() => normalizeTask({ title:'Bad', due_date:'20-08-2026' }), /YYYY-MM-DD/);
+assert.throws(() => normalizeEvent({ title:'Bad', start_at:'2026-08-20T10:00:00', end_at:'2026-08-20T09:00:00' }), /cannot be before/);
+const bounds = monthBounds(new Date(2026,7,20));
+assert.deepEqual(bounds, { start:'2026-08-01', end:'2026-08-31' });
+console.log('calendar planning tests passed');

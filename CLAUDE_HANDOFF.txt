@@ -291,3 +291,13 @@ V0.12.7 — EASY UPDATE FOUNDATION
 - Automatic signed installation is intentionally not activated until a real release endpoint and signing public key are configured.
 - Added UPDATER-SETUP.txt with production activation steps.
 - Do not commit a private signing key.
+
+0.13.0 AI ACTIONS
+- Global AI now supports an automatic `project` action for explicit create/start/open requests.
+- Project action creates specialized sermon/lesson/study records as appropriate and navigates to the project workspace.
+- Hash routing now tolerates query parameters for project deep-opening.
+- Calendar/daily scheduling intentionally deferred to the next phase.
+
+
+## v0.14.0 Calendar & Daily Planning
+Calendar is now implemented in views/calendarView.js with calendarService.js, persistent calendar_events and daily_tasks stores, and project linkage. The global AI context can search these planning records.

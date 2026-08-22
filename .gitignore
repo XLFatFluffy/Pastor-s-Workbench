@@ -1,0 +1,8 @@
+node_modules/
+dist/
+src-tauri/target/
+updater-keys/*.key
+updater-keys/*.key.pub
+.env
+.env.*
+!.env.example

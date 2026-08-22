@@ -11,7 +11,7 @@ if exist updater-keys\pastors-workbench.key (
   exit /b 0
 )
 echo Generating a Tauri updater signing key...
-call npm run tauri signer generate -w updater-keys\pastors-workbench.key
+call npm run tauri -- signer generate -w updater-keys\pastors-workbench.key
 if errorlevel 1 goto fail
 echo.
 echo IMPORTANT: KEEP updater-keys\pastors-workbench.key PRIVATE.

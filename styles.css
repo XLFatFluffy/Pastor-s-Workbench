@@ -1,46 +1,47 @@
 /* =========================================================================
-   PASTOR'S WORKBENCH — "READING ROOM" DESIGN SYSTEM
+   PASTOR'S WORKBENCH — "THE STUDY" DESIGN SYSTEM
    Real tokens, not placeholders.
-   v0.6.7: re-skinned for a more editorial, course/masterclass feel per the
-   user's reference (macarthurcenter.org/masterclass) — larger serif display
-   headlines, more whitespace, a navy/charcoal rail instead of ledger-brown,
-   soft elevation on cards, a warmer gold as the primary interactive accent.
-   Token NAMES are unchanged from the original system (only oxblood-deep and
-   the new paper-deep/font-display/shadow tokens were added) so every
-   consumer below picked up the new look without a structural rewrite.
+   v0.30.0: Phase 3 visual overhaul per PASTORS-WORKBENCH-ROADMAP.md —
+   replaces the navy/gold "Reading Room" skin with a Puritan ink-and-stone
+   palette (weathered stone, lamp-black ink, restrained oxblood and pewter
+   accents) and an IM Fell English / Libre Baskerville type pairing, evoking
+   an old study room rather than a modern editorial masterclass. Token
+   NAMES are unchanged from the prior system so every consumer below picks
+   up the new look without a structural rewrite. Worn-page texture,
+   immersive mode, and quiet/focus mode are additive (see bottom of file).
    ========================================================================= */
 
 :root {
   /* --- Color tokens ------------------------------------------------- */
-  --paper: #f8f4ea;           /* warm paper canvas */
-  --paper-raised: #fffdf9;    /* card / raised surface */
-  --paper-deep: #efe7d5;      /* subtle section-header / emphasis background */
-  --paper-line: #e2d6ba;      /* hairline on paper */
+  --paper: #e9e3d3;           /* weathered stone/parchment canvas */
+  --paper-raised: #f4efe1;    /* card / raised surface — lighter worn page */
+  --paper-deep: #ded5bd;      /* subtle section-header / emphasis background */
+  --paper-line: #c9bd9c;      /* hairline on paper */
 
-  --rail-bg: #101e2b;         /* left rail — deep navy/charcoal, not ledger-brown */
-  --rail-bg-raised: #182c3f;
-  --rail-text: #ccd7e0;
-  --rail-text-dim: #6d8194;
+  --rail-bg: #23201b;         /* left rail — lamp-black study wall, not navy */
+  --rail-bg-raised: #322d24;
+  --rail-text: #d8cfba;
+  --rail-text-dim: #7d7461;
 
-  --ink: #1c2530;             /* primary reading text */
-  --ink-soft: #4b5665;        /* secondary text */
-  --ink-faint: #7c8794;       /* tertiary / meta text */
+  --ink: #1f1b15;             /* primary reading text — near-black ink */
+  --ink-soft: #4a4436;        /* secondary text */
+  --ink-faint: #7c7461;       /* tertiary / meta text */
 
-  --oxblood: #7c2830;         /* secondary accent — status, rare emphasis */
-  --oxblood-deep: #551b21;    /* pressed / dark accent */
-  --oxblood-tint: #f5e6e4;    /* accent wash for subtle backgrounds */
+  --oxblood: #6e2a26;         /* secondary accent — status, rare emphasis */
+  --oxblood-deep: #4a1c19;    /* pressed / dark accent */
+  --oxblood-tint: #ecdfd6;    /* accent wash for subtle backgrounds */
 
-  --brass: #b6873f;           /* primary interactive accent — CTAs, active state */
-  --brass-soft: #e3c993;
+  --brass: #8a6a3a;           /* primary interactive accent — dulled pewter-brass */
+  --brass-soft: #cbb27f;
 
   /* --- Type ------------------------------------------------------------ */
-  --font-display: "Fraunces", "Source Serif 4", Georgia, serif; /* large headlines */
-  --font-read: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-display: "IM Fell English", "IM Fell English SC", "Libre Baskerville", Georgia, serif; /* large headlines */
+  --font-read: "Libre Baskerville", "IM Fell English", Georgia, "Times New Roman", serif;
   --font-chrome: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* --- Elevation --------------------------------------------------------- */
-  --shadow-sm: 0 2px 10px rgba(16, 24, 34, 0.06);
-  --shadow-md: 0 14px 34px rgba(16, 24, 34, 0.12);
+  --shadow-sm: 0 2px 10px rgba(31, 27, 21, 0.10);
+  --shadow-md: 0 14px 34px rgba(31, 27, 21, 0.18);
 
   /* --- Spacing scale (8px base) ----------------------------------------- */
   --sp-1: 4px;
@@ -53,8 +54,8 @@
   --sp-8: 64px;
 
   --rail-width: 248px;
-  --radius: 10px;    /* soft modern corners on cards/panels */
-  --radius-sm: 6px;  /* inputs, small controls, tags */
+  --radius: 4px;     /* worn-page corners — squarer, less "app-like" than the prior skin */
+  --radius-sm: 3px;  /* inputs, small controls, tags */
 }
 
 * { box-sizing: border-box; }
@@ -835,6 +836,8 @@ kbd { border:1px solid var(--paper-line); background:var(--paper-raised); paddin
 .settings-select { min-width:210px; border:1px solid var(--paper-line); background:white; padding:9px 10px; font:inherit; color:var(--ink); }
 .settings-range { width:180px; }
 .settings-row output { min-width:42px; text-align:right; font-size:12px; color:var(--ink-soft); }
+.settings-toggle { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--ink-soft); white-space:nowrap; }
+.settings-toggle input { width:16px; height:16px; }
 .settings-import-grid { display:grid; grid-template-columns:150px 1fr 1.2fr auto; gap:8px; align-items:center; }
 .settings-import-grid input { min-width:0; border:1px solid var(--paper-line); background:white; padding:9px 10px; font:inherit; }
 .settings-progress { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:center; padding:0 0 14px; }
@@ -931,6 +934,8 @@ kbd { border:1px solid var(--paper-line); background:var(--paper-raised); paddin
 .ai-message--user { background:var(--paper-deep); border-left:3px solid var(--brass); }
 .ai-message strong { font:700 11px var(--font-chrome); text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); }
 .ai-message p { white-space:pre-wrap; line-height:1.65; color:var(--ink); }
+.ai-attachments { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0; }
+.ai-attachments .pill button { border:none; background:none; color:inherit; cursor:pointer; margin-left:4px; font:inherit; line-height:1; padding:0; }
 .ai-toolbar { display:grid; grid-template-columns:auto minmax(160px,240px) auto; gap:12px; align-items:end; }
 .ai-toolbar label:not(.ai-check) { display:grid; gap:6px; font:600 10px var(--font-chrome); color:var(--ink-soft); text-transform:uppercase; }
 .ai-toolbar select { border:1px solid var(--paper-line); background:#fff; padding:10px; font:inherit; }
@@ -940,11 +945,21 @@ kbd { border:1px solid var(--paper-line); background:var(--paper-raised); paddin
 .tool-form-input { width:100%; box-sizing:border-box; border:1px solid var(--paper-line); border-radius:var(--radius-sm); background:#fff; color:var(--ink); padding:10px 11px; font:400 14px var(--font-read); resize:vertical; }
 
 /* v0.10.0 — global AI overlay and persistent conversations */
-.global-ai-launcher{position:fixed;right:24px;bottom:24px;z-index:1200;width:58px;height:58px;border:1px solid var(--brass);border-radius:50%;background:var(--ink);color:var(--paper);box-shadow:0 10px 30px rgba(0,0,0,.18);font:700 13px var(--font-chrome);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}.global-ai-launcher:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.global-ai-launcher{position:fixed;right:24px;bottom:24px;z-index:1200;width:58px;height:58px;border:1px solid var(--brass);border-radius:50%;background:var(--ink);color:var(--paper);box-shadow:0 10px 30px rgba(0,0,0,.18);font:700 13px var(--font-chrome);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}.global-ai-launcher:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.22)}.global-ai-launcher.is-working{animation:global-ai-pulse 1.5s ease-in-out infinite}.global-ai__launcher-badge{position:absolute;right:-3px;top:-3px;min-width:19px;height:19px;padding:0 4px;box-sizing:border-box;border-radius:999px;background:var(--brass);color:var(--ink);display:flex;align-items:center;justify-content:center;font:700 10px var(--font-chrome);border:2px solid var(--paper-raised)}@keyframes global-ai-pulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.18)}50%{box-shadow:0 10px 30px rgba(181,145,75,.42)}}.global-ai__toast{position:fixed;right:24px;bottom:94px;z-index:1400;max-width:min(420px,calc(100vw - 48px));display:grid;gap:4px;padding:12px 15px;border:1px solid var(--paper-line);border-left:3px solid var(--brass);border-radius:10px;background:var(--paper-raised);color:var(--ink);box-shadow:0 12px 30px rgba(0,0,0,.18);transform:translateY(12px);opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}.global-ai__toast.is-visible{opacity:1;transform:translateY(0)}.global-ai__toast strong{font:700 11px var(--font-chrome);text-transform:uppercase}.global-ai__toast span{font:400 13px var(--font-read);line-height:1.4}.global-ai__toast[data-kind="error"]{border-left-color:#a33}
+
 .global-ai-scrim{position:fixed;inset:0;background:rgba(28,24,20,.24);z-index:1250}.global-ai{position:fixed;right:0;top:0;bottom:0;width:min(760px,96vw);background:var(--paper-raised);border-left:1px solid var(--paper-line);box-shadow:-18px 0 45px rgba(0,0,0,.16);z-index:1300;transform:translateX(102%);transition:transform .22s ease;display:flex;flex-direction:column}.global-ai--open{transform:translateX(0)}
 .global-ai__head{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--paper-line);background:var(--paper-raised)}.global-ai__head h2{margin:0 0 6px;font-family:var(--font-display);font-size:24px}.global-ai__head .canvas__eyebrow{margin:0 0 3px}.global-ai__head-actions{display:flex;gap:8px;align-items:center}.icon-button{border:1px solid var(--paper-line);background:transparent;width:34px;height:34px;border-radius:50%;font-size:22px;cursor:pointer;color:var(--ink)}
 .global-ai__body{min-height:0;flex:1;display:grid;grid-template-columns:190px minmax(0,1fr)}.global-ai__conversations{border-right:1px solid var(--paper-line);background:var(--paper-deep);overflow:auto;padding:12px}.global-ai__conv-head{display:flex;justify-content:space-between;align-items:center;padding:4px 4px 10px;font:700 11px var(--font-chrome);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft)}.global-ai__conversation-row{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:3px;align-items:stretch;margin-bottom:4px}.global-ai__conversation{display:grid;gap:4px;width:100%;min-width:0;text-align:left;border:1px solid transparent;background:transparent;padding:10px 9px;border-radius:8px;cursor:pointer;color:var(--ink)}.global-ai__conversation-delete{border:1px solid transparent;background:transparent;color:var(--ink-soft);border-radius:7px;cursor:pointer;font-size:18px;line-height:1}.global-ai__conversation-delete:hover{border-color:var(--paper-line);background:var(--paper-raised);color:var(--ink)}.global-ai__conversation:hover,.global-ai__conversation.is-active{background:var(--paper-raised);border-color:var(--paper-line)}.global-ai__conversation strong{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.global-ai__conversation small{font-size:10px;color:var(--ink-soft)}
 .global-ai__chat{min-width:0;min-height:0;overflow:hidden;display:flex;flex-direction:column}.global-ai__chat-title{padding:12px 18px;border-bottom:1px solid var(--paper-line);font:600 12px var(--font-chrome);color:var(--ink-soft)}.global-ai__messages{flex:1;min-height:0;overflow:auto;padding:18px}.global-ai__message{border:1px solid var(--paper-line);background:var(--paper);border-radius:10px;padding:12px 14px;margin-bottom:12px}.global-ai__message--user{background:var(--paper-deep);border-left:3px solid var(--brass)}.global-ai__message strong{font:700 10px var(--font-chrome);text-transform:uppercase;color:var(--ink-soft)}.global-ai__message p{white-space:pre-wrap;line-height:1.65;margin:7px 0 0}.global-ai__source-note{display:block;margin-top:8px;color:var(--ink-soft);font:500 10px var(--font-chrome)}.global-ai__composer{border-top:1px solid var(--paper-line);padding:14px 14px calc(14px + var(--pwb-taskbar-safe-bottom, 56px));background:var(--paper-raised)}.global-ai__composer textarea{width:100%;box-sizing:border-box;border:1px solid var(--paper-line);background:#fff;padding:11px;font:400 14px var(--font-read);resize:vertical;border-radius:8px}.global-ai__composer-bar{display:flex;gap:10px;align-items:center;margin-top:9px}.global-ai__composer-bar label{font:600 10px var(--font-chrome);color:var(--ink-soft);margin-right:auto}.global-ai__composer-bar select{border:1px solid var(--paper-line);background:#fff;padding:9px;max-width:180px}.global-ai__composer-bar input{width:auto}.global-ai__composer .error-panel{margin-top:10px}
+.pill--muted{background:var(--paper-deep);color:var(--ink-soft)}
+.global-ai__actions{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.global-ai__action-card{border:1px dashed var(--brass);background:var(--paper-raised);border-radius:8px;padding:10px 12px}
+.global-ai__action-card.is-applied{border-style:solid;opacity:.85}
+.global-ai__action-head{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.global-ai__action-head strong{font:600 13px var(--font-read);color:var(--ink)}
+.global-ai__action-preview{margin:0 0 8px;font:400 12.5px var(--font-read);color:var(--ink-soft);line-height:1.5}
+.global-ai__action-buttons{display:flex;align-items:center;gap:10px}
+.global-ai__action-error{display:block;margin-top:6px;color:#a3392f;font:500 10px var(--font-chrome)}
 @media(max-width:650px){.global-ai__body{grid-template-columns:1fr}.global-ai__conversations{display:none}.global-ai__composer-bar{flex-wrap:wrap}.global-ai__composer-bar label{width:100%;margin-right:0}.global-ai-launcher{right:16px;bottom:16px}.global-ai__head{padding:14px}.global-ai__head .button{padding:8px 10px}.global-ai__head h2{font-size:21px}}
 
 /* v0.11.0 — AI sees the Workbench context */
@@ -958,6 +973,16 @@ kbd { border:1px solid var(--paper-line); background:var(--paper-raised); paddin
 
 /* v0.11.3 — functional dashboard + persistent AI reading controls */
 .dashboard-header{display:flex;justify-content:space-between;gap:24px;align-items:flex-end}
+.dashboard-briefing__narrative{padding:12px 14px;margin-bottom:14px;background:var(--paper-deep);border:1px solid var(--paper-line);border-radius:var(--radius);}
+.dashboard-briefing__narrative p{margin:0 0 4px;line-height:1.55;color:var(--ink)}
+.reader-panel__head div:has(#dashboard-briefing-refresh){display:flex;gap:14px;align-items:center}
+.dashboard-suggestions #dashboard-suggestions-list .knowledge-card{margin-bottom:10px}
+.dashboard-suggestions #dashboard-suggestions-list .knowledge-card:last-child{margin-bottom:0}
+.dashboard-map-group{border:1px solid var(--paper-line);border-radius:var(--radius);padding:var(--sp-4);margin-top:14px;background:var(--paper-deep)}
+.dashboard-map-group__head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.dashboard-map-group__head strong{flex:1}
+.dashboard-map-group__list .knowledge-card{margin-bottom:10px}
+.dashboard-map-group__list .knowledge-card:last-child{margin-bottom:0}
 .dashboard-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:24px}
 .dashboard-stat{display:grid;gap:5px;text-decoration:none;background:var(--paper-raised);border:1px solid var(--paper-line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
 .dashboard-stat:hover{border-color:var(--brass);transform:translateY(-1px)}
@@ -1008,3 +1033,139 @@ kbd { border:1px solid var(--paper-line); background:var(--paper-raised); paddin
 .global-ai__scroll-thumb{z-index:2;transform:none!important}
 .global-ai__composer{padding-bottom:calc(14px + var(--pwb-taskbar-safe-bottom))}
 @media(max-width:650px){:root{--pwb-taskbar-safe-bottom:48px}.global-ai__composer{padding-bottom:calc(14px + var(--pwb-taskbar-safe-bottom))}}
+
+/* v0.14.0 — calendar + daily planning */
+.calendar-toolbar{display:flex;align-items:center;gap:8px;margin:0 0 14px;flex-wrap:wrap}.calendar-toolbar__title{margin:0 auto;font:700 20px var(--font-read)}
+.calendar-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.8fr);gap:14px}.calendar-weekdays,.calendar-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}.calendar-weekdays{border:1px solid var(--paper-line);border-bottom:0;background:var(--paper-deep)}.calendar-weekdays span{padding:8px;text-align:center;font:700 10px var(--font-chrome);text-transform:uppercase;color:var(--ink-soft)}.calendar-month-grid{border-left:1px solid var(--paper-line);border-top:1px solid var(--paper-line)}.calendar-day{min-height:105px;border:0;border-right:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line);background:var(--paper);padding:8px;text-align:left;cursor:pointer}.calendar-day:hover{background:var(--paper-raised)}.calendar-day.is-outside{opacity:.48}.calendar-day.is-selected{box-shadow:inset 0 0 0 2px var(--brass)}.calendar-day.is-today .calendar-day__number{font-weight:800;text-decoration:underline}.calendar-day__number{display:block;font:700 12px var(--font-chrome);margin-bottom:6px}.calendar-day__items{display:flex;flex-direction:column;gap:3px}.calendar-chip{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:4px;padding:3px 5px;font:600 10px var(--font-chrome);background:var(--paper-deep)}.calendar-chip--event{border-left:3px solid var(--brass)}.calendar-chip--task{border-left:3px solid var(--ink-soft)}.calendar-chip.is-done{text-decoration:line-through;opacity:.6}.calendar-more{font:500 10px var(--font-chrome);color:var(--ink-soft)}.calendar-day-actions{display:flex;gap:8px;margin-bottom:16px}.calendar-list{display:flex;flex-direction:column;gap:8px}.calendar-list-item{display:flex;align-items:flex-start;gap:8px;border:1px solid var(--paper-line);border-radius:8px;padding:9px;background:var(--paper-raised)}.calendar-list-item>div{min-width:0;flex:1}.calendar-list-item p{margin:4px 0 0;color:var(--ink-soft);font-size:12px;line-height:1.5}.calendar-list-item.is-done{opacity:.65}.task-check{width:26px;height:26px;border:1px solid var(--paper-line);background:var(--paper);border-radius:50%;cursor:pointer;font-weight:800}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.calendar-toolbar .button{white-space:nowrap}
+@media(max-width:900px){.calendar-layout{grid-template-columns:1fr}.calendar-day{min-height:82px}}@media(max-width:650px){.calendar-day{min-height:70px;padding:5px}.calendar-chip{font-size:9px}.calendar-toolbar__title{order:4;width:100%;text-align:center}.form-row{grid-template-columns:1fr}}
+
+
+/* AI-friendly workstation affordances */
+.workspace-ai-assist{margin:0 0 22px;padding:16px 18px;border:1px solid var(--line,#d8d2c8);border-radius:14px;background:var(--surface-2,#f7f4ee);box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.workspace-ai-assist__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}.workspace-ai-assist__head strong{display:block}.workspace-ai-assist__head span{display:block;margin-top:3px;opacity:.72;font-size:.9rem}.workspace-ai-assist__prompts{display:flex;flex-wrap:wrap;gap:8px}.workspace-ai-assist__prompt{border:1px solid var(--line,#d8d2c8);background:var(--surface,#fff);border-radius:999px;padding:8px 12px;cursor:pointer;font:inherit}.workspace-ai-assist__prompt:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.06)}
+@media(max-width:700px){.workspace-ai-assist__head{align-items:flex-start;flex-direction:column}.workspace-ai-assist__open{align-self:flex-start}}
+
+/* =========================================================================
+   v0.30.0 — Phase 3 visual overhaul: worn-page texture, ambient quotes,
+   immersive mode, and quiet/focus mode. Additive only; nothing above this
+   block was structurally changed, only the color/type tokens were retuned.
+   ========================================================================= */
+
+/* Worn-page texture: a faint fibrous grain + vignette, applied to paper
+   surfaces app-wide so the study "feels" old rather than merely looking
+   re-colored. Kept subtle so long reading passages stay legible. */
+body,
+.canvas,
+.canvas__header,
+.card,
+.panel {
+  background-image:
+    radial-gradient(ellipse at top left, rgba(31,27,21,0.05), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(31,27,21,0.04), transparent 65%),
+    repeating-linear-gradient(0deg, rgba(31,27,21,0.012) 0px, rgba(31,27,21,0.012) 1px, transparent 1px, transparent 3px);
+}
+
+body { background-color: var(--paper); }
+
+/* Rail ambiance controls (Focus Mode / Immersive) */
+.rail__ambiance {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin: 0 var(--sp-4) var(--sp-5);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid rgba(216, 207, 186, 0.16);
+}
+
+.rail__ambiance-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid rgba(216, 207, 186, 0.22);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--rail-text-dim);
+  font: 600 11px var(--font-chrome);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.rail__ambiance-btn:hover {
+  color: var(--rail-text);
+  border-color: var(--brass-soft);
+}
+
+.rail__ambiance-btn[aria-pressed="true"] {
+  background: var(--rail-bg-raised);
+  color: var(--brass-soft);
+  border-color: var(--brass);
+}
+
+.rail__ambiance-icon { font-size: 13px; line-height: 1; }
+
+/* Ambient quotes: a single restrained line of Puritan/Reformation-era
+   wisdom above each workspace header. Rotates per navigation, never
+   duplicated with attribution the pastor hasn't asked for. */
+.ambient-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  border-left: 2px solid var(--brass-soft);
+  padding: 2px 0 2px var(--sp-3);
+  margin: 0 0 var(--sp-4);
+  max-width: 62ch;
+}
+
+.ambient-quote__attribution {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-chrome);
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0.75;
+}
+
+/* Quiet / Focus mode: dims ambiance without hiding functionality —
+   removes the texture and quote, flattens shadows, quiets the rail. */
+body.focus-mode .ambient-quote { display: none; }
+body.focus-mode,
+body.focus-mode .canvas,
+body.focus-mode .canvas__header,
+body.focus-mode .card,
+body.focus-mode .panel {
+  background-image: none;
+}
+body.focus-mode .card,
+body.focus-mode .panel {
+  box-shadow: none;
+}
+body.focus-mode .rail {
+  background: var(--ink);
+}
+
+/* Immersive mode: leans further into "the study" — deeper vignette, worn
+   writing-area treatment extended to text inputs and textareas so the
+   whole canvas feels like a page rather than a form. */
+body.immersive-mode .canvas {
+  background-color: var(--paper-raised);
+  box-shadow: inset 0 0 120px rgba(31, 27, 21, 0.08);
+}
+body.immersive-mode textarea,
+body.immersive-mode input[type="text"],
+body.immersive-mode input[type="search"] {
+  background-color: var(--paper-raised);
+  background-image: repeating-linear-gradient(0deg, transparent 0, transparent 27px, rgba(31,27,21,0.06) 28px);
+  font-family: var(--font-read);
+}
+body.immersive-mode .canvas__title {
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+}
