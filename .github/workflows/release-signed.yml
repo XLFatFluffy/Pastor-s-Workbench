@@ -1,0 +1,69 @@
+name: Build and Publish Pastor's Workbench Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release tag (for example v0.30.0)"
+        required: true
+        default: "v0.30.0"
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: 22
+  RUST_TARGET: x86_64-pc-windows-msvc
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ env.RUST_TARGET }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prepare desktop frontend
+        run: npm run desktop:prepare
+
+      - name: Verify release inputs
+        shell: pwsh
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:TAURI_SIGNING_PRIVATE_KEY)) {
+            throw "TAURI_SIGNING_PRIVATE_KEY GitHub Actions secret is missing."
+          }
+          if (-not (Test-Path "frontend/index.html")) {
+            throw "Prepared frontend/index.html is missing."
+          }
+          if (-not (Test-Path "frontend/styles.css")) {
+            throw "Prepared frontend/styles.css is missing."
+          }
+
+      - name: Build signed MSI release and publish GitHub Release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+        with:
+          tagName: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
+          releaseName: "Pastor's Workbench ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}"
+          releaseBody: "Signed Windows MSI release of Pastor's Workbench."
+          releaseDraft: false
+          prerelease: false
