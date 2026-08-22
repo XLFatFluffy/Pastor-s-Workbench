@@ -5,30 +5,31 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const frontend = path.join(root, 'frontend');
 
-// The desktop build packages the generated frontend directory. Keep this list
-// complete for every browser-side root module referenced by index.html or the
-// application shell. Missing one of these files produces a valid Tauri window
-// that contains only the static HTML shell because JavaScript module loading
-// fails at runtime.
-const files = [
-  'index.html', 'styles.css', 'main.js', 'theme.js', 'workspaceAI.js',
-  'aiService.js', 'bibleService.js', 'concordanceService.js',
-  'confessionService.js', 'contextService.js', 'crossReferenceService.js',
-  'dataModel.js', 'desktopBridge.js', 'documentService.js', 'globalAI.js',
-  'libraryService.js', 'relationships.js', 'researchService.js',
-  'sermonService.js', 'store.js'
+// The desktop build packages the generated frontend directory. Copy every
+// browser-side JavaScript module at the repository root instead of maintaining
+// a fragile hand-written allowlist. A missing transitive module produces a
+// valid Tauri window containing only the static HTML shell.
+const requiredFiles = [
+  'index.html',
+  'styles.css'
 ];
 const dirs = ['views', 'data'];
 
 fs.rmSync(frontend, { recursive: true, force: true });
 fs.mkdirSync(frontend, { recursive: true });
 
-for (const file of files) {
+for (const file of requiredFiles) {
   const src = path.join(root, file);
   if (!fs.existsSync(src)) {
     throw new Error(`Required desktop frontend file is missing: ${file}`);
   }
   fs.copyFileSync(src, path.join(frontend, file));
+}
+
+for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+  if (!entry.isFile() || !entry.name.endsWith('.js')) continue;
+  const src = path.join(root, entry.name);
+  fs.copyFileSync(src, path.join(frontend, entry.name));
 }
 
 for (const dir of dirs) {
