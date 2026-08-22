@@ -26,3 +26,21 @@ v0.12.0 — Desktop foundation
 - Added Windows NSIS/MSI bundle configuration.
 - Added desktop setup/build documentation.
 - Browser-to-desktop IndexedDB migration is intentionally deferred to the next desktop phase.
+
+Version 0.13.0 — AI Workbench Actions
+- Added automatic AI-directed project actions.
+- AI can create/open a project when the pastor explicitly asks it to start, create, or open one.
+- AI can choose and set the project title, type, and description through a structured action.
+- Study, sermon, and lesson projects automatically receive their specialized workspace records.
+- The newly created/opened project is automatically navigated to and opened in the Workbench.
+- Existing note/research actions remain approval-based.
+- Calendar and daily scheduling were intentionally not changed in this version.
+- Test suite: 60 passed, 0 failed.
+
+
+[v0.14.0] Calendar & Daily Planning
+- Replaced the Calendar placeholder with a functional month calendar and selected-day planner.
+- Added persistent CalendarEvent and DailyTask domain records and IndexedDB stores.
+- Added project-linked tasks/events, priorities, completion/reopen, deletion, quick-add forms, and Today navigation.
+- Added calendar/daily-plan data to global AI Workbench context so the AI can read scheduling information.
+- Calendar and daily scheduling are now a real planning workflow rather than a placeholder.

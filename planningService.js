@@ -70,6 +70,8 @@ export function summarizePlanningProposal(proposal) {
 
 export async function applyPlanningProposal(proposal) {
   const p = validatePlanningProposal(proposal);
+  // Validate everything before writing anything so an invalid event cannot leave
+  // half of a plan committed.
   const createdTasks = [];
   const createdEvents = [];
   for (const task of p.tasks) createdTasks.push(await saveTask(task));

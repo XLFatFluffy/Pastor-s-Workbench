@@ -47,10 +47,14 @@ export async function getTask(id) { return get(STORES.task, id); }
 export async function deleteEvent(id) { return remove(STORES.event, id); }
 export async function deleteTask(id) { return remove(STORES.task, id); }
 
-export async function listEvents({ from = '', to = '', status = '' } = {}) {
+export async function listEvents({ from = '', to = '' } = {}) {
   const rows = await all(STORES.event);
-  return rows.filter(e => (!from || e.start_at >= from) && (!to || e.start_at <= to) && (!status || e.status === status))
-    .sort((a,b) => a.start_at.localeCompare(b.start_at));
+  const start = from ? new Date(from).getTime() : -Infinity;
+  const end = to ? new Date(to).getTime() : Infinity;
+  return rows.filter(e => {
+    const a = new Date(e.start_at).getTime(); const b = new Date(e.end_at).getTime();
+    return a <= end && b >= start;
+  }).sort((a,b) => new Date(a.start_at) - new Date(b.start_at));
 }
 export async function listTasks({ dueDate = '', from = '', to = '', status = '' } = {}) {
   const rows = await all(STORES.task);

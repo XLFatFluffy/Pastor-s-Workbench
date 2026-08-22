@@ -1,0 +1,6 @@
+Notes added as we go by the creator
+-Claude does not have to run a test to make sure it runs.
+-ChatGpt is to do in depth detailed work and ensure i am given back a working product.
+-always read the rebuild plan first, plan what you are going to do, then implement the plan.
+-Take your time.
+-This file is not to be edited or removed by ai.

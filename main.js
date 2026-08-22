@@ -3,6 +3,8 @@
 
 const ROUTES = Object.freeze([
   { id: "dashboard", label: "Dashboard", section: "Workspace", status: "ready", view: "./views/dashboardView.js" },
+  { id: "search", label: "Search", section: "Workspace", status: "ready", view: "./views/searchView.js" },
+  { id: "calendar", label: "Calendar", section: "Workspace", status: "ready", view: "./views/calendarView.js", phase: "Planning" },
   { id: "bible", label: "Bible", section: "Study", status: "ready", view: "./views/bibleWorkspaceView.js", phase: "Phase 2" },
   { id: "confession", label: "1689 Confession", section: "Study", status: "ready", view: "./views/confessionWorkspaceView.js", phase: "Phase 3" },
   { id: "concordance", label: "Concordance", section: "Study", status: "ready", view: "./views/concordanceWorkspaceView.js", phase: "Phase 5" },
@@ -12,6 +14,7 @@ const ROUTES = Object.freeze([
   { id: "studies", label: "Studies", section: "Work", status: "ready", view: "./views/workWorkspaceView.js", phase: "Phase 7" },
   { id: "projects", label: "Projects", section: "Work", status: "ready", view: "./views/workWorkspaceView.js", phase: "Phase 7" },
   { id: "books", label: "Books", section: "Library", status: "ready", view: "./views/booksView.js", phase: "Phase 8" },
+  { id: "documents", label: "Files", section: "Library", status: "ready", view: "./views/documentsView.js", phase: "Phase 8" },
   { id: "commentaries", label: "Commentaries", section: "Library", status: "stub", view: "./views/stubView.js", phase: "Phase 8" },
       { id: "notes", label: "Notes", section: "Knowledge", status: "ready", view: "./views/researchWorkspaceView.js", phase: "Phase 6" },
   { id: "topics", label: "Topics", section: "Knowledge", status: "ready", view: "./views/researchWorkspaceView.js", phase: "Phase 6" },
@@ -24,7 +27,8 @@ const DEFAULT_ROUTE = "dashboard";
 
 function currentRouteId() {
   const hash = window.location.hash.replace(/^#\/?/, "");
-  return ROUTES.some((route) => route.id === hash) ? hash : DEFAULT_ROUTE;
+  const id = hash.split("?")[0];
+  return ROUTES.some((route) => route.id === id) ? id : DEFAULT_ROUTE;
 }
 
 function renderRail(activeId) {
@@ -44,6 +48,7 @@ function renderRail(activeId) {
 }
 
 async function renderView(routeId) {
+  globalThis.__pwbWorkspaceAI = null;
   const route = ROUTES.find((candidate) => candidate.id === routeId) || ROUTES[0];
   const mount = document.getElementById("app-view");
 
@@ -51,6 +56,10 @@ async function renderView(routeId) {
     const mod = await import(route.view);
     mount.innerHTML = "";
     await mod.render(mount, route);
+    try {
+      const { installWorkspaceAIAssist } = await import('./workspaceAI.js');
+      installWorkspaceAIAssist(route.id);
+    } catch (error) { console.warn('[Workbench] AI workspace affordances unavailable', error); }
     mount.focus({ preventScroll: true });
   } catch (error) {
     mount.innerHTML = `

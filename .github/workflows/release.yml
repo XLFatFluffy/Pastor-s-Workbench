@@ -3,10 +3,10 @@ name: Build and Publish Pastor's Workbench Release
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Release version, for example 0.12.8'
+      release_tag:
+        description: "Release tag (for example v0.25.0)"
         required: true
-        default: '0.12.8'
+        default: "v0.25.0"
   push:
     tags:
       - 'v*'
@@ -17,7 +17,6 @@ permissions:
 jobs:
   release:
     runs-on: windows-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,15 +37,14 @@ jobs:
       - name: Prepare desktop frontend
         run: npm run desktop:prepare
 
-      - name: Build and publish signed Tauri release
-        uses: tauri-apps/tauri-action@v0.6.2
+      - name: Build signed MSI release and publish GitHub Release
+        uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
         with:
-          tagName: v${{ github.event.inputs.version || github.ref_name }}
-          releaseName: "Pastor's Workbench v${{ github.event.inputs.version || github.ref_name }}"
-          releaseBody: "Signed Windows release of Pastor's Workbench."
+          tagName: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
+          releaseName: "Pastor's Workbench ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}"
+          releaseBody: "Signed Windows MSI release of Pastor's Workbench."
           releaseDraft: false
           prerelease: false
-          updaterJsonPreferNsis: false

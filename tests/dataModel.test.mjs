@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { ENTITY_TYPES, createRecord, getSchema, validateRecord } from "../dataModel.js";
 
-assert.equal(ENTITY_TYPES.length, 32);
+assert.equal(ENTITY_TYPES.length, 34);
 assert.ok(getSchema("Project").includes("project_type"));
 assert.ok(getSchema("Sermon").includes("manuscript"));
 
@@ -33,4 +33,6 @@ assert.equal(validateRecord("ConfessionParagraph", {
   id: "cp1", chapter_id: "c1", paragraph_number: 1, text: "Text", is_seeded: false
 }).is_seeded, false);
 
+assert.equal(createRecord("CalendarEvent", { id:"e1", workspace_id:"w1", project_id:"", title:"Study", description:"", start_at:"2026-08-20T09:00:00", end_at:"2026-08-20T10:00:00", all_day:false, status:"scheduled", created_at:"x", updated_at:"x" }).all_day, false);
+assert.equal(createRecord("DailyTask", { id:"t1", workspace_id:"w1", project_id:"", title:"Read", description:"", due_date:"2026-08-20", priority:"high", status:"open", completed_at:null, created_at:"x", updated_at:"x" }).priority, "high");
 console.log("dataModel tests passed");

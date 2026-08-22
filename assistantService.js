@@ -18,13 +18,14 @@ export async function getDailyBriefing(date = new Date()) {
 
 const NARRATIVE_CACHE_KEY = 'pwb-daily-narrative';
 
+/** AI-written narrative summary of today's briefing, cached once per calendar day. */
 export async function getAIDailyNarrative(snapshot, { force = false } = {}) {
   const cacheKey = `${NARRATIVE_CACHE_KEY}:${snapshot.date}`;
   if (!force) {
     try {
       const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
       if (cached) return cached;
-    } catch { }
+    } catch { /* fall through to regenerate */ }
   }
   const { askAI } = await import('./aiService.js');
   const facts = [
@@ -38,7 +39,7 @@ export async function getAIDailyNarrative(snapshot, { force = false } = {}) {
     includeBooks: false
   });
   const result = { text: out.answer, model: out.model, generatedAt: new Date().toISOString() };
-  try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch { }
+  try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch { /* storage unavailable */ }
   return result;
 }
 
