@@ -38,6 +38,8 @@ jobs:
       - name: Prepare desktop frontend
         run: npm run desktop:prepare
 
+      # This workflow intentionally produces an unsigned test installer.
+      # Signed releases use release.yml and TAURI_SIGNING_PRIVATE_KEY.
       - name: Disable updater signing for unsigned build
         shell: pwsh
         run: |
