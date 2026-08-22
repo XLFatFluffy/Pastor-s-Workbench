@@ -36,6 +36,6 @@ jobs:
         shell: bash
         run: |
           set -e
-          for file in $(find . -maxdepth 2 -name '*.js' -not -path './node_modules/*' -not -path './src-tauri/target/*'); do
+          find . -maxdepth 2 -name '*.js' -not -path './node_modules/*' -not -path './src-tauri/target/*' -print0 | while IFS= read -r -d '' file; do
             node --check "$file"
           done
